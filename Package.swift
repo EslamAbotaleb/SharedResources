@@ -53,9 +53,6 @@ let package = Package(
                 .product(name: "KeychainSwift", package: "keychain-swift"),
                 .product(name: "Reachability", package: "Reachability.swift")
             ],
-            resources: [
-                .process("Resources")
-            ],
             swiftSettings: [
                    .unsafeFlags(["-Xfrontend", "-strict-concurrency=minimal"])
             ]

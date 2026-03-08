@@ -286,23 +286,6 @@ class AlamofireService: EndpointExecuter {
         return body
     }
 
-    // MARK: - Request Builder
-    public func buildRequest(with body: Data, boundary: String) -> URLRequest {
-        var request = URLRequest(url: URL(string: EndpointService.saveProfile.url)!, timeoutInterval: 60)
-        request.httpMethod = "PUT"
-        request.httpBody = body
-        
-        request.addValue("application/json, text/plain, */*", forHTTPHeaderField: "accept")
-        request.addValue("Bearer \(AuthManagerDynamicForm.shared.token)", forHTTPHeaderField: "authorization")
-        request.addValue("no-cache", forHTTPHeaderField: "cache-control")
-        request.addValue(isArabic() ? "ar" : "en", forHTTPHeaderField: "languagecode")
-        request.addValue(AuthManagerDynamicForm.shared.tenant?.tenantId ?? "", forHTTPHeaderField: "tenantid")
-        request.addValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-        request.addValue("iOS", forHTTPHeaderField: "Platform")
-        
-        return request
-    }
-
     // MARK: - Networking
     public func performRequest(_ request: URLRequest, completion: @escaping (BaseError?) -> Void) {
         let task = URLSession.shared.dataTask(with: request) { data, response, error in

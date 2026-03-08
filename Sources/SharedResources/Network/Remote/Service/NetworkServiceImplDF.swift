@@ -19,7 +19,6 @@ protocol EndpointExecuter {
     func downloadFile(_ filesUrl: [String]) -> Promise<URL>
     func prepareParameters(with jsonPayload: [String: Any]) -> [[String: Any]]
     func buildMultipartBody(parameters: [[String: Any]], boundary: String) throws -> Data
-    func buildRequest(with body: Data, boundary: String) -> URLRequest
     func performRequest(_ request: URLRequest, completion: @escaping (BaseError?) -> Void)
 }
 

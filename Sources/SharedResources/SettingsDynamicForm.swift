@@ -35,24 +35,6 @@ internal let modifier = AnyModifier { request in
     return r
 }
 
-public let dummyEmptyImgNameCerqel = "empty-dummy"
-public let tempServiceImgNameCerqel = "service1"
-public let avatarImgNameCerqel = "User"
-
-public let dummyEmptyImgCerqel = UIImage(named: "empty-dummy")
-public let favEmptyImgCerqel = UIImage(named: "heart")
-public let favImageCerqel = UIImage(named: "filledFav")
-public let notFavImageCerqel = UIImage(named: "Favorite")
-public let favImageForDetailsCerqel = UIImage(named: "fav-Undimmed")
-public let notFavImageForDetailsCerqel = UIImage(named: "fav-dimmed")
-public let tempServiceImgCerqel = UIImage(named: "service1")
-public let tempVacationImgCerqel = UIImage(named: "vacation")
-@MainActor public var loadingUserInteractionEnabledCerqel = false
-public let avatarCerqel = UIImage(named: "User")
-public let avatar_BigCerqel = UIImage(named: "avatar_Big")
-@MainActor public var offersCountInDashboardCerqel = 0
-@MainActor public var recentSearchKeyCerqel = "RECENT_SEARCH_LIST"
-@MainActor public var kbRecentSearchKeyCerqel = "kb_RECENT_SEARCH_LIST"
 public let FF_New_Form_DesignCerqel = true
 public let timeZone_UTC = TimeZone(abbreviation: "UTC") ?? TimeZone.current
 

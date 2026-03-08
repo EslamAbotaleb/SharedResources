@@ -35,7 +35,11 @@ enum cerqel_Environment {
             static let notificationHubKeyName = "notificationHubKeyName"
             static let notificationHubKey = "notificationHubKey"
         }
-        
+    }
+    
+    // Checking Environment PreDev
+    static var isPreDev: Bool {
+        return Api_Base_URL.contains("/predev/")
     }
     
     // MARK: - Plist
