@@ -7,19 +7,16 @@
 //
 
 import Foundation
+import UIKit
+import CommonCrypto
 internal import RxSwift
 internal import RxAlamofire
-import UIKit
 internal import Alamofire
-import CommonCrypto
 internal import JGProgressHUD
 
 public struct cerqel_BasicNetworkServiceDynamicFormImpl: cerqel_NetworkServiceDynamicForm {
 
-
     static nonisolated(unsafe) public let shared = cerqel_BasicNetworkServiceDynamicFormImpl()
-
-//    let appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
 
     public init() {}
     
@@ -31,15 +28,14 @@ public struct cerqel_BasicNetworkServiceDynamicFormImpl: cerqel_NetworkServiceDy
             .do(onError: { err in
                 if let val = err as? AFError, val.responseCode == 401
                 {
-                    guard !(AuthManagerDynamicForm.shared.unauthorizedFlag.value ?? false) else { return }
-                   // TokenManager.shared.refreshToken {
+                guard !(AuthManagerDynamicForm.shared.unauthorizedFlag.value ?? false) else { return }
+                DynamicFormTokenProvider.refreshToken? {
                         // Retry the request after token refresh
-
-                        _ = self.load(resource).subscribe(onNext: { result in
-                        }, onError: { retryError in
-
-                        })
-                   // }
+                    _ = self.load(resource).subscribe(onNext: { result in
+                    }, onError: { retryError in
+                        
+                    })
+                  }
                 }
             })
             .map { $0.data }

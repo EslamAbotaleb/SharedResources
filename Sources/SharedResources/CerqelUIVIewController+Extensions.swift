@@ -259,7 +259,7 @@ extension UIViewController{
     }
     
     public func openMFileMenu(attachmentExtensions: String) {
-        DynamicAuthManagerDynamicForm.shared.documentTypesOfExtensions.removeAll()
+        AuthManagerDynamicForm.shared.documentTypesOfExtensions.removeAll()
         
         let alertStyle: UIAlertController.Style = UIDevice.current.userInterfaceIdiom == .pad ? .alert : .actionSheet
         
@@ -284,7 +284,7 @@ extension UIViewController{
                 hasFile = true
                 if #available(iOS 14.0, *),
                    let docType = documentType(forFileExtension: ext) {
-                    DynamicAuthManagerDynamicForm.shared.documentTypesOfExtensions.append(docType)
+                    AuthManagerDynamicForm.shared.documentTypesOfExtensions.append(docType)
                 }
             } else if isImageType(ext) {
                 hasImage = true
@@ -293,10 +293,10 @@ extension UIViewController{
             }
         }
 
-        if hasFile, !DynamicAuthManagerDynamicForm.shared.documentTypesOfExtensions.isEmpty {
+        if hasFile, !AuthManagerDynamicForm.shared.documentTypesOfExtensions.isEmpty {
             let fileAction = UIAlertAction(title: "File".localized, style: .default) { _ in
                 let picker = UIDocumentPickerViewController(
-                    documentTypes: DynamicAuthManagerDynamicForm.shared.documentTypesOfExtensions,
+                    documentTypes: AuthManagerDynamicForm.shared.documentTypesOfExtensions,
                     in: .import
                 )
                 if let delegate = self as? UIDocumentPickerDelegate {
@@ -311,7 +311,7 @@ extension UIViewController{
         
         if hasImage {
             let cameraAction = UIAlertAction(title: "Camera".localized, style: .default) { _ in
-                DynamicAuthManagerDynamicForm.shared.isCameraOpened = true
+                AuthManagerDynamicForm.shared.isCameraOpened = true
                 checkAuthorizationState(
                     attachmentTypeEnum: .camera,
                     vc: self,

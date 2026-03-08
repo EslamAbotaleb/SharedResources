@@ -8,6 +8,6 @@
 import Foundation
 
 public class DynamicFormTokenProvider {
-    public static var refreshToken: ((@escaping (String?) -> Void) -> Void)?
+    public static var refreshToken: ((@escaping () -> Void) -> Void)?
     private init() {}
 }

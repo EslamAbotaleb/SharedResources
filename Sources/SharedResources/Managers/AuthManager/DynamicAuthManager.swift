@@ -7,19 +7,39 @@
 
 import Foundation
 internal import RxSwift
+internal import RxCocoa
 
-@MainActor
-class DynamicAuthManagerDynamicForm {
+class AuthManagerDynamicForm {
     
     private let service: cerqel_NetworkServiceDynamicForm = cerqel_BasicNetworkServiceDynamicFormImpl.shared
     private let disposeBag = DisposeBag()
     var documentTypesOfExtensions: [String] = []
     var isTasks = true
-    static var shared = DynamicAuthManagerDynamicForm()
+    static var shared = AuthManagerDynamicForm()
     var isCameraOpened = false
+    var newSubmissionRetreiveEnabled = true
 
     var isPopUpFromFormBuilder:((String) -> ())?
     var isInboxRefreshRequired = false
+    var unauthorizedFlag: BehaviorRelay<Bool?> = BehaviorRelay(value: nil)
+
+    public var token: String = ""{
+        didSet{
+            UserDefaults.standard.set(token, forKey: "Token")
+        }
+    }
+    
+    public var tenant: TenantListDTO? {
+        get {
+            guard let data = UserDefaults.standard.data(forKey: "tenant") else { return nil }
+            let tenant = try? JSONDecoder().decode(TenantListDTO.self, from: data)
+            return tenant
+        }
+        set {
+            let data = try? JSONEncoder().encode(newValue)
+            UserDefaults.standard.set(data, forKey: "tenant")
+        }
+    }
     
     func convertToUploadMediaUIModel(from attachment: AttachmentForDefault) -> UploadMediaUIModel {
         let state: UploadMediaUIModel.UploadingState = attachment.isSuccess ?? false ? .success : .success

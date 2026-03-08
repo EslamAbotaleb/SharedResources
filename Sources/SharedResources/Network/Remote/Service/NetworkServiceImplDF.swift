@@ -17,8 +17,6 @@ protocol EndpointExecuter {
     func cancelUpload(_ fileVersionType: FileVersionType) -> Void
     func uploadMultipart(_ endpoint: Endpoint,progressCallBack: @escaping UploadProgrssCallBack) -> Promise<NetworkServiceResponse>
     func downloadFile(_ filesUrl: [String]) -> Promise<URL>
-    func prepareParameters(with jsonPayload: [String: Any]) -> [[String: Any]]
-    func buildMultipartBody(parameters: [[String: Any]], boundary: String) throws -> Data
     func performRequest(_ request: URLRequest, completion: @escaping (BaseError?) -> Void)
 }
 
@@ -53,7 +51,7 @@ class NetworkServiceImpl: Network {
                             return
                         }
                         
-                        DynamicFormTokenProvider.refreshToken? { _ in
+                        DynamicFormTokenProvider.refreshToken? {
                                 // Retry the request after token refresh
                                 self.callModel(model, endpoint: endpoint)
                                                             .then(fulfill)
@@ -80,7 +78,7 @@ class NetworkServiceImpl: Network {
                 .catch({ (error) in
                     if let error  = error as? ServerError, error.status == 401 {
                         guard !(AuthManagerDynamicForm.shared.unauthorizedFlag.value ?? false) else { return }
-                        DynamicFormTokenProvider.refreshToken? { token in
+                        DynamicFormTokenProvider.refreshToken? {
                                 // Retry the request after token refresh
                                 self.uploadModel(model, endpoint: endpoint, progressCallBack: progressCallBack)
                                                             .then(fulfill)
@@ -104,7 +102,7 @@ class NetworkServiceImpl: Network {
                 .catch({ (error) in
                     if let error  = error as? ServerError, error.status == 401 {
                         guard !(AuthManagerDynamicForm.shared.unauthorizedFlag.value ?? false) else { return }
-                        DynamicFormTokenProvider.refreshToken? { token in
+                        DynamicFormTokenProvider.refreshToken? { 
                                 // Retry the request after token refresh
                                 self.downloadModel(filesUrl: filesUrl)
                                                             .then(fulfill)

@@ -238,53 +238,6 @@ class AlamofireService: EndpointExecuter {
        
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "inProgress"), object: nil, userInfo: progressValue)
     }
-  
-    // MARK: - Parameters
-    public func prepareParameters(with jsonPayload: [String: Any]) -> [[String: Any]] {
-        let jsonData = try! JSONSerialization.data(withJSONObject: jsonPayload, options: [])
-        let jsonString = String(data: jsonData, encoding: .utf8)!
-        
-        if AuthManagerDynamicForm.shared.profilePicture.value?.0 != nil {
-            return [
-                ["key": "data", "value": jsonString, "type": "text"],
-                ["key": "profilePicture", "type": "file"]
-            ]
-        } else {
-            return [
-                ["key": "data", "value": jsonString, "type": "text"]
-            ]
-        }
-    }
-
-    // MARK: - Multipart Body
-    public func buildMultipartBody(parameters: [[String: Any]], boundary: String) throws -> Data {
-        var body = Data()
-        for param in parameters {
-            if param["disabled"] != nil { continue }
-            guard let paramName = param["key"] as? String else { continue }
-            
-            body += Data("--\(boundary)\r\n".utf8)
-            body += Data("Content-Disposition:form-data; name=\"\(paramName)\"".utf8)
-            
-            if let contentType = param["contentType"] as? String {
-                body += Data("\r\nContent-Type: \(contentType)".utf8)
-            }
-            
-            let paramType = param["type"] as! String
-            if paramType == "text", let paramValue = param["value"] as? String {
-                body += Data("\r\n\r\n\(paramValue)\r\n".utf8)
-            } else if paramType == "file",
-                      let image = AuthManagerDynamicForm.shared.profilePicture.value?.0,
-                      let fileContent = image.jpegData(compressionQuality: 1.0) {
-                body += Data("; filename=ProfilePicture.jpeg\r\n".utf8)
-                body += Data("Content-Type: image/jpeg\r\n\r\n".utf8)
-                body += fileContent
-                body += Data("\r\n".utf8)
-            }
-        }
-        body += Data("--\(boundary)--\r\n".utf8)
-        return body
-    }
 
     // MARK: - Networking
     public func performRequest(_ request: URLRequest, completion: @escaping (BaseError?) -> Void) {
