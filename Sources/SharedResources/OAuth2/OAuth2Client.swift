@@ -255,10 +255,14 @@ open class OAuth2Client {
                         "platform": "ios",
                         "lang": selectedLang
                     ]
-                    AF.request(self.configuration.tokenURL, method: .post, parameters: parameters, encoding: URLEncoding.default, headers: HTTPHeaders(headers)).validate().responseJSON { (responseJSON) in
+                    AF.request(self.configuration.tokenURL, method: .post, parameters: parameters, encoding: URLEncoding.default, headers: HTTPHeaders(headers)).validate().responseData { responseData in
                         do {
-                            let json = try JSON(data: responseJSON.data!)
-                            if let responseCode = responseJSON.response?.statusCode {
+                            guard let data = responseData.data else {
+                                self.clientDidFailLoadingToken(OAuth2Error(localizedTitle: "Invalid response", localizedDescription: "No data received"))
+                                return
+                            }
+                            let json = try JSON(data: data)
+                            if let responseCode = responseData.response?.statusCode {
                                 if responseCode == 200 {
                                     self.token = OAuth2Token()
                                     self.token?.accessToken = json["access_token"].stringValue
@@ -324,10 +328,14 @@ open class OAuth2Client {
                 "platform": "ios",
                 "lang": isArabic() ? "ar" : "en"
             ]
-            AF.request(self.configuration.tokenURL, method: .post, parameters: parameters, encoding: URLEncoding.default, headers: HTTPHeaders(headers)).validate().responseJSON { (responseJSON) in
+            AF.request(self.configuration.tokenURL, method: .post, parameters: parameters, encoding: URLEncoding.default, headers: HTTPHeaders(headers)).validate().responseData { responseData in
                 do {
-                    let json = try JSON(data: responseJSON.data!)
-                    if let responseCode = responseJSON.response?.statusCode {
+                    guard let data = responseData.data else {
+                        self.clientDidFailLoadingToken(OAuth2Error(localizedTitle: "Invalid response", localizedDescription: "No data received"))
+                        return
+                    }
+                    let json = try JSON(data: data)
+                    if let responseCode = responseData.response?.statusCode {
                         if responseCode == 200 {
                             self.token = OAuth2Token()
                             self.token?.accessToken = json["access_token"].stringValue

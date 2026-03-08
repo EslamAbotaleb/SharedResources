@@ -15,13 +15,14 @@ public protocol localNotificationDelegate {
     func didReject(error: Error)
 }
 
+@MainActor
 public protocol LocalNotificationProtocol {
     func scheduleLocalNotification(file: FileModel)
     func checkNotificationPermission()
     var delegate:localNotificationDelegate? { get set }
 }
 
-
+@MainActor
 public class LocalNotificationManager : LocalNotificationProtocol {
     
     public var scheduledNotificationIdentifiers: [String] = []

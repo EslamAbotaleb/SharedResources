@@ -11,8 +11,9 @@ import UIKit
 import CommonCrypto
 import SwiftUI
 
+@MainActor
 class TokenManager {
-    static var shared = TokenManager()
+    static let shared = TokenManager()
 
     private var pendingRequests = [(() -> Void)]()
     private var isRefreshTokenInProgress = DynamicObjects(false)

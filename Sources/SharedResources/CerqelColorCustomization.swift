@@ -5,7 +5,7 @@
 //  Created by Omar Ibrahim on 3/4/26.
 //
 
-
+import Foundation
 import UIKit
 
 @MainActor public var needed: Bool = false
@@ -27,10 +27,10 @@ import UIKit
 @MainActor public var defaultGrayColor = UIColor(rCerqel: 189, gCerqel: 189, bCerqel: 189, aCerqel: 1)
 @MainActor public var TypographyLinks = UIColor(rCerqel: 46, gCerqel: 151, bCerqel: 239, aCerqel: 1)
 @MainActor public var selectExcellentEmojiColor = UIColor(hexString: "#309620")
-@MainActor public var selectGoodEmojiColor = UIColor(hexString: "#62DA4E")
-@MainActor public var selectFairEmojiColor = UIColor(hexString: "#E7BB4B")
-@MainActor public var selectBadEmojiColor = UIColor(hexString: "#EF5757")
-@MainActor public var selectVeryBadEmojiColor = UIColor(hexString: "#AE2A2A")
+@MainActor public var selectGoodEmojiColor = UIColor(hexStringCerqel: "#62DA4E")
+@MainActor public var selectFairEmojiColor = UIColor(hexStringCerqel: "#E7BB4B")
+@MainActor public var selectBadEmojiColor = UIColor(hexStringCerqel: "#EF5757")
+@MainActor public var selectVeryBadEmojiColor = UIColor(hexStringCerqel: "#AE2A2A")
 @MainActor public var redButton = UIColor(rCerqel: 201, gCerqel: 56, bCerqel: 56, aCerqel: 1)
 @MainActor public var sideMenuBG: UIColor = .white
 @MainActor public var sideMenuTextColor: UIColor = .white

@@ -31,9 +31,7 @@ public func delay(seconds: Double, completion: @escaping () -> ()) {
     }
 }
 
-public func isArabic()-> Bool{
-    return MOLHLanguage.isArabic()
-}
+
 
 
 public func getTimeDifference(dt: Date, includeDays: Bool, includeDaysIfCurrentIsLess: Bool)-> (String?, String?, String?, String?){

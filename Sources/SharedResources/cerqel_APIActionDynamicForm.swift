@@ -10,14 +10,14 @@ import Foundation
 internal import Alamofire
 
 enum cerqel_URLType{
-    case Content
-    case selfService
-    case userManager
-    case Notification
-    case fileManager
-    case searchEngine
+    case Content // not related to DF
+    case selfService // dynamic form
+    case userManager // dynamic form
+    case Notification // not related to DF
+    case fileManager // dynamic form
+    case searchEngine // not related to DF
     case base
-    case mocking
+    case mocking // not related to DF
     case none
 }
 
