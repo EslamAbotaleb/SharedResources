@@ -11,7 +11,6 @@ import Foundation
 internal import RxCocoa
 internal import RxSwift
 internal import MOLH
-internal import SideMenu
 
 public class AuthManagerDynamicForm {
 
