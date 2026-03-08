@@ -42,6 +42,37 @@ extension String {
         }
         return nil
     }
+    
+   public func width(withConstrainedHeight height: CGFloat, font: UIFont) -> CGFloat {
+       let constraintRect = CGSize(width: .greatestFiniteMagnitude, height: height)
+       let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: font], context: nil)
+ 
+       return ceil(boundingBox.width)
+   }
+    
+   public func initialsFromString(string: String) -> String {
+        var nameComponents = string.uppercased().components(separatedBy: CharacterSet.letters.inverted)
+        nameComponents.removeAll(where: {$0.isEmpty})
+        
+        let firstInitial = nameComponents.first?.first
+        let lastInitial  = nameComponents.count > 1 ? nameComponents[1].first : nil
+    //        let lastInitial  = nameComponents.count > 1 ? nameComponents.last?.first : nil
+        
+        var isAr: Bool?
+        let predicate = NSPredicate(format: "SELF MATCHES %@", "(?s).*\\p{Arabic}.*")
+        predicate.evaluate(with: string)
+        if predicate.evaluate(with: string) {
+            isAr = true
+        } else {
+            isAr = false
+        }
+        
+        if isAr ?? false {
+            return (firstInitial != nil ? "\(firstInitial!) " : "") + (lastInitial != nil ? "\(lastInitial!)" : "")
+        } else {
+            return (firstInitial != nil ? "\(firstInitial!)" : "") + (lastInitial != nil ? "\(lastInitial!)" : "")
+        }
+    }
 }
 
 extension UnicodeScalar {
@@ -72,7 +103,6 @@ extension UnicodeScalar {
 }
 extension String {
     
-    
     public var y_containsEmoji: Bool {
         
         return unicodeScalars.contains { $0.isEmoji }
@@ -80,6 +110,22 @@ extension String {
     
     public  var y_trimmed: String {
         return trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+    }
+    
+    public var cerqel_replacedArabicDigitsWithEnglish: String {
+        var str = self
+        let map = ["٠": "0",
+                   "١": "1",
+                   "٢": "2",
+                   "٣": "3",
+                   "٤": "4",
+                   "٥": "5",
+                   "٦": "6",
+                   "٧": "7",
+                   "٨": "8",
+                   "٩": "9"]
+        map.forEach { str = str.replacingOccurrences(of: $0, with: $1) }
+        return str
     }
     
     public func y_replaceFirst(of pattern:String,

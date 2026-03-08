@@ -52,7 +52,7 @@ public struct SearchBarView : View {
             }
             .frame(height: 48)
             .padding(.horizontal,16)
-            .background(CerqelColors.SupportSkyBlueLight)
+            .background(FormBuilderColors.SupportSkyBlueLight)
             Divider()
                 .padding(.horizontal,0)
                 .shadow(color: .black.opacity(0.1), radius: 2.5, x: 0, y: 1)

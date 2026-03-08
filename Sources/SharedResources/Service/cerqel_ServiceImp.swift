@@ -30,7 +30,7 @@ struct cerqel_BasicNetworkServiceImpl: cerqel_NetworkService {
                 if let val = err as? AFError, val.responseCode == 401
                 {
                     guard !(AuthManagerDynamicForm.shared.unauthorizedFlag.value ?? false) else { return }
-                    TokenManager.shared.refreshToken {
+                DynamicFormTokenProvider.refreshToken = { _ in
                         // Retry the request after token refresh
 
                         _ = self.load(resource).subscribe(onNext: { result in
@@ -107,7 +107,7 @@ struct cerqel_BasicNetworkServiceImpl: cerqel_NetworkService {
                 case .success(let data):
                     do {
                         let result = try JSONDecoder()
-                            .decode(cerqel_CodableResponseObject<T>.self, from: data)
+                            .decode(cerqel_CodableResponseObjectDynamicForm<T>.self, from: data)
                         observer.onNext(result)
                         observer.onCompleted()
                     } catch {

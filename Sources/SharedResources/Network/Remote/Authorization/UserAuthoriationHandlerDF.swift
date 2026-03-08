@@ -20,10 +20,9 @@ public class UserAuthoriationHandlerDF: AuthorizationHandler {
     
     public init() {
     }
-  
     
     public var clientHeader: [String: String] {
-        return ["LanguageCode": isArabicCerqel() ? "Ar" : "En"]
+        return ["LanguageCode": isArabic() ? "Ar" : "En"]
     }
     
     public var uidHeader: [String: String] {

@@ -1,10 +1,10 @@
 //
-//  SheetViewController.swift
-//  SharedResources
+//  SheetViewControllerDF.swift
+//  FittedSheets
 //
-//  Created by Omar Ibrahim on 3/5/26.
+//  Created by Gordon Tucker on 8/23/18.
+//  Copyright © 2018 Gordon Tucker. All rights reserved.
 //
-
 
 import UIKit
 

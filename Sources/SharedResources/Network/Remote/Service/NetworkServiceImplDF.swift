@@ -53,7 +53,8 @@ class NetworkServiceImpl: Network {
                             reject(error)
                             return
                         }
-                            TokenManager.shared.refreshToken {
+                        
+                        DynamicFormTokenProvider.refreshToken? { _ in
                                 // Retry the request after token refresh
                                 self.callModel(model, endpoint: endpoint)
                                                             .then(fulfill)
@@ -66,8 +67,6 @@ class NetworkServiceImpl: Network {
                 })
         }
     }
-
-
 
     public func uploadModel<Model: Codable>(_ model: Model.Type, endpoint: Endpoint,progressCallBack: @escaping UploadProgrssCallBack) -> Promise<Model> {
         return Promise<Model>(on: .main) { fulfill, reject in
@@ -82,7 +81,7 @@ class NetworkServiceImpl: Network {
                 .catch({ (error) in
                     if let error  = error as? ServerError, error.status == 401 {
                         guard !(AuthManagerDynamicForm.shared.unauthorizedFlag.value ?? false) else { return }
-                            TokenManager.shared.refreshToken {
+                        DynamicFormTokenProvider.refreshToken? { token in
                                 // Retry the request after token refresh
                                 self.uploadModel(model, endpoint: endpoint, progressCallBack: progressCallBack)
                                                             .then(fulfill)
@@ -106,7 +105,7 @@ class NetworkServiceImpl: Network {
                 .catch({ (error) in
                     if let error  = error as? ServerError, error.status == 401 {
                         guard !(AuthManagerDynamicForm.shared.unauthorizedFlag.value ?? false) else { return }
-                            TokenManager.shared.refreshToken {
+                        DynamicFormTokenProvider.refreshToken? { token in
                                 // Retry the request after token refresh
                                 self.downloadModel(filesUrl: filesUrl)
                                                             .then(fulfill)
@@ -200,7 +199,6 @@ class NetworkServiceImpl: Network {
                 if  statusCode == 401 {
                     AuthManagerDynamicForm.shared.unauthorizedFlag.accept(true)
                 }
-
             }
         }
     }
@@ -251,3 +249,4 @@ public struct HeaderResponse: Codable {
         case client, uid
     }
 }
+
