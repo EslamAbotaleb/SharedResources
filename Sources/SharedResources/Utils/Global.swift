@@ -23,3 +23,20 @@ func flashHud(message:String,view:UIView,indicator:JGProgressHUDIndicatorView) -
     hud.dismiss(afterDelay: 2.0)
     return hud
 }
+
+extension Encodable {
+    public func asDictionary() -> [String: Any] {
+        let serialized = (try? JSONSerialization.jsonObject(with: self.encode(), options: .allowFragments)) ?? nil
+        return serialized as? [String: Any] ?? [String: Any]()
+    }
+    
+    public func encode() -> Data {
+        return (try? JSONEncoder().encode(self)) ?? Data()
+    }
+}
+
+extension Data {
+    public func decode<T: Codable>(_ type: T.Type) -> T? {
+        return (try? JSONDecoder().decode(T.self, from: self))
+    }
+}

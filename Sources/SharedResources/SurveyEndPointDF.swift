@@ -16,11 +16,9 @@ internal struct SurveyEndPoint: Endpoint {
     public var auth: AuthorizationHandler = UserAuthoriationHandlerDF()
     public var parameters: [String: Any] = [:]
     public var headers: [String: String] = [:]
-    public var multipart: [DynamicFormEngine.MultiPartModel]
 
     public init(surveyPayload: SurveyPayload) {
         parameters = surveyPayload.asDictionary()
-        multipart = []
     }
 }
 

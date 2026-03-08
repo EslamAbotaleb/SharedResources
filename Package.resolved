@@ -1,5 +1,4 @@
 {
-  "originHash" : "eaccc2bc5aa4c7a7a94fd79302f781aa88ddc8f3151c750ac70e536bd782d77d",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -26,6 +25,15 @@
       "state" : {
         "revision" : "78d7cd35f1d90ff74fd82e486f2cbe4b24be8cf9",
         "version" : "2.2.0"
+      }
+    },
+    {
+      "identity" : "keychain-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/EslamAbotaleb/keychain-swift.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "122956616e3767a8aa1bf9b43564611b245e9304"
       }
     },
     {
@@ -164,5 +172,5 @@
       }
     }
   ],
-  "version" : 3
+  "version" : 2
 }

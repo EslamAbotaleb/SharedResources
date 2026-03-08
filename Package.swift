@@ -27,7 +27,8 @@ let package = Package(
         .package(url: "https://github.com/SwiftyJSON/SwiftyJSON.git", from: "5.0.2"),
         .package(url: "https://github.com/SDWebImage/SDWebImage.git", exact: "5.21.5"),
         .package(url: "https://github.com/SDWebImage/SDWebImageSVGCoder.git", exact: "1.8.0"),
-        .package(url: "https://github.com/airbnb/lottie-ios.git", exact: "3.5.0")
+        .package(url: "https://github.com/airbnb/lottie-ios.git", exact: "3.5.0"),
+        .package(url: "https://github.com/EslamAbotaleb/keychain-swift.git", branch: "master")
     ],
     targets: [
         .target(
@@ -47,7 +48,8 @@ let package = Package(
                 .product(name: "SwiftyJSON", package: "SwiftyJSON"),
                 .product(name: "SDWebImage", package: "SDWebImage"),
                 .product(name: "SDWebImageSVGCoder", package: "SDWebImageSVGCoder"),
-                .product(name: "Lottie", package: "lottie-ios")
+                .product(name: "Lottie", package: "lottie-ios"),
+                .product(name: "KeychainSwift", package: "keychain-swift")
             ],
             swiftSettings: [
                    .unsafeFlags(["-Xfrontend", "-strict-concurrency=minimal"])

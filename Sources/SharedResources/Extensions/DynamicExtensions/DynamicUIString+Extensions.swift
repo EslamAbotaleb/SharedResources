@@ -13,6 +13,11 @@ public typealias JSON2 = [String : Any]
 
 extension String {
     
+    public func cerqel_toURL () -> URL {
+        guard let fileURL = URL(string: self) else { return URL(fileURLWithPath: "") }
+        return fileURL
+    }
+    
     public func isValidRegex(regex: String) -> Bool {
         let pred = NSPredicate(format:"SELF MATCHES %@", regex)
         return pred.evaluate(with: self)
