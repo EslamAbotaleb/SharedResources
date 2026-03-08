@@ -5,11 +5,11 @@
 //  Created by Omar Ibrahim on 3/5/26.
 //
 
-
 import Foundation
 import UIKit
 internal import Toast
 
+@MainActor
 public class ToastManager {
     
     private static var toastContainerView: UIView?

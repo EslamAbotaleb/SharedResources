@@ -29,7 +29,7 @@ public class RadioCell: UITableViewCell {
         } else {
             bottomView.isHidden = false
         }
-        sortNameLbl.text = item.name ?? (isArabicCerqel() ? item.nameAr : item.nameEn)
+        sortNameLbl.text = item.name ?? (isArabic() ? item.nameAr : item.nameEn)
         sortIcon.image = item.isSelected ?? false ?  UIImage(named: "Radio Status") : UIImage(named: "Radio Status unselected")
         sortNameLbl.textColor = typographyTitle
         sortNameLbl.font = UIFont.bodyLRegular()

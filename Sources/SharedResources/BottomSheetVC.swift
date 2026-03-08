@@ -18,7 +18,7 @@ public class BottomSheetVC: UIViewController {
         titleLabel.text = "Back".localized
         titleLabel.textColor = typographyTitle
         let button = UIButton(type: .custom)
-        if isArabicCerqel() {
+        if isArabic() {
             button.heightAnchor.constraint(equalToConstant: 15).isActive = true
             titleLabel.font = UIFont.bodyLRegular()
         } else {
@@ -26,11 +26,11 @@ public class BottomSheetVC: UIViewController {
         }
         button.setImage(.init(named: "back1"), for: .normal)
         button.tintColor = typographyTitle
-        if isArabicCerqel() { button.transform = .init(scaleX: -1, y: 1) }
+        if isArabic() { button.transform = .init(scaleX: -1, y: 1) }
         let stackview = UIStackView.init(arrangedSubviews: [button, titleLabel])
         stackview.distribution = .equalSpacing
         stackview.axis = .horizontal
-        if isArabicCerqel() {
+        if isArabic() {
             stackview.alignment = .lastBaseline
             stackview.spacing = 5
         } else {

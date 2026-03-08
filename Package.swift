@@ -24,10 +24,10 @@ let package = Package(
         .package(url: "https://github.com/RxSwiftCommunity/RxAlamofire.git", exact: "6.0.0"),
         .package(url: "https://github.com/kukushi/SideMenu.git", from: "2.1.1"),
         .package(url: "https://github.com/kishikawakatsumi/KeychainAccess.git", branch: "master"),
-        .package(url: "https://github.com/SwiftyJSON/SwiftyJSON.git", from: "5.0.2")
-        
-        
-        
+        .package(url: "https://github.com/SwiftyJSON/SwiftyJSON.git", from: "5.0.2"),
+        .package(url: "https://github.com/SDWebImage/SDWebImage.git", exact: "5.21.5"),
+        .package(url: "https://github.com/SDWebImage/SDWebImageSVGCoder.git", exact: "1.8.0"),
+        .package(url: "https://github.com/airbnb/lottie-ios.git", exact: "3.5.0")
     ],
     targets: [
         .target(
@@ -44,7 +44,10 @@ let package = Package(
                 .product(name: "RxAlamofire", package: "RxAlamofire"),
                 .product(name: "SideMenu", package: "SideMenu"),
                 .product(name: "KeychainAccess", package: "KeychainAccess"),
-                "SwiftyJSON"
+                .product(name: "SwiftyJSON", package: "SwiftyJSON"),
+                .product(name: "SDWebImage", package: "SDWebImage"),
+                .product(name: "SDWebImageSVGCoder", package: "SDWebImageSVGCoder"),
+                .product(name: "Lottie", package: "lottie-ios")
             ]
         ),
 

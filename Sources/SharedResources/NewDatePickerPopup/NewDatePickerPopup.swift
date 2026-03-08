@@ -67,7 +67,7 @@ public class NewDatePickerPopup: BottomSheetVC {
         containerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         datePicker.isHidden = !isDate
         datePicker.locale = dateFormatterLocal_en_US
-        if isArabicCerqel(){
+        if isArabic(){
             datePicker.locale = Locale(identifier: "ar_EG")
         }
         picker.isHidden = isDate

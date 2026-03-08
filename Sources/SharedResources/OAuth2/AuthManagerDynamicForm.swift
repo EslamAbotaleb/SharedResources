@@ -6,12 +6,12 @@
 //  Copyright © 2020 Youxel. All rights reserved.
 //
 
+import UIKit
 import Foundation
 internal import RxCocoa
 internal import RxSwift
 internal import MOLH
 internal import SideMenu
-import UIKit
 
 public class AuthManagerDynamicForm {
 
@@ -21,7 +21,6 @@ public class AuthManagerDynamicForm {
     public var isAuthorized = false
     public var userProfile = ""
     public var isPopUpFromFormBuilder:((String) -> ())?
-//    public var items: [[FormViewModelItem]] = []
     static nonisolated(unsafe) public var shared = AuthManagerDynamicForm()
     var isRequestSubmitted = false
     public var token: String = ""{
@@ -62,7 +61,6 @@ public class AuthManagerDynamicForm {
     var unauthorizedFlag: BehaviorRelay<Bool?> = BehaviorRelay(value: nil)
     var isInboxRefreshRequired = false
     var optionsRetreived = [MCQOption]()
-//    public var profile: BehaviorRelay<ModelUserProfileDataCerqel?> = BehaviorRelay(value: nil)
     var profile: DynamicObjects<ModelUserProfileDataCerqel?> = DynamicObjects( nil)
 
     var profilePicture: DynamicObjects<(UIImage?,Data?)?> = DynamicObjects(nil)
@@ -72,39 +70,6 @@ public class AuthManagerDynamicForm {
     public init() {
         self.token = UserDefaults.standard.string(forKey: "Token") ?? ""
         self.refreshToken = UserDefaults.standard.string(forKey: "RefreshToken") ?? ""
-    }
-
-    @MainActor func UpdateLangAndRestartApp(selectedLang: Int, cancelCompletion: @escaping(()->()) = {}){
-        let alert = UIAlertController(title: "Change Language".localized, message: "App Needs to Restart".localized, preferredStyle: .alert)
-        let ok = UIAlertAction(title: "Ok".localized, style: .default) { (_) in
-            AuthManagerDynamicForm.shared.tenant?.isSelected = false
-            if selectedLang == 1, !isArabicCerqel() { // Do Arabic
-                MOLH.setLanguageTo("ar")
-            }else if selectedLang == 2, isArabicCerqel() { // Do English
-                MOLH.setLanguageTo("en")
-            }
-            exit(1)
-        }
-        
-        let cancel = UIAlertAction(title: "Cancel".localized, style: .destructive) { (_) in
-            cancelCompletion()
-        }
-        
-        alert.addAction(ok)
-        alert.addAction(cancel)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            UIApplication.topViewController()?.present(alert, animated: true, completion: nil)
-        }
-    }
-    
-    @MainActor func configMenu() {
-        SideMenuController.preferences.basic.menuWidth = UIScreen.main.bounds.width * 0.85
-        SideMenuController.preferences.basic.statusBarBehavior = .hideOnMenu
-        SideMenuController.preferences.basic.position = .above
-        SideMenuController.preferences.basic.direction = .left
-        SideMenuController.preferences.basic.enablePanGesture = true
-        SideMenuController.preferences.basic.supportedOrientations = .portrait
-        SideMenuController.preferences.basic.shouldRespectLanguageDirection = true
     }
     
     func fetchProfile(){

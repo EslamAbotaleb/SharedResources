@@ -597,7 +597,7 @@ public struct Utilities {
         let exp:Int = Int(log10(num) / 3.0 ); //log10(1000));
         
         var units:[String]
-        if isArabicCerqel() {
+        if isArabic() {
             units  = ["أ",
                       "م",
                       "مل",

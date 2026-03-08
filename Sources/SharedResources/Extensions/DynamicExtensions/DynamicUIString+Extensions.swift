@@ -304,7 +304,7 @@ extension String {
     }
     
     public func numbersToArabic() -> String {
-        if isArabicCerqel() {
+        if isArabic() {
             let number = NSNumber(value: Int(self)!)
             let format = NumberFormatter()
             format.locale = Locale(identifier: "ar_SA")
@@ -580,7 +580,7 @@ extension String {
     public func getDateUseringFormat(format: String)-> Date?{
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = timeZone_UTC
-        dateFormatter.locale = isArabicCerqel() ? dateFormatterLocale_ar : dateFormatterLocal_en_US
+        dateFormatter.locale = isArabic() ? dateFormatterLocale_ar : dateFormatterLocal_en_US
         
         dateFormatter.dateFormat = format
         if let date = dateFormatter.date(from: self) {

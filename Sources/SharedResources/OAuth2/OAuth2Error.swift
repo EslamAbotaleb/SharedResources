@@ -5,7 +5,7 @@
 //  Created by Omar Ibrahim on 3/5/26.
 //
 
-
+/*
 //
 //  OAuth2Error.swift
 //  OAuth2
@@ -51,3 +51,4 @@ public struct OAuth2Error: Error {
   }
   
 }
+*/

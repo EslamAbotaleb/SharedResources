@@ -5,11 +5,13 @@
 //  Created by Omar Ibrahim on 3/5/26.
 //
 
-
 import UIKit
-internal import JGProgressHUD
 import MobileCoreServices
 import UniformTypeIdentifiers
+
+internal import Lottie
+internal import JGProgressHUD
+
 
 public protocol WireframeInterfaceCerqel: class {
     func cerqel_popFromNavigationController(animated: Bool)
@@ -260,7 +262,7 @@ extension UIViewController{
     }
     
     public func openMFileMenu(attachmentExtensions: String) {
-        DynamicAuthManager.shared.documentTypesOfExtensions.removeAll()
+        DynamicAuthManagerDynamicForm.shared.documentTypesOfExtensions.removeAll()
         
         let alertStyle: UIAlertController.Style = UIDevice.current.userInterfaceIdiom == .pad ? .alert : .actionSheet
         
@@ -285,7 +287,7 @@ extension UIViewController{
                 hasFile = true
                 if #available(iOS 14.0, *),
                    let docType = documentType(forFileExtension: ext) {
-                    DynamicAuthManager.shared.documentTypesOfExtensions.append(docType)
+                    DynamicAuthManagerDynamicForm.shared.documentTypesOfExtensions.append(docType)
                 }
             } else if isImageType(ext) {
                 hasImage = true
@@ -294,10 +296,10 @@ extension UIViewController{
             }
         }
 
-        if hasFile, !DynamicAuthManager.shared.documentTypesOfExtensions.isEmpty {
+        if hasFile, !DynamicAuthManagerDynamicForm.shared.documentTypesOfExtensions.isEmpty {
             let fileAction = UIAlertAction(title: "File".localized, style: .default) { _ in
                 let picker = UIDocumentPickerViewController(
-                    documentTypes: DynamicAuthManager.shared.documentTypesOfExtensions,
+                    documentTypes: DynamicAuthManagerDynamicForm.shared.documentTypesOfExtensions,
                     in: .import
                 )
                 if let delegate = self as? UIDocumentPickerDelegate {
@@ -312,7 +314,7 @@ extension UIViewController{
         
         if hasImage {
             let cameraAction = UIAlertAction(title: "Camera".localized, style: .default) { _ in
-                DynamicAuthManager.shared.isCameraOpened = true
+                DynamicAuthManagerDynamicForm.shared.isCameraOpened = true
                 checkAuthorizationState(
                     attachmentTypeEnum: .camera,
                     vc: self,

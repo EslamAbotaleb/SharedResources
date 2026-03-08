@@ -19,7 +19,7 @@ public extension UIView {
     
     func roundCorners(corners: UIRectCorner, radius: CGFloat) {
         var corner = corners
-        if isArabicCerqel(){
+        if isArabic(){
             if corner == .bottomLeft{
                 corner = .bottomRight
             }

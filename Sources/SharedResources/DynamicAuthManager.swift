@@ -9,13 +9,13 @@ import Foundation
 internal import RxSwift
 
 @MainActor
-class DynamicAuthManager {
+class DynamicAuthManagerDynamicForm {
     
     private let service: cerqel_NetworkServiceDynamicForm = cerqel_BasicNetworkServiceDynamicFormImpl.shared
     private let disposeBag = DisposeBag()
     var documentTypesOfExtensions: [String] = []
     var isTasks = true
-    static var shared = DynamicAuthManager()
+    static var shared = DynamicAuthManagerDynamicForm()
     var isCameraOpened = false
 
     var isPopUpFromFormBuilder:((String) -> ())?

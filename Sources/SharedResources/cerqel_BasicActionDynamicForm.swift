@@ -132,7 +132,7 @@ enum cerqel_BasicActionDynamicForm: cerqel_APIActionDynamicForm {
             var head = [
                 "Authorization": "Bearer " + AuthManagerDynamicForm.shared.token ,
                 "TenantId": AuthManagerDynamicForm.shared.tenant?.tenantId ?? "",
-                "LanguageCode": isArabicCerqel() ? "Ar" : "En",
+                "LanguageCode": isArabic() ? "Ar" : "En",
                 "Platform":"IOS",
                 "Content-Type":"application/json",
                 "charset" : "utf-8",
