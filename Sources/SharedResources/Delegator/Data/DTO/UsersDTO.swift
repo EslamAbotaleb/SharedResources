@@ -1,10 +1,10 @@
 //
-//  UserDTO.swift
-//  SharedResources
+//  UsersDTO.swift
+//  CERQEL
 //
-//  Created by Omar Ibrahim on 3/4/26.
+//  Created by Youxel on 13/05/2024.
+//  Copyright © 2024 Youxel. All rights reserved.
 //
-
 
 import Foundation
 

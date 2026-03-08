@@ -1,0 +1,14 @@
+//
+//  UsersRepoDF.swift
+//  CERQEL
+//
+//  Created by Youxel on 13/05/2024.
+//  Copyright © 2024 Youxel. All rights reserved.
+//
+
+import Foundation
+internal import Promises
+
+protocol UsersRepo {
+    func getUsersList(payload: GetUsersPayload) -> Promise<BaseResponse<[UserDTO]>>
+}

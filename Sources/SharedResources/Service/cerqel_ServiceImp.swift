@@ -20,7 +20,7 @@ struct cerqel_BasicNetworkServiceImpl: cerqel_NetworkService {
     static let shared = cerqel_BasicNetworkServiceImpl()
 
 
-    func load<T>(_ resource: T) -> Observable<T> where T : cerqel_CodableResponseProtocol {
+    func load<T>(_ resource: T) -> Observable<T> where T : cerqel_CodableResponseDynamicFormProtocol {
         return
         RxAlamofire
             .request(resource.action)
@@ -49,10 +49,10 @@ struct cerqel_BasicNetworkServiceImpl: cerqel_NetworkService {
     }
     //
     func uploadImage<T>(
-        _ resource: cerqel_CodableResponseObject<T>,
+        _ resource: cerqel_CodableResponseObjectDynamicForm<T>,
         image: UIImage?,
         imageParam: String
-    ) -> Observable<cerqel_CodableResponseObject<T>> where T: Decodable {
+    ) -> Observable<cerqel_CodableResponseObjectDynamicForm<T>> where T: Decodable {
 
         return Observable.create { observer in
 
@@ -125,8 +125,6 @@ struct cerqel_BasicNetworkServiceImpl: cerqel_NetworkService {
         }
     }
 
-
-
     func load<T>(_ resource: cerqel_ArrayResource<T>) -> Observable<[T]> where T : Codable {
         return
         RxAlamofire
@@ -135,6 +133,4 @@ struct cerqel_BasicNetworkServiceImpl: cerqel_NetworkService {
             .map { $0.data ?? Data() }
             .flatMap(resource.parse)
     }
-
-
 }

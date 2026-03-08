@@ -1,10 +1,10 @@
 //
 //  AuthorizationHandler.swift
-//  SharedResources
+//  SwiftMVVMStartupProject
 //
-//  Created by Omar Ibrahim on 3/4/26.
+//  Created by Maher on 6/15/20.
+//  Copyright © 2020 MahmoudOrganization. All rights reserved.
 //
-
 
 import Foundation
 

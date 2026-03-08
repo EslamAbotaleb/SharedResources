@@ -91,6 +91,15 @@
       }
     },
     {
+      "identity" : "reachability.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/EslamAbotaleb/Reachability.swift.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "09a1d552e527ca3f8cd3c84f52fad37c9fa8a9c6"
+      }
+    },
+    {
       "identity" : "rxalamofire",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/RxSwiftCommunity/RxAlamofire.git",

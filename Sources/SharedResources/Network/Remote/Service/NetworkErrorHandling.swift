@@ -1,10 +1,10 @@
 //
-//  ServerError.swift
-//  SharedResources
+//  NetworkErrorHandling.swift
+//  SwiftMVVMStartupProject
 //
-//  Created by Omar Ibrahim on 3/5/26.
+//  Created by Maher on 6/14/20.
+//  Copyright © 2020 MahmoudOrganization. All rights reserved.
 //
-
 
 import Foundation
 
@@ -19,7 +19,7 @@ public struct ServerError: Codable, Error, LocalizedError {
         self.status = status
     }
 
-    public struct ErrorValue : Codable, Sendable {
+    public struct ErrorValue : Codable {
         public var errorAsString : String?
         public var errorAsList : [String]?
         public init(from decoder: Decoder) throws {

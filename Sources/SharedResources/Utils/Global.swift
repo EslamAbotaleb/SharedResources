@@ -9,6 +9,9 @@ import Foundation
 internal import MOLH
 internal import JGProgressHUD
 
+public typealias CerqelJSON = [String : Any]
+public typealias JSONArray = [CerqelJSON]
+
 public func isArabic() -> Bool{
     return MOLHLanguage.isArabic()
 }

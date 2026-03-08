@@ -1,15 +1,15 @@
 //
 //  DelegatorNames.swift
-//  SharedResources
+//  CERQEL
 //
-//  Created by Omar Ibrahim on 3/5/26.
+//  Created by Youxel on 09/05/2024.
+//  Copyright © 2024 Youxel. All rights reserved.
 //
-
 
 import SwiftUI
 
 public struct DelegatorNames: View {
-    @ObservedObject var viewModel = DelegatorsViewModel()
+    @StateObject private var viewModel = DelegatorsViewModel()
     @Environment(\.dismiss) private var dismiss
     var isSingleSelection: Bool
     @State private var searchQuery = ""
@@ -59,10 +59,6 @@ public struct DelegatorNames: View {
                                           searchQuery: searchQuery,
                                           currentSelectedUsers: currentSelectedUsers)
                 }
-                
-            }
-            .onViewDidLoad {
-                
             }
         }
     }
