@@ -20,9 +20,9 @@ public class ToastManager {
         toastContainerView.isHidden = false
         toastContainerView.translatesAutoresizingMaskIntoConstraints = false
         toastContainerView.backgroundColor = containerBg
-        toastContainerView.borderWidthV = 1
-        toastContainerView.borderColorV = containerBorderColor
-        toastContainerView.cornerRadiusV = 8
+        toastContainerView.layer.borderWidth = 1
+        toastContainerView.layer.borderColor = containerBorderColor.cgColor
+        toastContainerView.layer.cornerRadius = 8
         
         if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
             if let window = windowScene.windows.first {

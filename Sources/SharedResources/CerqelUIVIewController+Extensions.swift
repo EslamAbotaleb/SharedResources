@@ -13,7 +13,8 @@ internal import Lottie
 internal import JGProgressHUD
 
 
-public protocol WireframeInterfaceCerqel: class {
+@MainActor
+public protocol WireframeInterfaceCerqel: AnyObject {
     func cerqel_popFromNavigationController(animated: Bool)
     func cerqel_dismiss(animated: Bool)
     
@@ -53,6 +54,7 @@ extension UIViewController: WireframeInterfaceCerqel {
         hud.dismiss(afterDelay: 2)
     }
     
+    @MainActor
     private struct cerqel_HUDHolder {
         static var shared: LottieHUD = {
 //            let hud = JGProgressHUD(style: .dark)
