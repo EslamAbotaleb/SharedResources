@@ -5,14 +5,13 @@
 //  Created by ahmed maher on 31/12/2024.
 //  Copyright © 2024 Youxel. All rights reserved.
 //
-
+/*
 import Foundation
 import UIKit
 import CommonCrypto
 import SwiftUI
 
-@MainActor
-class TokenManager {
+@preconcurrency class TokenManager {
     static let shared = TokenManager()
 
     private var pendingRequests = [(() -> Void)]()
@@ -58,7 +57,7 @@ class TokenManager {
         let tokenURL = "\(auth0domain)\(cerqel_Environment.EnvironmentConfig.authConfigTokenUri)"
         let clientId = cerqel_Environment.loginClientId
         let code_challenge = challenge
-
+        /*
         let OAuth2Client = OAuth2ClientDynamicForm(configuration: OAuth2Configuration(clientId: clientId, authURL: authorizeURL, tokenURL: tokenURL, scope: "email profile roles cerqel-ios  offline_access", redirectURL: cerqel_Environment.authConfigRedirectionUri, responseType: "code", code_challenge: code_challenge, codeVerifier: verifier))
 
 
@@ -75,8 +74,9 @@ class TokenManager {
 
             completion()
         }
-
+        */
     }
 
 }
 
+*/

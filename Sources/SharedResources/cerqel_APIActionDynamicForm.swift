@@ -7,30 +7,23 @@
 //
 
 import Foundation
-internal import Alamofire
+@preconcurrency internal import Alamofire
 
 enum cerqel_URLType{
-    case Content // not related to DF
     case selfService // dynamic form
     case userManager // dynamic form
-    case Notification // not related to DF
     case fileManager // dynamic form
-    case searchEngine // not related to DF
     case base
-    case mocking // not related to DF
     case none
 }
 
 enum UrlBaseEndpoints: String {
-    case content = "gw/content/api/"
     case selfService = "gw/selfservices/api/"
     case userManager = "gw/usermanager/api/"
-    case notification = "gw/notifications/api/"
     case fileManager = "gw/Storage/api/"
-    case mocking = "https:/$()/m6djv.wiremockapi.cloud/"
 }
 
-protocol cerqel_APIActionDynamicForm: URLRequestConvertible {
+protocol cerqel_APIActionDynamicForm: URLRequestConvertible, Sendable {
     var method: HTTPMethod { get }
     var path: String { get }
     var actionParameters: [String: Any] { get }
@@ -71,18 +64,13 @@ extension cerqel_APIActionDynamicForm {
         }
         
         switch urlType {
-        case .Content:
-            return cerqel_Environment.Api_Base_URL + UrlBaseEndpoints.content.rawValue
+       
         case .selfService:
             return cerqel_Environment.Api_Base_URL + UrlBaseEndpoints.selfService.rawValue
         case .userManager:
             return cerqel_Environment.Api_Base_URL + UrlBaseEndpoints.userManager.rawValue
-        case .Notification:
-            return cerqel_Environment.Api_Base_URL + UrlBaseEndpoints.notification.rawValue
         case .fileManager:
             return cerqel_Environment.Api_Base_URL + UrlBaseEndpoints.fileManager.rawValue
-        case .mocking:
-            return UrlBaseEndpoints.mocking.rawValue
         case .none:
             return ""
 
@@ -104,8 +92,6 @@ extension cerqel_APIActionDynamicForm {
         let encoded = urlString.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)
         let url = URL(string: encoded ?? "")
             
-        
-
         let originalRequest = try URLRequest(url: url!,
                                              method: method,
                                              headers: HTTPHeaders(authHeader))

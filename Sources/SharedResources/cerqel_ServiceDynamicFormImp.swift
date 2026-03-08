@@ -32,17 +32,15 @@ public struct cerqel_BasicNetworkServiceDynamicFormImpl: cerqel_NetworkServiceDy
                 if let val = err as? AFError, val.responseCode == 401
                 {
                     guard !(AuthManagerDynamicForm.shared.unauthorizedFlag.value ?? false) else { return }
-                    TokenManager.shared.refreshToken {
+                   // TokenManager.shared.refreshToken {
                         // Retry the request after token refresh
 
                         _ = self.load(resource).subscribe(onNext: { result in
                         }, onError: { retryError in
 
                         })
-                    }
-
+                   // }
                 }
-
             })
             .map { $0.data }
             .filter { $0 != nil }

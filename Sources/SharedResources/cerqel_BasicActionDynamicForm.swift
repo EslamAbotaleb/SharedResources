@@ -9,7 +9,7 @@
 import Foundation
 internal import Alamofire
 
-enum cerqel_BasicActionDynamicForm: cerqel_APIActionDynamicForm {
+enum cerqel_BasicActionDynamicForm: cerqel_APIActionDynamicForm, @unchecked Sendable {
     case fetchService(Id: String)
     case fetchSubServicesByParent(parentId: String)
     case submitService(Id: String, payload: [String: Any])
