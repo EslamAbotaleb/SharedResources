@@ -159,7 +159,7 @@ public struct FileCheckBox {
     }
 }
 
-struct File {
+public struct File {
     public var fileName: String?
     public var fileExtension: String?
     public var url: URL?

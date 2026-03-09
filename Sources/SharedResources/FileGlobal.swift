@@ -76,7 +76,7 @@ public struct Attachment: Codable,Equatable {
     
 }
 
-struct ProfileAttachment: Codable, Equatable {
+public struct ProfileAttachment: Codable, Equatable {
     public let attachmentDisplaySize : String?
     public let downloadUrl : String?
     public let id : String?
@@ -277,7 +277,7 @@ struct UploadedCVEntity: ProfileMapper, Codable, Equatable {
     }
 }
 
-struct ProfilePicture : Codable, Equatable {
+public struct ProfilePicture : Codable, Equatable {
     public var mediaId : String? = ""
     public var fileName : String? = ""
     public var base64File : String? = ""
