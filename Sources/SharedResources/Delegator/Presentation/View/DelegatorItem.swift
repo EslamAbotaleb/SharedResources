@@ -8,12 +8,18 @@
 
 import SwiftUI
 
-struct DelegatorItem: View {
+public struct DelegatorItem: View {
     var delegator : UserEntity
     var isSingleSelection: Bool
     var onSelect: ((Bool,String) -> ())?
     
-    var body: some View {
+    public init(delegator: UserEntity, isSingleSelection: Bool, onSelect: ((Bool, String) -> Void)? = nil) {
+        self.delegator = delegator
+        self.isSingleSelection = isSingleSelection
+        self.onSelect = onSelect
+    }
+    
+    public var body: some View {
         VStack{
             Button(action: {
                 print("button pressed")
