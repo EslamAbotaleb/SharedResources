@@ -6,49 +6,84 @@
 //
 
 import UIKit
+import CoreText
+import CoreGraphics
 
 extension UIFont {
-    static func SST_Arabic_Bold(ofSize: CGFloat) -> UIFont {
+    
+    /// Call this method once during app initialization to register all custom fonts
+    public static func registerCustomFonts() {
+        let fontNames = [
+            "SST Arabic Bold",
+            "SST Arabic Light",
+            "SST Arabic Medium",
+            "SST Arabic Roman",
+            "Poppins-Regular",
+            "Poppins-SemiBold",
+            "Poppins-Medium"
+        ]
+        
+        for fontName in fontNames {
+            // font extensions
+            for ext in ["ttf", "otf"] {
+                if let fontURL = Bundle.module.url(forResource: fontName, withExtension: ext, subdirectory: "Fonts") {
+                    registerFont(from: fontURL)
+                    break
+                }
+            }
+        }
+    }
+    
+    private static func registerFont(from url: URL) {
+        guard let fontDataProvider = CGDataProvider(url: url as CFURL),
+              let font = CGFont(fontDataProvider) else {
+            print("⚠️ Failed to load font from: \(url.lastPathComponent)")
+            return
+        }
+        
+        var error: Unmanaged<CFError>?
+        if !CTFontManagerRegisterGraphicsFont(font, &error) {
+            if let error = error?.takeRetainedValue() {
+                print("⚠️ Error registering font: \(error)")
+            }
+        } else {
+            print("✅ Successfully registered font: \(url.lastPathComponent)")
+        }
+    }
+    
+    public static func SST_Arabic_Bold(ofSize: CGFloat) -> UIFont {
         return UIFont(name: "SST Arabic Bold", size: ofSize) ?? UIFont.boldSystemFont(ofSize: ofSize)
     }
     
-    static func SST_Arabic_Light(ofSize: CGFloat) -> UIFont {
+    public static func SST_Arabic_Light(ofSize: CGFloat) -> UIFont {
         return UIFont(name: "SST Arabic Light", size: ofSize) ?? UIFont.systemFont(ofSize: ofSize)
     }
     
-    static func SST_Arabic_Medium(ofSize: CGFloat) -> UIFont {
+    public static func SST_Arabic_Medium(ofSize: CGFloat) -> UIFont {
         return UIFont(name: "SST Arabic Medium", size: ofSize) ?? UIFont.systemFont(ofSize: ofSize)
     }
     
-    static func SST_Arabic_Roman(ofSize: CGFloat) -> UIFont {
+    public static func SST_Arabic_Roman(ofSize: CGFloat) -> UIFont {
         return UIFont(name: "SST Arabic Roman", size: ofSize) ?? UIFont.italicSystemFont(ofSize: ofSize)
     }
     
-    static func heading1(ofSize: CGFloat = 33.0) -> UIFont {
-        return UIFont(name: "Poppins-Regular", size: ofSize)!
+    public static func heading1(ofSize: CGFloat = 33.0) -> UIFont {
+        return UIFont(name: "Poppins-Regular", size: ofSize) ?? UIFont.systemFont(ofSize: ofSize)
     }
     
-    static func heading2(ofSize: CGFloat = 30.0) -> UIFont {
-        return UIFont(name: "Poppins-SemiBold", size: ofSize)!
+    public static func heading2(ofSize: CGFloat = 30.0) -> UIFont {
+        return UIFont(name: "Poppins-SemiBold", size: ofSize) ?? UIFont.systemFont(ofSize: ofSize, weight: .semibold)
     }
     
-    static func heading3(ofSize: CGFloat = 24.0) -> UIFont {
-        return UIFont(name: "Poppins-SemiBold", size: ofSize)!
+    public static func heading3(ofSize: CGFloat = 24.0) -> UIFont {
+        return UIFont(name: "Poppins-SemiBold", size: ofSize) ?? UIFont.systemFont(ofSize: ofSize, weight: .semibold)
     }
     
-    static func heading4(ofSize: CGFloat = 18.0) -> UIFont {
-        return UIFont(name: "Poppins-Medium", size: ofSize)!
+    public static func heading4(ofSize: CGFloat = 18.0) -> UIFont {
+        return UIFont(name: "Poppins-Medium", size: ofSize) ?? UIFont.systemFont(ofSize: ofSize, weight: .medium)
     }
     
-    static func heading5(ofSize: CGFloat = 14.0) -> UIFont {
-        return UIFont(name: "Poppins-SemiBold", size: ofSize)!
-    }
-    
-    static func LT_Bukra_Regular(ofSize: CGFloat) -> UIFont {
-        return UIFont(name: "29LTBukra-Rg", size: ofSize) ?? UIFont.systemFont(ofSize: ofSize)
-    }
-    
-    static func LT_Bukra_Medium(ofSize: CGFloat) -> UIFont {
-        return UIFont(name: "29LTBukra-Md", size: ofSize) ?? UIFont.systemFont(ofSize: ofSize)
+    public static func heading5(ofSize: CGFloat = 14.0) -> UIFont {
+        return UIFont(name: "Poppins-SemiBold", size: ofSize) ?? UIFont.systemFont(ofSize: ofSize, weight: .semibold)
     }
 }

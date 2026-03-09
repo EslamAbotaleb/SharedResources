@@ -7,10 +7,9 @@ let package = Package(
     name: "SharedResources",
     platforms: [.iOS(.v16)],
     products: [
-
         .library(
             name: "SharedResources",
-            targets: ["SharedResources"]),
+            targets: ["SharedResources"])
     ],
     dependencies: [
         .package(url: "https://github.com/MoathOthman/MOLH", exact: "1.4.3"),
@@ -51,6 +50,7 @@ let package = Package(
                 .product(name: "KeychainSwift", package: "keychain-swift"),
                 .product(name: "Reachability", package: "Reachability.swift")
             ],
+            resources: [.process("Resources")],
             swiftSettings: [
                    .unsafeFlags(["-Xfrontend", "-strict-concurrency=minimal"])
             ]
