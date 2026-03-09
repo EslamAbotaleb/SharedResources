@@ -10,7 +10,7 @@ import Foundation
 @_exported import RxCocoa
 @_exported import RxSwift
 
-public class BaseViewModel {
+open class BaseViewModel {
     public var errorsObservable: Observable<Error>!
     public var errorsSubject = PublishSubject<Error>()
     

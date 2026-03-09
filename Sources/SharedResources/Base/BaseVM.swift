@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public class BaseVM: BaseViewModel, ObservableObject{
+open class BaseVM: BaseViewModel, ObservableObject{
     
     override public init() {
         super.init()
