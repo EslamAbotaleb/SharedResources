@@ -30,7 +30,7 @@ public class NetworkServiceImpl: Network {
     var endpointExecuter: EndpointExecuter = AlamofireService()
     var reachability: ReachabilityProtocol = ReachabilityImpl()
 
-    func callModel<Model: Codable>(_ model: Model.Type, endpoint: Endpoint) -> Promise<Model> {
+    public func callModel<Model: Codable>(_ model: Model.Type, endpoint: Endpoint) -> Promise<Model> {
         return Promise<Model>(on: .main) { fulfill, reject in
             self.call(endpoint: endpoint)
                 .then({ (data) in
@@ -66,7 +66,7 @@ public class NetworkServiceImpl: Network {
         }
     }
 
-    func uploadModel<Model: Codable>(_ model: Model.Type, endpoint: Endpoint,progressCallBack: @escaping UploadProgrssCallBack) -> Promise<Model> {
+    public func uploadModel<Model: Codable>(_ model: Model.Type, endpoint: Endpoint,progressCallBack: @escaping UploadProgrssCallBack) -> Promise<Model> {
         return Promise<Model>(on: .main) { fulfill, reject in
             self.upload(endpoint: endpoint, progressCallBack: progressCallBack)
                 .then({ (data) in
@@ -95,7 +95,7 @@ public class NetworkServiceImpl: Network {
         }
     }
 
-    func downloadModel( filesUrl: [String]) -> Promise<URL> {
+    public func downloadModel( filesUrl: [String]) -> Promise<URL> {
         return Promise<URL>(on: .main) { fulfill, reject in
             self.download(filesUrl)
                 .then({ (fileUrl) in
@@ -120,7 +120,7 @@ public class NetworkServiceImpl: Network {
         }
     }
 
-    func call(endpoint: Endpoint) -> Promise<Data> {
+    public func call(endpoint: Endpoint) -> Promise<Data> {
         return Promise<Data>(on: .main) { fulfill, reject in
             self.endpointExecuter.execute(endpoint)
                 .then({ (response) in
@@ -175,7 +175,7 @@ public class NetworkServiceImpl: Network {
         }
     }
 
-    func cancelUpload(_ fileVersionType: FileVersionType) {
+    public func cancelUpload(_ fileVersionType: FileVersionType) {
         self.endpointExecuter.cancelUpload(fileVersionType)
     }
 
