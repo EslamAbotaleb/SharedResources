@@ -7,7 +7,7 @@
 //
 
 import Foundation
-internal import Promises
+@_exported import Promises
 
 public class NoneAuthorizationHandler: AuthorizationHandler {
     public func setClientManually(clientType: String) {}

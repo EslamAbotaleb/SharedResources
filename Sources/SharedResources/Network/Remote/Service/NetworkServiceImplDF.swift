@@ -7,9 +7,9 @@
 //
 
 import Foundation
-internal import Promises
-internal import Reachability
-internal import SwiftyJSON
+@_exported import Promises
+@_exported import Reachability
+@_exported import SwiftyJSON
 import CommonCrypto
 
 protocol EndpointExecuter {
@@ -25,7 +25,7 @@ protocol ReachabilityProtocol {
 }
 
 // Internal implementation - uses Promise internally
-class NetworkServiceImpl: Network {
+public class NetworkServiceImpl: Network {
 
     var endpointExecuter: EndpointExecuter = AlamofireService()
     var reachability: ReachabilityProtocol = ReachabilityImpl()

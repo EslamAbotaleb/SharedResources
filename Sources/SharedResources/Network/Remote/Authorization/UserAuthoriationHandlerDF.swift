@@ -8,7 +8,7 @@
 
 import Foundation
 internal import KeychainSwift
-internal import Promises
+@_exported import Promises
 
 open class UserAuthoriationHandlerDF: AuthorizationHandler {
     

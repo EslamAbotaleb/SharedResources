@@ -7,7 +7,7 @@
 //
 
 import Foundation
-internal import Promises
+@_exported import Promises
 
 protocol UserUseCase {
     func getUsersList(payload: GetUsersPayload) -> Promise<BaseResponse<[UserEntity]>>

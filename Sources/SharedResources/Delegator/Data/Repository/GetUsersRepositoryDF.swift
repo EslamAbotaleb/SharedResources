@@ -7,7 +7,7 @@
 //
 
 import Foundation
-internal import Promises
+@_exported import Promises
 
 class UsersRepoImp: UsersRepo {
     private var network: Network

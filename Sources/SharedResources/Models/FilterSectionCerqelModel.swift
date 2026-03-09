@@ -6,7 +6,7 @@
 //
 
 import Foundation
-internal import Promises
+@_exported import Promises
 
 public struct CerqelFilterCallBack {
     public var searchText: String?
