@@ -66,7 +66,7 @@ extension UIViewController: WireframeInterfaceCerqel {
         }()
     }
     
-    var cerqel_HUD: LottieHUD {
+    public var cerqel_HUD: LottieHUD {
         get {
             return cerqel_HUDHolder.shared
         }
