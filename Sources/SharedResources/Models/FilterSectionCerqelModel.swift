@@ -1,5 +1,5 @@
 //
-//  CerqelFilterCallBack.swift
+//  SharedCerqelFilterCallBack.swift
 //  SharedResources
 //
 //  Created by Omar Ibrahim on 3/4/26.
@@ -8,26 +8,26 @@
 import Foundation
 @_exported import Promises
 
-public struct CerqelFilterCallBack {
+public struct SharedCerqelFilterCallBack {
     public var searchText: String?
     public var categoryId: String?
     public var HighlightedFilters : HighlightedFilters?
     public var dateRangeFilter: CerqelDateRangeFilterCerqel?
-    public var selectedSections: [CerqelFilterSection]? = []
+    public var selectedSections: [SharedCerqelFilterSection]? = []
     public init() {}
 }
 
-public struct CerqelFilterSection: Equatable,Hashable {
+public struct SharedCerqelFilterSection: Equatable,Hashable {
     public var id: Int
     public var sectionTitle: String
-    public var sectionType: CerqelFilterSectionsType
+    public var sectionType: SharedCerqelFilterSectionsType
     public var filterCategoriesType: CerqelFilterCategoriesType?
     public var items: [CerqelCategoriesModel]?
     public var collapsed: Bool? = true
     public var endPoint: SharedEndpointService?
     
     
-    public init(id: Int, sectionTitle: String, sectionType: CerqelFilterSectionsType, filterCategoriesType: CerqelFilterCategoriesType? = nil, items: [CerqelCategoriesModel]? = nil, collapsed: Bool = true, endPoint: SharedEndpointService = .pin) {
+    public init(id: Int, sectionTitle: String, sectionType: SharedCerqelFilterSectionsType, filterCategoriesType: CerqelFilterCategoriesType? = nil, items: [CerqelCategoriesModel]? = nil, collapsed: Bool = true, endPoint: SharedEndpointService = .pin) {
         self.id = id
         self.sectionTitle = sectionTitle
         self.sectionType = sectionType
@@ -53,13 +53,13 @@ public struct CerqelFilterSection: Equatable,Hashable {
         hasher.combine(id)
     }
     
-    static public func == (lhs: CerqelFilterSection, rhs: CerqelFilterSection) -> Bool {
+    static public func == (lhs: SharedCerqelFilterSection, rhs: SharedCerqelFilterSection) -> Bool {
         return lhs.id == rhs.id
     }
     
 }
 
-public enum CerqelFilterSectionsEnum: Equatable{
+public enum SharedCerqelFilterSectionsEnum: Equatable{
     
     case dateRangeFilter
     case categories(CategoryLevel)
@@ -84,14 +84,14 @@ public enum ToggleValue {
        }
 }
 
-public enum CerqelFilterSectionsType: Equatable{
+public enum SharedCerqelFilterSectionsType: Equatable{
     case dateRangeFilter
     case categories(CategoryLevel)
     case toggle (ToggleValue)
     
 }
 
-public enum CerqelFilterSectionEnum: CaseIterable {
+public enum SharedCerqelFilterSectionEnum: CaseIterable {
     
     case dateRangeFilter
     case categories
