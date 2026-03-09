@@ -9,7 +9,7 @@ import Foundation
 internal import RxSwift
 internal import RxCocoa
 
-class AuthManagerDynamicForm {
+open class AuthManagerDynamicForm {
     
     private let service: cerqel_NetworkServiceDynamicForm = cerqel_BasicNetworkServiceDynamicFormImpl.shared
     private let disposeBag = DisposeBag()
