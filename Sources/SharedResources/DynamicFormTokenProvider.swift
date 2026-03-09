@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: - This class as bridge between real project for TokenManager (refreshToken) & Form Builder
 public class DynamicFormTokenProvider {
     public static var refreshToken: ((@escaping () -> Void) -> Void)?
     private init() {}

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-@preconcurrency internal import Alamofire
+internal import Alamofire
 
 enum cerqel_URLType{
     case selfService // dynamic form

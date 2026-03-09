@@ -1,12 +1,4 @@
 //
-//  BackButton.swift
-//  SharedResources
-//
-//  Created by Omar Ibrahim on 3/5/26.
-//
-
-
-//
 //  TopNavigationBarViewWidget.swift
 //  SwiftUIDemo
 //
