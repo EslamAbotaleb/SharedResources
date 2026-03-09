@@ -7,7 +7,7 @@
 //
 
 import Foundation
-internal import RxSwift
+@_exported import RxSwift
 internal import Alamofire
 
 protocol Sharedcerqel_CodableResponseProtocol: Decodable {

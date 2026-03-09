@@ -6,7 +6,7 @@
 //
 
 import Foundation
-internal import RxSwift
+@_exported import RxSwift
 
 struct cerqel_ArrayResource<T: Codable> {
     public let objectType = T.self

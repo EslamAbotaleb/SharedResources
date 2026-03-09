@@ -7,7 +7,7 @@
 //
 
 import Foundation
-internal import RxSwift
+@_exported import RxSwift
 
 protocol Sharedcerqel_NetworkServiceD {
      func load<T>(_ resource: T) -> Observable<T> where T : Sharedcerqel_CodableResponseProtocol

@@ -6,8 +6,8 @@
 //
 
 import Foundation
-internal import RxSwift
-internal import RxCocoa
+@_exported import RxSwift
+@_exported import RxCocoa
 
 open class SharedAuthManager {
     

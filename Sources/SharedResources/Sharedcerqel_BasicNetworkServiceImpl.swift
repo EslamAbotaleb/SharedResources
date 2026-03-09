@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 import CommonCrypto
-internal import RxSwift
+@_exported import RxSwift
 internal import RxAlamofire
 internal import Alamofire
 internal import JGProgressHUD
