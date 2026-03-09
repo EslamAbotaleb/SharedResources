@@ -21,7 +21,6 @@ open class AuthManagerDynamicForm {
 
     var isPopUpFromFormBuilder:((String) -> ())?
     var isInboxRefreshRequired = false
-    var unauthorizedFlag: BehaviorRelay<Bool?> = BehaviorRelay(value: nil)
 
     public var token: String = ""{
         didSet{
