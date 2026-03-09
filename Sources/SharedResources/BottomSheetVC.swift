@@ -8,13 +8,7 @@
 import Foundation
 import UIKit
 
-public protocol CerqelBottomSheetProtocol: UIViewController {
-    var cerqel_sheetHeight: CGFloat { get set }
-    func setupBackButton()
-    func goBack()
-}
-
-open class BottomSheetVC: UIViewController, CerqelBottomSheetProtocol {
+open class BottomSheetVC: UIViewController {
 
     public var cerqel_sheetCtl: SheetViewController!
     public var cerqel_sheetHeight: CGFloat = 200
