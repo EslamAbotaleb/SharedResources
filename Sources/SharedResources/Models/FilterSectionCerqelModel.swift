@@ -24,10 +24,10 @@ public struct CerqelFilterSection: Equatable,Hashable {
     public var filterCategoriesType: CerqelFilterCategoriesType?
     public var items: [CerqelCategoriesModel]?
     public var collapsed: Bool? = true
-    public var endPoint: EndpointService?
+    public var endPoint: SharedEndpointService?
     
     
-    public init(id: Int, sectionTitle: String, sectionType: CerqelFilterSectionsType, filterCategoriesType: CerqelFilterCategoriesType? = nil, items: [CerqelCategoriesModel]? = nil, collapsed: Bool = true, endPoint: EndpointService = .pin) {
+    public init(id: Int, sectionTitle: String, sectionType: CerqelFilterSectionsType, filterCategoriesType: CerqelFilterCategoriesType? = nil, items: [CerqelCategoriesModel]? = nil, collapsed: Bool = true, endPoint: SharedEndpointService = .pin) {
         self.id = id
         self.sectionTitle = sectionTitle
         self.sectionType = sectionType

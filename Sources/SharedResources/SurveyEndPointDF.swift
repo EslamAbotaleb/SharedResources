@@ -9,7 +9,7 @@ import Foundation
 
 public struct SurveyEndPoint: Endpoint {
     public var urlPrefix: String = ""
-    public var service: EndpointService = .survey
+    public var service: SharedEndpointService = .survey
     public var method: EndpointMethod = .post
     public var encoding: EndpointEncoding = .json
     public var auth: AuthorizationHandler = SharedUserAuthoriationHandler()

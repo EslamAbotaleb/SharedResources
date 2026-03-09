@@ -10,7 +10,7 @@ import Foundation
 
 public struct GetUsersEndPoint: Endpoint {
    public var urlPrefix: String = ""
-   public var service: EndpointService = .getUsers
+   public var service: SharedEndpointService = .getUsers
    public var method: EndpointMethod = .post
    public var encoding: EndpointEncoding = .json
    public var auth: AuthorizationHandler = SharedUserAuthoriationHandler()
