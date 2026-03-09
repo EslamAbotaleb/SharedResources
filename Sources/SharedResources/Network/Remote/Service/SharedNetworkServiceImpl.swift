@@ -26,8 +26,8 @@ protocol ReachabilityProtocol {
 
 public class SharedNetworkServiceImpl: SharedNetwork {
 
-    public var endpointExecuter: EndpointExecuter = SharedAlamofireService()
-    public var reachability: ReachabilityProtocol = ReachabilityImpl()
+     var endpointExecuter: EndpointExecuter = SharedAlamofireService()
+     var reachability: ReachabilityProtocol = ReachabilityImpl()
 
     public func callModel<Model: Codable>(_ model: Model.Type, endpoint: Endpoint) -> Promise<Model> {
         return Promise<Model>(on: .main) { fulfill, reject in
@@ -224,13 +224,13 @@ public class SharedNetworkServiceImpl: SharedNetwork {
     public init() {}
 }
 
-struct NetworkServiceResponse {
+public struct NetworkServiceResponse {
     var data: Data
     var statusCode: Int?
     var headers: [AnyHashable: Any]?
 }
 
-class ReachabilityImpl: ReachabilityProtocol {
+public class ReachabilityImpl: ReachabilityProtocol {
    func connection() -> Reachability.Connection? {
         return try? Reachability().connection
     }
