@@ -10,7 +10,7 @@ import Foundation
 internal import KeychainSwift
 internal import Promises
 
-public class UserAuthoriationHandlerDF: AuthorizationHandler {
+open class UserAuthoriationHandlerDF: AuthorizationHandler {
     
     private let keychainKey = "CustomerAuthorizationHandler"
     private let clientKey = "clientAuthoriztionHeader"
