@@ -8,11 +8,11 @@
 
 import Foundation
 
-struct GetUsersPayload : Codable, Mappable {
-    var filter : UserFilterModelDF?
-    var searchOptions : String?
-    var pageSize : Int?
-    var pageNumber: Int?
+public struct GetUsersPayload : Codable, Mappable {
+    public var filter : UserFilterModelDF?
+    public var searchOptions : String?
+    public var pageSize : Int?
+    public var pageNumber: Int?
     
     enum CodingKeys: String, CodingKey {
         case filter = "filter"
@@ -24,11 +24,11 @@ struct GetUsersPayload : Codable, Mappable {
     init?(map: Map) {
         
     }
-    init() {
+    public init() {
         
     }
     
-    init(filter: UserFilterModelDF?, searchOptions: String?, pageSize: Int?, pageNumber: Int?) {
+    public init(filter: UserFilterModelDF?, searchOptions: String?, pageSize: Int?, pageNumber: Int?) {
         self.filter = filter
         self.searchOptions = searchOptions
         self.pageSize = pageSize
