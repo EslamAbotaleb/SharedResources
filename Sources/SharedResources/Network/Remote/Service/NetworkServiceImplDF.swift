@@ -24,12 +24,13 @@ protocol ReachabilityProtocol {
     func connection() -> Reachability.Connection?
 }
 
+// Internal implementation - uses Promise internally
 class NetworkServiceImpl: Network {
 
-    public var endpointExecuter: EndpointExecuter = AlamofireService()
-    public var reachability: ReachabilityProtocol = ReachabilityImpl()
+    var endpointExecuter: EndpointExecuter = AlamofireService()
+    var reachability: ReachabilityProtocol = ReachabilityImpl()
 
-    public func callModel<Model: Codable>(_ model: Model.Type, endpoint: Endpoint) -> Promise<Model> {
+    func callModel<Model: Codable>(_ model: Model.Type, endpoint: Endpoint) -> Promise<Model> {
         return Promise<Model>(on: .main) { fulfill, reject in
             self.call(endpoint: endpoint)
                 .then({ (data) in
@@ -65,7 +66,7 @@ class NetworkServiceImpl: Network {
         }
     }
 
-    public func uploadModel<Model: Codable>(_ model: Model.Type, endpoint: Endpoint,progressCallBack: @escaping UploadProgrssCallBack) -> Promise<Model> {
+    func uploadModel<Model: Codable>(_ model: Model.Type, endpoint: Endpoint,progressCallBack: @escaping UploadProgrssCallBack) -> Promise<Model> {
         return Promise<Model>(on: .main) { fulfill, reject in
             self.upload(endpoint: endpoint, progressCallBack: progressCallBack)
                 .then({ (data) in
@@ -94,7 +95,7 @@ class NetworkServiceImpl: Network {
         }
     }
 
-    public func downloadModel( filesUrl: [String]) -> Promise<URL> {
+    func downloadModel( filesUrl: [String]) -> Promise<URL> {
         return Promise<URL>(on: .main) { fulfill, reject in
             self.download(filesUrl)
                 .then({ (fileUrl) in
@@ -119,7 +120,7 @@ class NetworkServiceImpl: Network {
         }
     }
 
-    public func call(endpoint: Endpoint) -> Promise<Data> {
+    func call(endpoint: Endpoint) -> Promise<Data> {
         return Promise<Data>(on: .main) { fulfill, reject in
             self.endpointExecuter.execute(endpoint)
                 .then({ (response) in
@@ -174,7 +175,7 @@ class NetworkServiceImpl: Network {
         }
     }
 
-    public func cancelUpload(_ fileVersionType: FileVersionType) {
+    func cancelUpload(_ fileVersionType: FileVersionType) {
         self.endpointExecuter.cancelUpload(fileVersionType)
     }
 
@@ -224,10 +225,10 @@ class NetworkServiceImpl: Network {
     public init() {}
 }
 
-public struct NetworkServiceResponse {
-    public var data: Data
-    public var statusCode: Int?
-    public var headers: [AnyHashable: Any]?
+struct NetworkServiceResponse {
+    var data: Data
+    var statusCode: Int?
+    var headers: [AnyHashable: Any]?
 }
 
 class ReachabilityImpl: ReachabilityProtocol {

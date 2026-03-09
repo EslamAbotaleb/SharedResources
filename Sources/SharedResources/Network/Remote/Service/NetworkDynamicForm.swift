@@ -11,10 +11,10 @@ import Foundation
 internal import Promises
 internal import FBLPromises
 
-typealias UploadProgrssCallBack = ((Double,FileVersionType)->())
-typealias ProgressCallback = (Double) -> Void
+public typealias UploadProgrssCallBack = ((Double,FileVersionType)->())
+public typealias ProgressCallback = (Double) -> Void
 
-// hint: you can't use protocol Network as public cause of plugin Promises defined as internal import that's why not define protocol as public
+// Internal protocol - uses Promise internally
 protocol Network {
     func call(endpoint: Endpoint) -> Promise<Data>
     func callModel<Model: Codable>(_ model: Model.Type, endpoint: Endpoint) -> Promise<Model>
@@ -22,3 +22,26 @@ protocol Network {
     func downloadModel( filesUrl: [String]) -> Promise<URL>
     func cancelUpload(_ fileVersionType: FileVersionType) -> Void
 }
+// Public protocol - uses completion handlers instead of Promise
+public protocol NetworkService {
+    func callModel<Model: Codable>(
+        _ model: Model.Type,
+        endpoint: Endpoint,
+        completion: @escaping (Swift.Result<Model, Error>) -> Void
+    )
+    
+    func uploadModel<Model: Codable>(
+        _ model: Model.Type,
+        endpoint: Endpoint,
+        progressCallBack: @escaping UploadProgrssCallBack,
+        completion: @escaping (Swift.Result<Model, Error>) -> Void
+    )
+    
+    func downloadModel(
+        filesUrl: [String],
+        completion: @escaping (Swift.Result<URL, Error>) -> Void
+    )
+    
+    func cancelUpload(_ fileVersionType: FileVersionType)
+}
+
