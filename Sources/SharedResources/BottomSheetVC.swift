@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-open class BottomSheetVC: UIViewController {
+public class BottomSheetVC: UIViewController {
 
     public var cerqel_sheetCtl: SheetViewController!
     public var cerqel_sheetHeight: CGFloat = 200
