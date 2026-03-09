@@ -42,7 +42,7 @@ open class BottomSheetVC: UIViewController {
         navigationItem.leftBarButtonItem = leftBarButtonItem
     }
     
-    @objc public func goBack() {
+    @objc open func goBack() {
         navigationController?.popViewController(animated: true)
     }
 }
