@@ -22,7 +22,8 @@ open class AuthManagerDynamicForm {
     public var isPopUpFromFormBuilder:((String) -> ())?
     public var isInboxRefreshRequired = false
     var unauthorizedFlag: BehaviorRelay<Bool?> = BehaviorRelay(value: nil)
-
+    public var profile: DynamicObjects<ModelUserProfileDataCerqel?> = DynamicObjects(nil)
+    
     public var token: String = ""{
         didSet{
             UserDefaults.standard.set(token, forKey: "Token")
@@ -39,6 +40,18 @@ open class AuthManagerDynamicForm {
             let data = try? JSONEncoder().encode(newValue)
             UserDefaults.standard.set(data, forKey: "tenant")
         }
+    }
+    
+   public func fetchProfile(){
+        self.service.load(cerqel_CodableResponseObjectDynamicForm<ModelUserProfileDataCerqel>(action: cerqel_BasicActionDynamicForm.fetchProfile)).subscribe(onNext: {
+            [weak self] (response) in
+            if let obj = response.item?.data{
+                self?.profile.value = obj
+            }
+        }, onError: { (error) in
+            print(error)
+
+        }).disposed(by: self.disposeBag)
     }
     
     func convertToUploadMediaUIModel(from attachment: AttachmentForDefault) -> UploadMediaUIModel {
