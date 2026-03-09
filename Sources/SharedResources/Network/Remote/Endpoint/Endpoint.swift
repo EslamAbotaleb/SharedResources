@@ -10,7 +10,6 @@ import Foundation
 public protocol Endpoint {
     var service: EndpointService {get set}
     var urlPrefix: String {get set}
-    // var endpointVersion: Versions {get set}
     var method: EndpointMethod {get set}
     var auth: AuthorizationHandler {get set}
     var parameters: [String: Any] {get set}

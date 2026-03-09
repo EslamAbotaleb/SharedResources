@@ -1,6 +1,6 @@
 //
-//  ServiceImpDynamicForm.swift
-//  GAZT
+//  Sharedcerqel_BasicNetworkServiceImpl.swift
+//  CERQEL
 //
 //  Created by iSlam on 10/11/20.
 //  Copyright © 2020 Youxel. All rights reserved.
@@ -14,13 +14,13 @@ internal import RxAlamofire
 internal import Alamofire
 internal import JGProgressHUD
 
-public struct cerqel_BasicNetworkServiceDynamicFormImpl: cerqel_NetworkServiceDynamicForm {
+public struct Sharedcerqel_BasicNetworkServiceImpl: Sharedcerqel_NetworkServiceD {
 
-    static nonisolated(unsafe) public let shared = cerqel_BasicNetworkServiceDynamicFormImpl()
+    static nonisolated(unsafe) public let shared = Sharedcerqel_BasicNetworkServiceImpl()
 
     public init() {}
     
-    internal func load<T>(_ resource: T) -> Observable<T> where T : cerqel_CodableResponseDynamicFormProtocol {
+    internal func load<T>(_ resource: T) -> Observable<T> where T : Sharedcerqel_CodableResponseProtocol {
         return RxAlamofire
             .request(resource.action)
             .validate(statusCode: 200 ..< 401)
@@ -28,8 +28,8 @@ public struct cerqel_BasicNetworkServiceDynamicFormImpl: cerqel_NetworkServiceDy
             .do(onError: { err in
                 if let val = err as? AFError, val.responseCode == 401
                 {
-                guard !(AuthManagerDynamicForm.shared.unauthorizedFlag.value ?? false) else { return }
-                DynamicFormTokenProvider.refreshToken? {
+                guard !(SharedAuthManager.shared.unauthorizedFlag.value ?? false) else { return }
+                SharedTokenProvider.refreshToken? {
                         // Retry the request after token refresh
                     _ = self.load(resource).subscribe(onNext: { result in
                     }, onError: { retryError in
@@ -44,9 +44,9 @@ public struct cerqel_BasicNetworkServiceDynamicFormImpl: cerqel_NetworkServiceDy
             .flatMap(resource.parse)
     }
     //
-    internal func uploadImage<T>(_ resource: cerqel_CodableResponseObjectDynamicForm<T>,
+    internal func uploadImage<T>(_ resource: Sharedcerqel_CodableResponseObject<T>,
                         image: UIImage?,
-                        imageParam: String) -> Observable<cerqel_CodableResponseObjectDynamicForm<T>> where T: Decodable {
+                        imageParam: String) -> Observable<Sharedcerqel_CodableResponseObject<T>> where T: Decodable {
         
         return Observable.create { observer in
             
@@ -87,7 +87,7 @@ public struct cerqel_BasicNetworkServiceDynamicFormImpl: cerqel_NetworkServiceDy
                 switch response.result {
                 case .success(let data):
                     do {
-                        let decoded = try JSONDecoder().decode(cerqel_CodableResponseObjectDynamicForm<T>.self, from: data)
+                        let decoded = try JSONDecoder().decode(Sharedcerqel_CodableResponseObject<T>.self, from: data)
                         observer.onNext(decoded)
                         observer.onCompleted()
                     } catch {

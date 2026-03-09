@@ -1,5 +1,5 @@
 //
-//  SettingsDynamicForm.swift
+//  SharedSettings.swift
 //  SharedResources
 //
 //  Created by Omar Ibrahim on 3/4/26.
@@ -8,7 +8,6 @@
 
 import UIKit
 internal import MOLH
-//import PopupDialog
 import Network
 internal import Toast
 internal import JGProgressHUD
@@ -17,8 +16,8 @@ import Photos
 import UIKit
 
 public let globalHeaders = [
-    "Authorization": "Bearer " + AuthManagerDynamicForm.shared.token,
-    "TenantId": AuthManagerDynamicForm.shared.tenant?.tenantId ?? "",
+    "Authorization": "Bearer " + SharedAuthManager.shared.token,
+    "TenantId": SharedAuthManager.shared.tenant?.tenantId ?? "",
     "LanguageCode": isArabic() ? "Ar" : "En",
     "Platform":"IOS",
     "Content-Type":"application/json",
@@ -29,7 +28,7 @@ public let globalHeaders = [
 internal let modifier = AnyModifier { request in
     var r = request
 
-    let token = AuthManagerDynamicForm.shared.token
+    let token = SharedAuthManager.shared.token
     r.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
 
     return r
@@ -102,10 +101,8 @@ public func getTimeDifferenceCerqel(dt: Date, includeDays: Bool, includeDaysIfCu
     if includeDaysIfCurrentIsLess {
         if let d = days, let cd = currDays, (d - cd) >= 0 {
             if (d - cd) == 0 || (d - cd) == 1 {
-                //                return ( nil, nil, nil,String(format: "day".localized, "\(d - cd)"))
                 return ( nil, nil, nil, String(d - cd) + " " + "day".localized)
             }else{
-                //                return (nil, nil, nil,String(format: "days".localized, "\(d - cd)"))
                 return ( nil, nil, nil, String(d - cd) + " " + "days".localized)
             }
         }

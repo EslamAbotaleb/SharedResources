@@ -1,5 +1,5 @@
 //
-//  UIImageViewExtensionsDF.swift
+//  UIImageView.swift
 //  CERQEL
 //
 //  Created by Muhammed Sabri on 19/12/2023.
@@ -23,7 +23,7 @@ extension UIImageView {
         
         // Add Authorization via custom downloader request modifier
         let downloader = SDWebImageDownloader.shared
-        let token = AuthManagerDynamicForm.shared.token
+        let token = SharedAuthManager.shared.token
         downloader.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         
         // Define rendering context for SVG with resizing
@@ -66,7 +66,7 @@ extension UIImageView {
         let modifier = AnyModifier { request in
             var r = request
 
-            let token = AuthManagerDynamicForm.shared.token
+            let token = SharedAuthManager.shared.token
             r.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
 
             return r

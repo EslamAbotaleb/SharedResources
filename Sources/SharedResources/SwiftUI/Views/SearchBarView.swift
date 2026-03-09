@@ -41,14 +41,6 @@ public struct SearchBarView : View {
                     } .onTapGesture {
                         self.isEditing = true
                     }
-                //              TextField("Enter Cities".localized, text: $text.onChange({ (value) in
-                //                  if isTextFieldFocused {
-                //                      print(value)
-                //                      onTextChanged()}
-                //              }))
-                //                  .onTapGesture {
-                //                      self.isEditing = true
-                //                  }
             }
             .frame(height: 48)
             .padding(.horizontal,16)

@@ -12,6 +12,4 @@ public enum BaseLoading {
     case show
     case hide
     case withText(text: String)
-//    case showSkeleton
-//    case hideSkeleton
 }

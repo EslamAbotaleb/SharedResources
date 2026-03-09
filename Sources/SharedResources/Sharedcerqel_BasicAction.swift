@@ -1,6 +1,6 @@
 //
 //  BasicAction.swift
-//  GAZT
+//  CERQEL
 //
 //  Created by iSlam on 10/11/20.
 //  Copyright © 2020 Youxel. All rights reserved.
@@ -9,7 +9,7 @@
 import Foundation
 internal import Alamofire
 
-enum cerqel_BasicActionDynamicForm: cerqel_APIActionDynamicForm, @unchecked Sendable {
+enum Sharedcerqel_BasicAction: Sharedcerqel_APIAction, @unchecked Sendable {
     case fetchService(Id: String)
     case fetchSubServicesByParent(parentId: String)
     case submitService(Id: String, payload: [String: Any])
@@ -26,7 +26,6 @@ enum cerqel_BasicActionDynamicForm: cerqel_APIActionDynamicForm, @unchecked Send
     case fetchAwaitingRequests
     case performSearchFromSearchControlInFormBuilder(url: String)
     case fetchProfile
-//    case searchList(payload:SearchPayload)
     case none
 
     public var actionParameters: [String : Any]{
@@ -40,22 +39,14 @@ enum cerqel_BasicActionDynamicForm: cerqel_APIActionDynamicForm, @unchecked Send
             return payload
         case .reopenRequest(let payload):
             return payload
-            //        case .withdrawRequest(let payload):
-            //            return payload
       
         case .uploadFile:
             return [
                 "Content-Disposition": "form-data",
                 "name": "files",
-                //                "type":"application/pdf",
-                //                "filename":"CertificateTest1.pdf",
                 "Content-Type": "application/json"
             ]
             
-//        case .searchList(let payload):
-//            let  json: [String: Any] = payload.toJSON()
-//            return json
-//            
         default:
             return [:]
         }
@@ -130,8 +121,8 @@ enum cerqel_BasicActionDynamicForm: cerqel_APIActionDynamicForm, @unchecked Send
         switch self {
         default:
             var head = [
-                "Authorization": "Bearer " + AuthManagerDynamicForm.shared.token ,
-                "TenantId": AuthManagerDynamicForm.shared.tenant?.tenantId ?? "",
+                "Authorization": "Bearer " + SharedAuthManager.shared.token ,
+                "TenantId": SharedAuthManager.shared.tenant?.tenantId ?? "",
                 "LanguageCode": isArabic() ? "Ar" : "En",
                 "Platform":"IOS",
                 "Content-Type":"application/json",
@@ -186,7 +177,7 @@ enum cerqel_BasicActionDynamicForm: cerqel_APIActionDynamicForm, @unchecked Send
         }
     }
     
-    public var basicAction: cerqel_BasicActionDynamicForm {
+    public var basicAction: Sharedcerqel_BasicAction {
         switch self {
         case .requestDetails(_):
             return .requestDetails(id: "")

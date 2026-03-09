@@ -1,5 +1,5 @@
 //
-//  UserFilterModelDF.swift
+//  UserFilterModel.swift
 //  CERQEL
 //
 //  Created by Marwan Osama on 22/09/2025.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct UserFilterModelDF: Codable {
+public struct UserFilterModel: Codable {
 
     public var searchString: String?
 

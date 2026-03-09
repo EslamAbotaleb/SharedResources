@@ -31,13 +31,11 @@ public class Services {
             formResponseKey = "viewForm" // to make the parse of response succeed
             url = URL(string: "\(cerqel_Environment.Api_Base_URL + UrlBaseEndpoints.selfService.rawValue)Tasks/GetById/\(serviceId)?roleType=2")!
         }
-        
-//        url = URL(string: "https://mocki.io/v1/6bb0be77-344d-4391-b02d-e9957e9453d7")!
-                
+                        
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         
-        let token = AuthManagerDynamicForm.shared.token
+        let token = SharedAuthManager.shared.token
         let languageCode = isArabic() ? "Ar" : "En"
         
         request.allHTTPHeaderFields = [
@@ -46,7 +44,7 @@ public class Services {
             "Platform": "IOS",
             "Content-Type": "application/json",
             "charset": "utf-8",
-            "TenantId": AuthManagerDynamicForm.shared.tenant?.tenantId ?? ""
+            "TenantId": SharedAuthManager.shared.tenant?.tenantId ?? ""
         ]
         
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
@@ -131,7 +129,7 @@ public class Services {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         
-        let token = AuthManagerDynamicForm.shared.token
+        let token = SharedAuthManager.shared.token
         let languageCode = isArabic() ? "Ar" : "En"
         
         request.allHTTPHeaderFields = [
@@ -140,7 +138,7 @@ public class Services {
             "Platform": "IOS",
             "Content-Type": "application/json",
             "charset": "utf-8",
-            "TenantId": AuthManagerDynamicForm.shared.tenant?.tenantId ?? ""
+            "TenantId": SharedAuthManager.shared.tenant?.tenantId ?? ""
         ]
         
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
@@ -244,7 +242,7 @@ public class Services {
         request.httpMethod = "POST"
         request.httpBody = jsonData
         
-        let token = AuthManagerDynamicForm.shared.token
+        let token = SharedAuthManager.shared.token
         let languageCode = isArabic() ? "Ar" : "En"
         
         request.allHTTPHeaderFields = [
@@ -253,7 +251,7 @@ public class Services {
             "Platform":"IOS",
             "Content-Type":"application/json",
             "charset": "utf-8",
-            "TenantId": AuthManagerDynamicForm.shared.tenant?.tenantId ?? ""
+            "TenantId": SharedAuthManager.shared.tenant?.tenantId ?? ""
         ]
         
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
@@ -305,12 +303,6 @@ public struct Utilities {
         return UIStoryboard(name: name, bundle: bundle)
     }
     
-    // ---------------------- MOTIVAY ------------------- //
-    
-    //    static func storyboard(withName name: String, bundle: Bundle? = nil) -> UIStoryboard {
-    //        return UIStoryboard(name: name, bundle: bundle)
-    //    }
-    
     static public func screedHeight() -> CGFloat {
         return UIScreen.main.bounds.size.height
     }
@@ -335,13 +327,7 @@ public struct Utilities {
         
         return randomString
     }
-    
-    //    public func loadJSON() -> JSON {
-    //        let defaults = NSUserDefaults.standardUserDefaults()
-    //        return JSON.parse(defaults.valueForKey("json") as! String))
-    //        // JSON from string must be initialized using .parse()
-    //    }
-    
+        
     static public func saveString(_ str: String, toFile: String){
         
         if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
@@ -406,7 +392,6 @@ public struct Utilities {
         }else{
             let data = str!.data(using: String.Encoding.utf8, allowLossyConversion: false)!
             
-            //            var json: JSON?
             do {
                 if let json = try JSONSerialization.jsonObject(with: data, options: []) as? JSON2 {
                     return json

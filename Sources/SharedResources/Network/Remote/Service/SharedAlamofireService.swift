@@ -1,5 +1,5 @@
 //
-//  AlamofireServiceDynamicForm.swift
+//  SharedAlamofireService.swift
 //  SwiftMVVMStartupProject
 //
 //  Created by Maher on 06/14/20.
@@ -10,7 +10,7 @@ import Foundation
 internal import Alamofire
 @_exported import Promises
 
-class AlamofireService: EndpointExecuter {
+class SharedAlamofireService: EndpointExecuter {
  
     private let manager: Session = {
         let configuration = URLSessionConfiguration.default
@@ -52,10 +52,6 @@ class AlamofireService: EndpointExecuter {
             if value is String {
                  params[key] = (value as?String)?.cerqel_replacedArabicDigitsWithEnglish
                  params[key] = (value as?String)?.sanitized ?? ""
-//                if (value as?String)!.containsScriptTag {
-//                    params[key] = (value as?String)?.sanitized ?? ""
-//                   throw ServerError (message : "\(key) has harmful value")
-//                }
             }
             else{
                 params[key] = value
@@ -65,9 +61,6 @@ class AlamofireService: EndpointExecuter {
         print("ℹ️ Method : \(endpoint.method.alamofireEndpoint)")
         print("ℹ️ Parameters : \(params.filter{ $0.value as?Int != 0})")
         print("ℹ️ Headers : \(concatenateHeaders(for: endpoint))")
-
-//          var filtedParams: [String:Any] = params
-//           filtedParams = params.filter{$0.value as?String != "" && $0.value as?Int != 0}
 
         var filtedParams: [String:Any] = params
          filtedParams = params.filter{ $0.value as?Int != 0}
@@ -201,14 +194,12 @@ class AlamofireService: EndpointExecuter {
 
     
     public func downloadFile(_ filesUrl: [String]) -> Promise<URL> {
-          return Promise<URL>(on: .global()) { fulfill, reject in
-            //  for file in filesUrl {
-                  self.download(filesUrl, completionHandler: { (url) in
-                      fulfill(url)
-                  })
-           //   }
-           
-          }
+        return Promise<URL>(on: .global()) { fulfill, reject in
+            self.download(filesUrl, completionHandler: { (url) in
+                fulfill(url)
+            })
+            
+        }
     }
     
     public func cancelUpload(_ fileVersionType: FileVersionType) {
@@ -227,7 +218,7 @@ class AlamofireService: EndpointExecuter {
         for (key, value) in endpoint.auth.clientHeader {
             headers.updateValue(value, forKey: key)
             headers.updateValue("iOS", forKey: "Platform")
-            headers.updateValue(AuthManagerDynamicForm.shared.tenant?.tenantId ?? "", forKey: "TenantId")
+            headers.updateValue(SharedAuthManager.shared.tenant?.tenantId ?? "", forKey: "TenantId")
         }
         return headers
     }

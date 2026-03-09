@@ -1,5 +1,5 @@
 //
-//  GetUsersPayloadDF.swift
+//  GetUsersPayload.swift
 //  CERQEL
 //
 //  Created by Youxel on 13/05/2024.
@@ -8,8 +8,8 @@
 
 import Foundation
 
-public struct GetUsersPayload : Codable, Mappable {
-    public var filter : UserFilterModelDF?
+public struct GetUsersPayload: Codable, Mappable {
+    public var filter : UserFilterModel?
     public var searchOptions : String?
     public var pageSize : Int?
     public var pageNumber: Int?
@@ -28,7 +28,7 @@ public struct GetUsersPayload : Codable, Mappable {
         
     }
     
-    public init(filter: UserFilterModelDF?, searchOptions: String?, pageSize: Int?, pageNumber: Int?) {
+    public init(filter: UserFilterModel?, searchOptions: String?, pageSize: Int?, pageNumber: Int?) {
         self.filter = filter
         self.searchOptions = searchOptions
         self.pageSize = pageSize

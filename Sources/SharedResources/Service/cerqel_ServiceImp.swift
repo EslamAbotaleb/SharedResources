@@ -20,7 +20,7 @@ struct cerqel_BasicNetworkServiceImpl: cerqel_NetworkService {
     static let shared = cerqel_BasicNetworkServiceImpl()
 
 
-    func load<T>(_ resource: T) -> Observable<T> where T : cerqel_CodableResponseDynamicFormProtocol {
+    func load<T>(_ resource: T) -> Observable<T> where T : Sharedcerqel_CodableResponseProtocol {
         return
         RxAlamofire
             .request(resource.action)
@@ -29,8 +29,8 @@ struct cerqel_BasicNetworkServiceImpl: cerqel_NetworkService {
             .do(onError: { err in
                 if let val = err as? AFError, val.responseCode == 401
                 {
-                    guard !(AuthManagerDynamicForm.shared.unauthorizedFlag.value ?? false) else { return }
-                DynamicFormTokenProvider.refreshToken = { _ in
+                    guard !(SharedAuthManager.shared.unauthorizedFlag.value ?? false) else { return }
+                SharedTokenProvider.refreshToken = { _ in
                         // Retry the request after token refresh
 
                         _ = self.load(resource).subscribe(onNext: { result in
@@ -49,10 +49,10 @@ struct cerqel_BasicNetworkServiceImpl: cerqel_NetworkService {
     }
     //
     func uploadImage<T>(
-        _ resource: cerqel_CodableResponseObjectDynamicForm<T>,
+        _ resource: Sharedcerqel_CodableResponseObject<T>,
         image: UIImage?,
         imageParam: String
-    ) -> Observable<cerqel_CodableResponseObjectDynamicForm<T>> where T: Decodable {
+    ) -> Observable<Sharedcerqel_CodableResponseObject<T>> where T: Decodable {
 
         return Observable.create { observer in
 
@@ -107,7 +107,7 @@ struct cerqel_BasicNetworkServiceImpl: cerqel_NetworkService {
                 case .success(let data):
                     do {
                         let result = try JSONDecoder()
-                            .decode(cerqel_CodableResponseObjectDynamicForm<T>.self, from: data)
+                            .decode(Sharedcerqel_CodableResponseObject<T>.self, from: data)
                         observer.onNext(result)
                         observer.onCompleted()
                     } catch {

@@ -1,6 +1,6 @@
 //
-//  CodableResponseObjectDynamicForm.swift
-//  GAZT
+//  Sharedcerqel_CodableResponseObject.swift
+//  CERQEL
 //
 //  Created by iSlam on 10/11/20.
 //  Copyright © 2020 Youxel. All rights reserved.
@@ -11,13 +11,12 @@ internal import RxSwift
 internal import Alamofire
 internal import MOLH
 
-public class cerqel_CodableResponseObjectDynamicForm<T: Decodable>: Decodable, cerqel_CodableResponseDynamicFormProtocol {
+public class Sharedcerqel_CodableResponseObject<T: Decodable>: Decodable, Sharedcerqel_CodableResponseProtocol {
     fileprivate(set) public var success: Bool?
     fileprivate(set) public var item: cerqel_CodableResponseObjectData<T>?
 
     public var error: BaseError?
     public var errors: [String: BaseError]?
-//    fileprivate(set) var data:Any?
     public var keyResult: String = "result"
 
     private enum CodingKeys: String, CodingKey {
@@ -29,10 +28,9 @@ public class cerqel_CodableResponseObjectDynamicForm<T: Decodable>: Decodable, c
     }
 
     
-//    fileprivate let objectType = T.self
-    internal var action: cerqel_APIActionDynamicForm = cerqel_BasicActionDynamicForm.none
+    internal var action: Sharedcerqel_APIAction = Sharedcerqel_BasicAction.none
 
-    internal init(action: cerqel_APIActionDynamicForm,keyResult:String = "result") {
+    internal init(action: Sharedcerqel_APIAction,keyResult:String = "result") {
         self.action = action
         self.keyResult = keyResult
         
@@ -97,7 +95,6 @@ public class cerqel_CodableResponseObjectDynamicForm<T: Decodable>: Decodable, c
                 return Disposables.create()
             }
             
-//            observer.onNext(result)
             return Disposables.create()
         }
     }

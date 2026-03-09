@@ -48,7 +48,6 @@ extension UIViewController: WireframeInterfaceCerqel {
             else {
                 message = BaseError.timeOut.localizedDescription
             }
-            // code == -1009 ||
         }
         let hud = flashHud(message: message, view: self.view, indicator: JGProgressHUDErrorIndicatorView())
         hud.dismiss(afterDelay: 2)
@@ -57,10 +56,7 @@ extension UIViewController: WireframeInterfaceCerqel {
     @MainActor
     private struct cerqel_HUDHolder {
         static var shared: LottieHUD = {
-//            let hud = JGProgressHUD(style: .dark)
             let hud = LottieHUD("loading")
-//            hud.shadow = JGProgressHUDShadow(color: .black, offset: .zero, radius: 5.0, opacity: 0.2)
-//            hud.vibrancyEnabled = true
             return hud
             
         }()
@@ -131,11 +127,9 @@ extension UIViewController: WireframeInterfaceCerqel {
     
     public func cerqel_showLoading(){
         cerqel_HUD.showHUD()
-//        HUD.show(in: self.view)
     }
     
     public func cerqel_hideLoading(){
-//        HUD.dismiss()
         cerqel_HUD.stopHUD()
     }
     
@@ -163,9 +157,6 @@ extension UIViewController{
         if fullScreenModel{
             sheet = SheetViewController(controller: viewToPresent, sizes: [mySize])
         }
-//        sheet.handleColor = UIColor.clear
-//        sheet.adjustForBottomSafeArea = bottomControl
-//        sheet.extendBackgroundBehindHandle = true
         
         viewToPresent.cerqel_sheetCtl = sheet
         self.present(sheet, animated: false, completion: nil)
@@ -259,7 +250,7 @@ extension UIViewController{
     }
     
     public func openMFileMenu(attachmentExtensions: String) {
-        AuthManagerDynamicForm.shared.documentTypesOfExtensions.removeAll()
+        SharedAuthManager.shared.documentTypesOfExtensions.removeAll()
         
         let alertStyle: UIAlertController.Style = UIDevice.current.userInterfaceIdiom == .pad ? .alert : .actionSheet
         
@@ -284,7 +275,7 @@ extension UIViewController{
                 hasFile = true
                 if #available(iOS 14.0, *),
                    let docType = documentType(forFileExtension: ext) {
-                    AuthManagerDynamicForm.shared.documentTypesOfExtensions.append(docType)
+                    SharedAuthManager.shared.documentTypesOfExtensions.append(docType)
                 }
             } else if isImageType(ext) {
                 hasImage = true
@@ -293,10 +284,10 @@ extension UIViewController{
             }
         }
 
-        if hasFile, !AuthManagerDynamicForm.shared.documentTypesOfExtensions.isEmpty {
+        if hasFile, !SharedAuthManager.shared.documentTypesOfExtensions.isEmpty {
             let fileAction = UIAlertAction(title: "File".localized, style: .default) { _ in
                 let picker = UIDocumentPickerViewController(
-                    documentTypes: AuthManagerDynamicForm.shared.documentTypesOfExtensions,
+                    documentTypes: SharedAuthManager.shared.documentTypesOfExtensions,
                     in: .import
                 )
                 if let delegate = self as? UIDocumentPickerDelegate {
@@ -311,7 +302,7 @@ extension UIViewController{
         
         if hasImage {
             let cameraAction = UIAlertAction(title: "Camera".localized, style: .default) { _ in
-                AuthManagerDynamicForm.shared.isCameraOpened = true
+                SharedAuthManager.shared.isCameraOpened = true
                 checkAuthorizationState(
                     attachmentTypeEnum: .camera,
                     vc: self,

@@ -24,11 +24,10 @@ protocol ReachabilityProtocol {
     func connection() -> Reachability.Connection?
 }
 
-// Internal implementation - uses Promise internally
-public class NetworkServiceImpl: Network {
+public class SharedNetworkServiceImpl: SharedNetwork {
 
-    var endpointExecuter: EndpointExecuter = AlamofireService()
-    var reachability: ReachabilityProtocol = ReachabilityImpl()
+    public var endpointExecuter: EndpointExecuter = SharedAlamofireService()
+    public var reachability: ReachabilityProtocol = ReachabilityImpl()
 
     public func callModel<Model: Codable>(_ model: Model.Type, endpoint: Endpoint) -> Promise<Model> {
         return Promise<Model>(on: .main) { fulfill, reject in
@@ -46,13 +45,13 @@ public class NetworkServiceImpl: Network {
                 })
                 .catch({ (error) in
                     if let error  = error as? ServerError, error.status == 401 {
-                        guard !(AuthManagerDynamicForm.shared.unauthorizedFlag.value ?? false) else { return }
-                        guard !AuthManagerDynamicForm.shared.token.isEmpty else {
+                        guard !(SharedAuthManager.shared.unauthorizedFlag.value ?? false) else { return }
+                        guard !SharedAuthManager.shared.token.isEmpty else {
                             reject(error)
                             return
                         }
                         
-                        DynamicFormTokenProvider.refreshToken? {
+                        SharedTokenProvider.refreshToken? {
                                 // Retry the request after token refresh
                                 self.callModel(model, endpoint: endpoint)
                                                             .then(fulfill)
@@ -78,8 +77,8 @@ public class NetworkServiceImpl: Network {
                     fulfill(response)})
                 .catch({ (error) in
                     if let error  = error as? ServerError, error.status == 401 {
-                        guard !(AuthManagerDynamicForm.shared.unauthorizedFlag.value ?? false) else { return }
-                        DynamicFormTokenProvider.refreshToken? {
+                        guard !(SharedAuthManager.shared.unauthorizedFlag.value ?? false) else { return }
+                        SharedTokenProvider.refreshToken? {
                                 // Retry the request after token refresh
                                 self.uploadModel(model, endpoint: endpoint, progressCallBack: progressCallBack)
                                                             .then(fulfill)
@@ -102,8 +101,8 @@ public class NetworkServiceImpl: Network {
                     fulfill(fileUrl)})
                 .catch({ (error) in
                     if let error  = error as? ServerError, error.status == 401 {
-                        guard !(AuthManagerDynamicForm.shared.unauthorizedFlag.value ?? false) else { return }
-                        DynamicFormTokenProvider.refreshToken? { 
+                        guard !(SharedAuthManager.shared.unauthorizedFlag.value ?? false) else { return }
+                        SharedTokenProvider.refreshToken? { 
                                 // Retry the request after token refresh
                                 self.downloadModel(filesUrl: filesUrl)
                                                             .then(fulfill)
@@ -195,15 +194,15 @@ public class NetworkServiceImpl: Network {
                 }
                 reject(error)
                 if  statusCode == 401 {
-                    AuthManagerDynamicForm.shared.unauthorizedFlag.accept(true)
+                    SharedAuthManager.shared.unauthorizedFlag.accept(true)
                 }
             }
         }
     }
 
     private func saveHeaders( _ header: HeaderResponse) {
-        UserAuthoriationHandlerDF().setAuthManually(authToken: header.token ?? "")
-        UserAuthoriationHandlerDF().setUidManually(uid: header.uid ?? "")    }
+        SharedUserAuthoriationHandler().setAuthManually(authToken: header.token ?? "")
+        SharedUserAuthoriationHandler().setUidManually(uid: header.uid ?? "")    }
 
     private func networkFail() -> Error {
         return isConnectedToInternet ? FailToCallNetworkError() : NoInternetConnectionError()

@@ -1,5 +1,5 @@
 //
-//  GetUsersRepositoryDF.swift
+//  UsersRepoImp.swift
 //  CERQEL
 //
 //  Created by Youxel on 13/05/2024.
@@ -10,9 +10,9 @@ import Foundation
 @_exported import Promises
 
 class UsersRepoImp: UsersRepo {
-    private var network: Network
+    private var network: SharedNetwork
 
-    public init(network: Network = NetworkServiceImpl()) {
+    public init(network: SharedNetwork = SharedNetworkServiceImpl()) {
         self.network = network
     }
     

@@ -14,8 +14,8 @@ internal import FBLPromises
 public typealias UploadProgrssCallBack = ((Double,FileVersionType)->())
 public typealias ProgressCallback = (Double) -> Void
 
-// Internal protocol - uses Promise internally
-public protocol Network {
+// hint: you can't use protocol Network as public cause of plugin Promises defined as internal import that's why not define protocol as public
+public protocol SharedNetwork {
     func call(endpoint: Endpoint) -> Promise<Data>
     func callModel<Model: Codable>(_ model: Model.Type, endpoint: Endpoint) -> Promise<Model>
     func uploadModel<Model: Codable>(_ model: Model.Type, endpoint: Endpoint,progressCallBack: @escaping UploadProgrssCallBack) -> Promise<Model>

@@ -13,7 +13,7 @@ internal struct SurveyEndPoint: Endpoint {
     public var service: EndpointService = .survey
     public var method: EndpointMethod = .post
     public var encoding: EndpointEncoding = .json
-    public var auth: AuthorizationHandler = UserAuthoriationHandlerDF()
+    public var auth: AuthorizationHandler = SharedUserAuthoriationHandler()
     public var parameters: [String: Any] = [:]
     public var headers: [String: String] = [:]
 

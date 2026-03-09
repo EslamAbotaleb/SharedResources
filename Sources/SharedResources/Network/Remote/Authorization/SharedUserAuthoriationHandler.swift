@@ -1,5 +1,5 @@
 //
-//  UserAuthoriationHandlerDF.swift
+//  SharedUserAuthoriationHandler.swift
 //  SwiftMVVMStartupProject
 //
 //  Created by Maher on 6/14/20.
@@ -10,7 +10,7 @@ import Foundation
 internal import KeychainSwift
 @_exported import Promises
 
-open class UserAuthoriationHandlerDF: AuthorizationHandler {
+open class SharedUserAuthoriationHandler: AuthorizationHandler {
     
     private let keychainKey = "CustomerAuthorizationHandler"
     private let clientKey = "clientAuthoriztionHeader"
@@ -31,7 +31,7 @@ open class UserAuthoriationHandlerDF: AuthorizationHandler {
     
     public var tokenHeader: [String: String] {
 
-        return ["Authorization": "Bearer " + AuthManagerDynamicForm.shared.token ]
+        return ["Authorization": "Bearer " + SharedAuthManager.shared.token ]
     }
     public  var faceIdPhone: String {
         keychain.get(self.faceIdPhoneKey) ?? ""

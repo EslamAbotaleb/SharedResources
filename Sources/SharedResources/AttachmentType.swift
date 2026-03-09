@@ -37,7 +37,6 @@ public func checkAuthorizationState(attachmentTypeEnum: AttachmentType, vc: UIVi
             //denied - The user has previously denied access.
         //restricted - The user can't grant access due to restrictions.
         case .denied, .restricted:
-            //            self.addAlertForSettings(attachmentTypeEnum)
             print("Access Denied")
             showAccessDeniedAlert(vc: vc)
             return
@@ -56,7 +55,6 @@ public func checkAuthorizationState(attachmentTypeEnum: AttachmentType, vc: UIVi
             }
             
         case .denied, .restricted:
-            //            self.addAlertForSettings(attachmentTypeEnum)
             print("Access Denied")
             showAccessDeniedAlert(vc: vc)
             

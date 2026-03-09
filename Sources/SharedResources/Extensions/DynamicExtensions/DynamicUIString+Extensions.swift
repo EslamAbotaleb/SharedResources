@@ -25,11 +25,7 @@ extension String {
     
     public func getDateFromString(timeZone: Bool = true) -> Date? {
         let dateFormatter = DateFormatter()
-//        if timeZone {
-//            dateFormatter.timeZone = .current
-//        } else {
-            dateFormatter.timeZone = timeZone_UTC //TimeZone(abbreviation: "UTC") //TimeZone.current//
-//        }
+            dateFormatter.timeZone = timeZone_UTC //TimeZone(abbreviation: "UTC")
         dateFormatter.locale = Locale(identifier: "en_US")
         
         let dateFormats = ["yyyy-MM-dd'T'HH:mm:ss.SSSZ", "yyyy-MM-dd'T'HH:mm:ss.SSZ", "yyyy-MM-dd'T'HH:mm:ss.SS", "yyyy-MM-dd HH:mm:ss.SSS", "yyyy-MM-dd'T'HH:mm:ss", "yyyy-MM-dd HH:mm:ss", "E, d MMM yyyy HH:mm:ss ZZ", "E, d MMM yyyy HH:mm:ss ZZ", "E, dd MMM yyyy HH:mm:ss zzz", "y-MM-dd'T'HH:mm:ssZ", "y-MM-dd", "HH:mm:ssZ", "yyyy-MM-dd", "dd/MM/yyyy, HH:mm", "dd/MM/yyyy - HH:mm a", "MM/dd/y", "hh:mm a", "HH:mma", "HH:mm a", "HH:mm", "dd-MM-yyyy","dd-MM-yyyy HH:mm"]
@@ -56,7 +52,6 @@ extension String {
         
         let firstInitial = nameComponents.first?.first
         let lastInitial  = nameComponents.count > 1 ? nameComponents[1].first : nil
-    //        let lastInitial  = nameComponents.count > 1 ? nameComponents.last?.first : nil
         
         var isAr: Bool?
         let predicate = NSPredicate(format: "SELF MATCHES %@", "(?s).*\\p{Arabic}.*")
@@ -289,7 +284,6 @@ extension String {
                     index = self.index(self.startIndex, offsetBy: charIndex)
                 }
                 
-                //if(self.substring(to: index).range(of:"[ء-ي]", options: .regularExpression) != nil){
                 if(self.prefix(upTo: index).range(of:"[ء-ي]", options: .regularExpression) != nil){
                     isArabic = true
                 }
@@ -301,9 +295,7 @@ extension String {
     
     public func y_firstCharIsArabic() -> Bool! {
         if self.count > 0 {
-//            var charIndex : Int = 1
             let index = self.index(self.startIndex, offsetBy: 1)
-//            var isArabic = false
             if self.prefix(upTo:index).range(of:"[ء-ي]", options: .regularExpression) == nil {
                 return true
             }
@@ -485,9 +477,7 @@ extension String {
 extension String {
     
     public func getDateFromString(dateFormatter: DateFormatter) -> Date? {
-        
-//        let dateFormatter = DateFormatter()
-        
+                
         if dateFormatter.dateFormat != "" {
             if let date = dateFormatter.date(from: self) {
                 return date
@@ -568,12 +558,7 @@ extension String {
         if let date = dateFormatter.date(from: self) {
             return date
         }
-        
-//        dateFormatter.dateFormat = "dd/MM/yyyy"
-//        if let date = dateFormatter.date(from: self) {
-//            return date
-//        }
-        
+                
         dateFormatter.dateFormat = "hh:mm a"
         if let date = dateFormatter.date(from: self) {
             return date

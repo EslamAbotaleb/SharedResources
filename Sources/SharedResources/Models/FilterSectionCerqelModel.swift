@@ -24,7 +24,6 @@ public struct CerqelFilterSection: Equatable,Hashable {
     public var filterCategoriesType: CerqelFilterCategoriesType?
     public var items: [CerqelCategoriesModel]?
     public var collapsed: Bool? = true
-//    var endPoint: Promise<BaseResponse<[ListModel]>>?
     public var endPoint: EndpointService?
     
     

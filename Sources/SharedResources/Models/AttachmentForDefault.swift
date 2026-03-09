@@ -36,16 +36,7 @@ public struct AttachmentForDefault: Mappable, Codable {
     mutating func mapping(map: Map) {
         fileId <- map["attachmentId"]
         fileName <- map["attachmentName"]
-        fileExtension <- map["attachmentExtension"]
-        //        url <- map["url"]
-        //        downloadUrl <- map["downloadUrl"]
-        //        attachmentDisplaySize <- map["attachmentDisplaySize"]
-        //        previewUrl <- map["previewUrl"]
-        //        size <- map["size"]
-        //        isPublic <- map["isPublic"]
-        //        fileUrl <- map["fileUrl"]
-        //        isSuccess <- map["isSuccess"]
-    
+        fileExtension <- map["attachmentExtension"]    
     }
     
     enum CodingKeys: String, CodingKey {

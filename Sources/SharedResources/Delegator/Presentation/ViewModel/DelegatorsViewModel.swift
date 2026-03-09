@@ -18,7 +18,7 @@ public class DelegatorsViewModel : BaseVM {
     @Published var pageSize: Int = 10
     @Published var selectedList : [UserEntity] = []
     @Published  var singleSelectedItem : UserEntity? = nil
-    var payload: GetUsersPayload = GetUsersPayload(filter: UserFilterModelDF(searchString: ""), searchOptions : nil,pageSize : 100, pageNumber: 1)
+    var payload: GetUsersPayload = GetUsersPayload(filter: UserFilterModel(searchString: ""), searchOptions : nil,pageSize : 100, pageNumber: 1)
     private let searchDelay = 1.0
     private var searchTimer: Timer?
     

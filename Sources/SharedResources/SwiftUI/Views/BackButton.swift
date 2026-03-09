@@ -18,7 +18,6 @@ public struct BackButton: View {
                 .foregroundStyle(Color(uiColor: typographyTitle))
                 .rotationEffect(isArabic() ? Angle(degrees: 180) : .zero)
             Button("Back".localized) {
-                //presentationMode.wrappedValue.dismiss()
                 dismiss()
                 onBack!()
             }

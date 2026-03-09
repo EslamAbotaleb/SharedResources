@@ -21,7 +21,6 @@ public struct CustomNavBarWithSubmitText: View {
         VStack(){
             HStack{
                 Button("Cancel".localized) {
-                    //presentationMode.wrappedValue.dismiss()
                     dismiss()
                     onBack!()
                 }
@@ -38,7 +37,6 @@ public struct CustomNavBarWithSubmitText: View {
     
                 Button(submitBtnTitle == nil ? "Done".localized : submitBtnTitle!) {
                     if submitIsAvailable {
-                        //presentationMode.wrappedValue.dismiss()
                         dismiss()
                         onDone!()
                     }

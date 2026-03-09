@@ -9,13 +9,13 @@ import Foundation
 internal import RxSwift
 internal import RxCocoa
 
-open class AuthManagerDynamicForm {
+open class SharedAuthManager {
     
-    private let service: cerqel_NetworkServiceDynamicForm = cerqel_BasicNetworkServiceDynamicFormImpl.shared
+    private let service: Sharedcerqel_NetworkServiceD = Sharedcerqel_BasicNetworkServiceImpl.shared
     private let disposeBag = DisposeBag()
     public var documentTypesOfExtensions: [String] = []
     public var isTasks = true
-    static public var shared = AuthManagerDynamicForm()
+    static public var shared = SharedAuthManager()
     public var isCameraOpened = false
     public var newSubmissionRetreiveEnabled = true
 
@@ -43,7 +43,7 @@ open class AuthManagerDynamicForm {
     }
     
    public func fetchProfile(){
-        self.service.load(cerqel_CodableResponseObjectDynamicForm<ModelUserProfileDataCerqel>(action: cerqel_BasicActionDynamicForm.fetchProfile)).subscribe(onNext: {
+        self.service.load(Sharedcerqel_CodableResponseObject<ModelUserProfileDataCerqel>(action: Sharedcerqel_BasicAction.fetchProfile)).subscribe(onNext: {
             [weak self] (response) in
             if let obj = response.item?.data{
                 self?.profile.value = obj

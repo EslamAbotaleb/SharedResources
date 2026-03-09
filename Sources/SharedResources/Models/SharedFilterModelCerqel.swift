@@ -1,5 +1,5 @@
 //
-//  CerqelFilterModelCerqelDynamicForm.swift
+//  SharedFilterModelCerqel.swift
 //  SharedResources
 //
 //  Created by Omar Ibrahim on 3/5/26.
@@ -8,23 +8,21 @@
 
 import Foundation
 
-public struct CerqelFilterModelCerqelDynamicForm {
+public struct SharedFilterModelCerqel {
     var orignalDateRangeFilter: CerqelDateRangeFilterCerqel?
     var dateRangeFilter: CerqelDateRangeFilterCerqel?
-    var categories: [CerqelFilterCategoryCerqelDynamicForm]? = []
-//    var selectedSections: [FilterSection]? = []
+    var categories: [SharedFilterCategory]? = []
 }
 
-public struct CerqelFilterCategoryCerqelDynamicForm {
-    var selectedCategories: [CerqelCategoriesCerqelDynamicForm] = []
+public struct SharedFilterCategory {
+    var selectedCategories: [SharedCategories] = []
     var representation: CerqelCheckBoxRepresentation
     var isAnotherLvl: Bool
-//    var filterCategoriesType: CerqelFilterCategoriesSectionEnum
 }
 
-public struct CerqelCategoriesCerqelDynamicForm: Codable,Equatable {
+public struct SharedCategories: Codable,Equatable {
     var id, name: String?
-    var subCategories:[CerqelCategoriesCerqelDynamicForm]?
+    var subCategories:[SharedCategories]?
     var isSelected: Bool = false
     var representation: CerqelCheckBoxRepresentation = .CheckBox
     

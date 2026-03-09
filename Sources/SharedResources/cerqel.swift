@@ -10,7 +10,7 @@ internal import RxSwift
 
 struct cerqel_ArrayResource<T: Codable> {
     public let objectType = T.self
-    public let action: cerqel_APIActionDynamicForm
+    public let action: Sharedcerqel_APIAction
     
     public func parse(_ data: Data) -> Observable<[T]> {
         return Observable.create { observer in

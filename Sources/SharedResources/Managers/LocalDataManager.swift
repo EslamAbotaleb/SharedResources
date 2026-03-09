@@ -82,7 +82,6 @@ public class LocalDataImpl: LocalData {
     public func setDeviceToken( key: CachingKey) {
         var fcm_token :String {
             return ""
-//            return Messaging.messaging().fcmToken != nil ? Messaging.messaging().fcmToken! : ""
         }
         UserDefaults.standard.set(fcm_token, forKey: key.rawValue)
         UserDefaults.standard.synchronize()

@@ -42,7 +42,6 @@ public class ToastManager {
         toastContainerView.addSubview(imageView)
 
         let button = UIButton()
-//        button.setImage(UIImage(named: "close"), for: .normal)
         button.tintColor = closeBtnColor
         button.translatesAutoresizingMaskIntoConstraints = false
         toastContainerView.addSubview(button)

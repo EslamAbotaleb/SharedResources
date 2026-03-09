@@ -15,7 +15,6 @@ public struct MCQOption: Codable, Mappable, Hashable {
     public var name_ar: String?
     
      init?(map: Map) {
-        //empty
     }
     
     public init(id: String?,other: Bool, name: String?, name_ar: String?) {

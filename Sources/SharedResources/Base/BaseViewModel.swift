@@ -1,6 +1,6 @@
 //
-//  DynamicFormBaseViewModel.swift
-//  GAZT
+//  BaseViewModel.swift
+//  Cerqel
 //
 //  Created by iSlam AbdelAziz on 10/27/20.
 //  Copyright © 2020 Youxel. All rights reserved.

@@ -25,7 +25,6 @@ public struct CustomNavBarWithBackText: View {
         VStack(){
             HStack{
                 Button("Cancel".localized) {
-                    //presentationMode.wrappedValue.dismiss()
                     dismiss()
                     onBack!()
                 }
@@ -41,7 +40,6 @@ public struct CustomNavBarWithBackText: View {
                     .frame(maxWidth: .infinity,alignment: .center)
     
                     Button("Done".localized) {
-                        //presentationMode.wrappedValue.dismiss()
                         dismiss()
                         onDone!()
                     }

@@ -1,6 +1,6 @@
 //
-//  cerqel_APIActionDynamicForm.swift
-//  GAZT
+//  Sharedcerqel_APIAction.swift
+//  CERQEL
 //
 //  Created by iSlam on 10/11/20.
 //  Copyright © 2020 Youxel. All rights reserved.
@@ -23,7 +23,7 @@ enum UrlBaseEndpoints: String {
     case fileManager = "gw/Storage/api/"
 }
 
-protocol cerqel_APIActionDynamicForm: URLRequestConvertible, Sendable {
+protocol Sharedcerqel_APIAction: URLRequestConvertible, Sendable {
     var method: HTTPMethod { get }
     var path: String { get }
     var actionParameters: [String: Any] { get }
@@ -32,17 +32,15 @@ protocol cerqel_APIActionDynamicForm: URLRequestConvertible, Sendable {
     var encoding: ParameterEncoding { get }
     var isMock: Bool { get }
     var urlType: cerqel_URLType { get }
-    var basicAction: cerqel_BasicActionDynamicForm { get }
+    var basicAction: Sharedcerqel_BasicAction { get }
 }
 
-extension cerqel_APIActionDynamicForm {
+extension Sharedcerqel_APIAction {
     public var actionParameters: [String : Any] {
         return [:]
     }
     public var authHeader: [String : String] {
         return  [
-//            "Accept-Language": arOrEn(),
-//            "app-version":Global.share.version,
             "device-type":"ios",
             "Content-Type" :"application/json; charset=utf-8"
         ]
@@ -53,14 +51,13 @@ extension cerqel_APIActionDynamicForm {
         if isMock{
             switch basicAction {
             case .requestDetails(_):
-                return AuthManagerDynamicForm.shared.newSubmissionRetreiveEnabled ?  "https://demo2590693.mockable.io/requestDetails" /* new structure */ : "https://demo2590693.mockable.io/requestDetails" /* old structure */
+                return SharedAuthManager.shared.newSubmissionRetreiveEnabled ?  "https://demo2590693.mockable.io/requestDetails" /* new structure */ : "https://demo2590693.mockable.io/requestDetails" /* old structure */
     
             case .taskDetails(_):
-                return AuthManagerDynamicForm.shared.newSubmissionRetreiveEnabled ? "https://demo2590693.mockable.io/requestDetails" /* new structure */ : "https://demo2590693.mockable.io/requestDetails" /* old structure */
+                return SharedAuthManager.shared.newSubmissionRetreiveEnabled ? "https://demo2590693.mockable.io/requestDetails" /* new structure */ : "https://demo2590693.mockable.io/requestDetails" /* old structure */
             default:
                 return ""
             }
-//            return "https://24d01c0f-97ba-4f2b-b644-e3332e675c9b.mock.pstmn.io/"
         }
         
         switch urlType {
@@ -85,7 +82,7 @@ extension cerqel_APIActionDynamicForm {
     
 }
 
-extension cerqel_APIActionDynamicForm {
+extension Sharedcerqel_APIAction {
     
     public func asURLRequest() throws -> URLRequest {
         let urlString = baseURL.appending(path)
