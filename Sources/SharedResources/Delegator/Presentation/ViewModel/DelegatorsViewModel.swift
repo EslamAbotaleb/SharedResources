@@ -8,7 +8,7 @@
 
 import Foundation
 
-class DelegatorsViewModel : BaseVM {
+public class DelegatorsViewModel : BaseVM {
     
     private var userUseCase: UserUseCase!
     
