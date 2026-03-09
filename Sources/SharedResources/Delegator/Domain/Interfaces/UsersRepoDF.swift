@@ -7,8 +7,8 @@
 //
 
 import Foundation
-internal import Promises
+public import Promises
 
-protocol UsersRepo {
+public protocol UsersRepo {
     func getUsersList(payload: GetUsersPayload) -> Promise<BaseResponse<[UserDTO]>>
 }
