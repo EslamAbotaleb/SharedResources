@@ -13,14 +13,14 @@ open class AuthManagerDynamicForm {
     
     private let service: cerqel_NetworkServiceDynamicForm = cerqel_BasicNetworkServiceDynamicFormImpl.shared
     private let disposeBag = DisposeBag()
-    var documentTypesOfExtensions: [String] = []
-    var isTasks = true
+    public var documentTypesOfExtensions: [String] = []
+    public var isTasks = true
     static public var shared = AuthManagerDynamicForm()
-    var isCameraOpened = false
-    var newSubmissionRetreiveEnabled = true
+    public var isCameraOpened = false
+    public var newSubmissionRetreiveEnabled = true
 
-    var isPopUpFromFormBuilder:((String) -> ())?
-    var isInboxRefreshRequired = false
+    public var isPopUpFromFormBuilder:((String) -> ())?
+    public var isInboxRefreshRequired = false
     var unauthorizedFlag: BehaviorRelay<Bool?> = BehaviorRelay(value: nil)
 
     public var token: String = ""{
