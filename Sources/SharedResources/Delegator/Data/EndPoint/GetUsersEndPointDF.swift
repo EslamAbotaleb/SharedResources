@@ -9,13 +9,13 @@
 import Foundation
 
 public struct GetUsersEndPoint: Endpoint {
-   var urlPrefix: String = ""
-   var service: EndpointService = .getUsers
-   var method: EndpointMethod = .post
-   var encoding: EndpointEncoding = .json
-   var auth: AuthorizationHandler = UserAuthoriationHandlerDF()
-   var parameters: [String: Any] = [:]
-   var headers: [String: String] = [:]
+    public var urlPrefix: String = ""
+    public var service: EndpointService = .getUsers
+    public var method: EndpointMethod = .post
+    public var encoding: EndpointEncoding = .json
+    public var auth: AuthorizationHandler = UserAuthoriationHandlerDF()
+    public var parameters: [String: Any] = [:]
+    public var headers: [String: String] = [:]
 
     init(payload: GetUsersPayload) {
         parameters = payload.asDictionary()
