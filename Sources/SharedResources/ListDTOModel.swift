@@ -5,7 +5,6 @@
 //  Created by Omar Ibrahim on 3/5/26.
 //
 
-
 import Foundation
 
 public struct ListDTOModel: Identifiable {
