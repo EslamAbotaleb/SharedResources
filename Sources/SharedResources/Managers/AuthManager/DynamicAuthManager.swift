@@ -15,7 +15,7 @@ open class AuthManagerDynamicForm {
     private let disposeBag = DisposeBag()
     var documentTypesOfExtensions: [String] = []
     var isTasks = true
-    static var shared = AuthManagerDynamicForm()
+    static public var shared = AuthManagerDynamicForm()
     var isCameraOpened = false
     var newSubmissionRetreiveEnabled = true
 
