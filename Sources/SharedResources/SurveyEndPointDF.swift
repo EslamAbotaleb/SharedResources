@@ -5,10 +5,9 @@
 //  Created by Omar Ibrahim on 3/4/26.
 //
 
-
 import Foundation
 
-internal struct SurveyEndPoint: Endpoint {
+public struct SurveyEndPoint: Endpoint {
     public var urlPrefix: String = ""
     public var service: EndpointService = .survey
     public var method: EndpointMethod = .post
