@@ -30,93 +30,92 @@ public class SharedNetworkServiceImpl: SharedNetwork {
      var reachability: ReachabilityProtocol = ReachabilityImpl()
 
     public func callModel<Model: Codable>(_ model: Model.Type, endpoint: Endpoint) -> Promise<Model> {
-        return Promise<Model>(on: .main) { fulfill, reject in
-            self.call(endpoint: endpoint)
-                .then({ (data) in
-                    do {
-                        //  print("Response Data 🤪🤪🤪🤪  \(JSON(data))")
-                        let obj = try JSONDecoder().decode(Model.self, from: data)
-                        fulfill(obj)
-                    } catch let jsonError {
-                        print("JsonSerlization Error 😱😱😱😱😱 \(jsonError.localizedDescription)")
-                        reject(FailToMapResponseError(data: data))
+        return self.call(endpoint: endpoint)
+            .then(on: .main) { (data) -> Model in
+                do {
+                    //  print("Response Data 🤪🤪🤪🤪  \(JSON(data))")
+                    let obj = try JSONDecoder().decode(Model.self, from: data)
+                    return obj
+                } catch let jsonError {
+                    print("JsonSerlization Error 😱😱😱😱😱 \(jsonError.localizedDescription)")
+                    throw FailToMapResponseError(data: data)
+                }
+            }
+            .recover(on: .main) { (error) -> Promise<Model> in
+                if let serverError = error as? ServerError, serverError.status == 401 {
+                    guard !(SharedAuthManager.shared.unauthorizedFlag.value ?? false) else { 
+                        throw error
                     }
-
-                })
-                .catch({ (error) in
-                    if let error  = error as? ServerError, error.status == 401 {
-                        guard !(SharedAuthManager.shared.unauthorizedFlag.value ?? false) else { return }
-                        guard !SharedAuthManager.shared.token.isEmpty else {
-                            reject(error)
-                            return
-                        }
-                        
+                    guard !SharedAuthManager.shared.token.isEmpty else {
+                        throw error
+                    }
+                    
+                    // Return a promise that waits for token refresh then retries
+                    return Promise<Model>(on: .main) { fulfill, reject in
                         SharedTokenProvider.refreshToken? {
-                                // Retry the request after token refresh
-                                self.callModel(model, endpoint: endpoint)
-                                                            .then(fulfill)
-                                                            .catch(reject)
-                        }
+                            // Retry the request after token refresh
+                            self.callModel(model, endpoint: endpoint)
+                                .then(fulfill)
+                                .catch(reject)
+                        } ?? reject(error)
                     }
-                    else {
-                        reject(error)
-                    }
-                })
-        }
+                } else {
+                    throw error
+                }
+            }
     }
 
     public func uploadModel<Model: Codable>(_ model: Model.Type, endpoint: Endpoint,progressCallBack: @escaping UploadProgrssCallBack) -> Promise<Model> {
-        return Promise<Model>(on: .main) { fulfill, reject in
-            self.upload(endpoint: endpoint, progressCallBack: progressCallBack)
-                .then({ (data) in
-                    guard let response = try? JSONDecoder().decode(Model.self, from: data) else {
-                        reject(FailToMapResponseError(data: data))
-                        return
+        return self.upload(endpoint: endpoint, progressCallBack: progressCallBack)
+            .then(on: .main) { (data) -> Model in
+                guard let response = try? JSONDecoder().decode(Model.self, from: data) else {
+                    throw FailToMapResponseError(data: data)
+                }
+                print("🎉🎉 After Codable : \(response)")
+                return response
+            }
+            .recover(on: .main) { (error) -> Promise<Model> in
+                if let serverError = error as? ServerError, serverError.status == 401 {
+                    guard !(SharedAuthManager.shared.unauthorizedFlag.value ?? false) else { 
+                        throw error
                     }
-                    print("🎉🎉 After Codable : \(response)")
-                    fulfill(response)})
-                .catch({ (error) in
-                    if let error  = error as? ServerError, error.status == 401 {
-                        guard !(SharedAuthManager.shared.unauthorizedFlag.value ?? false) else { return }
+                    
+                    // Return a promise that waits for token refresh then retries
+                    return Promise<Model>(on: .main) { fulfill, reject in
                         SharedTokenProvider.refreshToken? {
-                                // Retry the request after token refresh
-                                self.uploadModel(model, endpoint: endpoint, progressCallBack: progressCallBack)
-                                                            .then(fulfill)
-                                                            .catch(reject)
-
-                        }
+                            // Retry the request after token refresh
+                            self.uploadModel(model, endpoint: endpoint, progressCallBack: progressCallBack)
+                                .then(fulfill)
+                                .catch(reject)
+                        } ?? reject(error)
                     }
-                    else {
-                        reject(error)
-                    }
-
-                })
-        }
+                } else {
+                    throw error
+                }
+            }
     }
 
     public func downloadModel( filesUrl: [String]) -> Promise<URL> {
-        return Promise<URL>(on: .main) { fulfill, reject in
-            self.download(filesUrl)
-                .then({ (fileUrl) in
-                    fulfill(fileUrl)})
-                .catch({ (error) in
-                    if let error  = error as? ServerError, error.status == 401 {
-                        guard !(SharedAuthManager.shared.unauthorizedFlag.value ?? false) else { return }
+        return self.download(filesUrl)
+            .recover(on: .main) { (error) -> Promise<URL> in
+                if let serverError = error as? ServerError, serverError.status == 401 {
+                    guard !(SharedAuthManager.shared.unauthorizedFlag.value ?? false) else { 
+                        throw error
+                    }
+                    
+                    // Return a promise that waits for token refresh then retries
+                    return Promise<URL>(on: .main) { fulfill, reject in
                         SharedTokenProvider.refreshToken? { 
-                                // Retry the request after token refresh
-                                self.downloadModel(filesUrl: filesUrl)
-                                                            .then(fulfill)
-                                                            .catch(reject)
-
-                        }
+                            // Retry the request after token refresh
+                            self.downloadModel(filesUrl: filesUrl)
+                                .then(fulfill)
+                                .catch(reject)
+                        } ?? reject(error)
                     }
-                    else {
-                        reject(error)
-                    }
-
-
-                })
-        }
+                } else {
+                    throw error
+                }
+            }
     }
 
     public func call(endpoint: Endpoint) -> Promise<Data> {

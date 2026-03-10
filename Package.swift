@@ -18,7 +18,7 @@ let package = Package(
         .package(url: "https://github.com/Alamofire/Alamofire.git", from: "5.11.1"),
         .package(url: "https://github.com/onevcat/Kingfisher.git", "8.6.2"..<"9.0.0"),
         .package(url: "https://github.com/EslamAbotaleb/Toast-Swift.git", branch: "master"),
-        .package(url: "https://github.com/google/promises.git", from: "2.4.0"),
+        .package(url: "https://github.com/google/promises.git", exact: "2.4.0"),
         .package(url: "https://github.com/ReactiveX/RxSwift.git", from: "6.9.1"),
         .package(url: "https://github.com/RxSwiftCommunity/RxAlamofire.git", exact: "6.0.0"),
         .package(url: "https://github.com/kishikawakatsumi/KeychainAccess.git", branch: "master"),
