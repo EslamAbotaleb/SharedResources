@@ -19,13 +19,13 @@ public enum LottieHUDMaskType {
 }
 
 /// class to generate Lottie animated HUD
-@MainActor
+
 public final class LottieHUD {
     
     /// struct for Lottie HUD initial configurations
     public struct LottieHUDConfig {
-        @MainActor static var shadow: CGFloat = 0.0
-        @MainActor static var animationDuration: TimeInterval = 0.1
+        static var shadow: CGFloat = 0.0
+        static var animationDuration: TimeInterval = 0.1
     }
     
     private var maskView: UIView = {
@@ -143,7 +143,7 @@ public final class LottieHUD {
     
     /// metod to remove lotti view from super view
     private func clearHUD() {
-        Task { @MainActor in
+        DispatchQueue.main.async {
             UIApplication.shared.keyWindow!.isUserInteractionEnabled = true
             self.maskView.removeFromSuperview()
             self._lottie.stop()
