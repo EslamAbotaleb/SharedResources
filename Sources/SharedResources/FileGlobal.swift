@@ -30,7 +30,7 @@ public enum FileUploadStatus {
 public protocol ProfileSectionResponse: Codable { }
 
 // MARK: - Welcome
-struct UploadFileRequest: Codable {
+public struct UploadFileRequest: Codable {
     public var categoryID: String? = nil
     public var subcategoryID: String? = nil
     public var description: String? = nil
@@ -90,7 +90,7 @@ public struct ProfileAttachment: Codable, Equatable {
     public var state: AttachmentState? = .old
 }
 
-struct EntityDifference {
+public struct EntityDifference {
     public var key: String
     public var oldValue: Any
     public var newValue: Any
@@ -104,7 +104,7 @@ struct EntityDifference {
 
 
 
-struct Section<T> : ProfileMapper{
+public struct Section<T> : ProfileMapper{
     public typealias DTO = Section
 
     public var id: String?
@@ -196,7 +196,7 @@ extension ProfileMapper {
 
 }
 
-enum SummaryState: Int, Codable {
+public enum SummaryState: Int, Codable {
     case old = 0
     case updated = 2
     case added = 1
@@ -204,7 +204,7 @@ enum SummaryState: Int, Codable {
     case subHeader = 4
 }
 
-struct Entry {
+public struct Entry {
     public var headerTitle: String? = nil
     public var title: String
     public var value: Any
