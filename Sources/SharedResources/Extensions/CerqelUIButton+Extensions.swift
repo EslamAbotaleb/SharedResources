@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class LocalizedButton: UIButton{
+open class LocalizedButton: UIButton{
     override public func awakeFromNib() {
         self.setTitle(self.currentTitle?.localized, for: .normal)
     }
