@@ -9,7 +9,7 @@
 import Foundation
 @_exported import Promises
 
-class UsersRepoImp: UsersRepo {
+public class UsersRepoImp: UsersRepo {
     private var network: SharedNetwork
 
     public init(network: SharedNetwork = SharedNetworkServiceImpl()) {

@@ -9,11 +9,11 @@
 import Foundation
 @_exported import Promises
 
-protocol UserUseCase {
+public protocol UserUseCase {
     func getUsersList(payload: GetUsersPayload) -> Promise<BaseResponse<[UserEntity]>>
 }
 
-class UserUseCaseImpl: UserUseCase {
+public class UserUseCaseImpl: UserUseCase {
     
     private let repository: UsersRepo
     private let mapper: any EntityMapper
