@@ -11,30 +11,30 @@ import UIKit
 @MainActor public var needed: Bool = false
 
 // MARK:- App Colors
-@MainActor public var alertClosed = UIColor(hex: "#737373")
-@MainActor public var primaryMain = UIColor(rCerqel: 113, gCerqel: 43, bCerqel: 129, aCerqel: 1)
-@MainActor public var primaryLight = UIColor(rCerqel: 254, gCerqel: 248, bCerqel: 255, aCerqel: 1)
-@MainActor public var secondaryMain = UIColor(rCerqel: 218, gCerqel: 62, bCerqel: 123, aCerqel: 1)
-@MainActor public var secondaryLight = UIColor(rCerqel: 255, gCerqel: 245, bCerqel: 249, aCerqel: 1)
-@MainActor public var typographyTitle = UIColor(rCerqel: 35, gCerqel: 41, bCerqel: 47, aCerqel: 1)
-@MainActor public var typographySubtitle = UIColor(rCerqel: 85, gCerqel: 86, bCerqel: 94, aCerqel: 1)
-@MainActor public var typographyBody = UIColor(rCerqel: 150, gCerqel: 150, bCerqel: 150, aCerqel: 1)
-@MainActor public var bg = UIColor(rCerqel: 242, gCerqel: 245, bCerqel: 252, aCerqel: 1)
-@MainActor public var bgHeader = UIColor(rCerqel: 255, gCerqel: 255, bCerqel: 255, aCerqel: 1)
-@MainActor public var bgTabNavigation = UIColor(rCerqel: 255, gCerqel: 255, bCerqel: 255, aCerqel: 1)
-@MainActor public var bgHColor = UIColor(rCerqel: 255, gCerqel: 255, bCerqel: 255, aCerqel: 1)
-@MainActor public var alertSuccessColor = UIColor(rCerqel: 27, gCerqel: 153, bCerqel: 139, aCerqel: 1)
-@MainActor public var defaultGrayColor = UIColor(rCerqel: 189, gCerqel: 189, bCerqel: 189, aCerqel: 1)
-@MainActor public var TypographyLinks = UIColor(rCerqel: 46, gCerqel: 151, bCerqel: 239, aCerqel: 1)
-@MainActor public var selectExcellentEmojiColor = UIColor(hexString: "#309620")
-@MainActor public var selectGoodEmojiColor = UIColor(hexStringCerqel: "#62DA4E")
-@MainActor public var selectFairEmojiColor = UIColor(hexStringCerqel: "#E7BB4B")
-@MainActor public var selectBadEmojiColor = UIColor(hexStringCerqel: "#EF5757")
-@MainActor public var selectVeryBadEmojiColor = UIColor(hexStringCerqel: "#AE2A2A")
-@MainActor public var redButton = UIColor(rCerqel: 201, gCerqel: 56, bCerqel: 56, aCerqel: 1)
-@MainActor public var sideMenuBG: UIColor = .white
-@MainActor public var sideMenuTextColor: UIColor = .white
-@MainActor public var sideMenuColorhighLight: UIColor = .white
+public var alertClosed = UIColor(hex: "#737373")
+public var primaryMain = UIColor(rCerqel: 113, gCerqel: 43, bCerqel: 129, aCerqel: 1)
+public var primaryLight = UIColor(rCerqel: 254, gCerqel: 248, bCerqel: 255, aCerqel: 1)
+public var secondaryMain = UIColor(rCerqel: 218, gCerqel: 62, bCerqel: 123, aCerqel: 1)
+public var secondaryLight = UIColor(rCerqel: 255, gCerqel: 245, bCerqel: 249, aCerqel: 1)
+public var typographyTitle = UIColor(rCerqel: 35, gCerqel: 41, bCerqel: 47, aCerqel: 1)
+public var typographySubtitle = UIColor(rCerqel: 85, gCerqel: 86, bCerqel: 94, aCerqel: 1)
+public var typographyBody = UIColor(rCerqel: 150, gCerqel: 150, bCerqel: 150, aCerqel: 1)
+public var bg = UIColor(rCerqel: 242, gCerqel: 245, bCerqel: 252, aCerqel: 1)
+public var bgHeader = UIColor(rCerqel: 255, gCerqel: 255, bCerqel: 255, aCerqel: 1)
+public var bgTabNavigation = UIColor(rCerqel: 255, gCerqel: 255, bCerqel: 255, aCerqel: 1)
+public var bgHColor = UIColor(rCerqel: 255, gCerqel: 255, bCerqel: 255, aCerqel: 1)
+public var alertSuccessColor = UIColor(rCerqel: 27, gCerqel: 153, bCerqel: 139, aCerqel: 1)
+public var defaultGrayColor = UIColor(rCerqel: 189, gCerqel: 189, bCerqel: 189, aCerqel: 1)
+public var TypographyLinks = UIColor(rCerqel: 46, gCerqel: 151, bCerqel: 239, aCerqel: 1)
+public var selectExcellentEmojiColor = UIColor(hexString: "#309620")
+public var selectGoodEmojiColor = UIColor(hexStringCerqel: "#62DA4E")
+public var selectFairEmojiColor = UIColor(hexStringCerqel: "#E7BB4B")
+public var selectBadEmojiColor = UIColor(hexStringCerqel: "#EF5757")
+public var selectVeryBadEmojiColor = UIColor(hexStringCerqel: "#AE2A2A")
+public var redButton = UIColor(rCerqel: 201, gCerqel: 56, bCerqel: 56, aCerqel: 1)
+public var sideMenuBG: UIColor = .white
+public var sideMenuTextColor: UIColor = .white
+public var sideMenuColorhighLight: UIColor = .white
 
 public class MyColor {
     public var red: CGFloat = 0.0
