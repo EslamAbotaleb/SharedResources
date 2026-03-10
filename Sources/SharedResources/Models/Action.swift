@@ -27,7 +27,7 @@ public struct Action : Codable, Mappable {
     
     init?(map: Map) {}
 
-    init(id: String?, name: String?, label: String?, actionTakenLabel: String?, styleCode: String?, buttonStyleCode: String?, actionCode: String?, isCommentRequired: Bool?, isFormValidateBeforeExecuteActionRequired: Bool?, isAttachmentRequired: Bool?, actionFormId: String?, actionOrder: Int?, buttonStyle : ButtonStyle?, displayMode: Int?) {
+    public init(id: String?, name: String?, label: String?, actionTakenLabel: String?, styleCode: String?, buttonStyleCode: String?, actionCode: String?, isCommentRequired: Bool?, isFormValidateBeforeExecuteActionRequired: Bool?, isAttachmentRequired: Bool?, actionFormId: String?, actionOrder: Int?, buttonStyle : ButtonStyle?, displayMode: Int?) {
         self.id = id
         self.name = name
         self.label = label
@@ -43,7 +43,7 @@ public struct Action : Codable, Mappable {
         self.actionOrder = actionOrder
         self.buttonStyle = buttonStyle
     }
-    init() {
+    public init() {
         self.id = ""
         self.name = ""
         self.label = ""
