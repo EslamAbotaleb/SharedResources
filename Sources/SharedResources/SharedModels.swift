@@ -38,7 +38,7 @@ public typealias dic = [String:String]
 extension dic: FormValue {}
 
 
-struct ModelLoginCerqel : Mappable, Codable {
+public struct ModelLoginCerqel : Mappable, Codable {
     
     var token_type : String?
     var access_token : String?
@@ -61,7 +61,7 @@ struct ModelLoginCerqel : Mappable, Codable {
 
 
 
-    init(){}
+    public init(){}
     init?(map: Map) {
     }
     
@@ -82,8 +82,8 @@ struct ModelLoginCerqel : Mappable, Codable {
 }
 
 
-struct ModelLoginNewCerqel : Codable {
-    var data : ModelLoginDataCerqel? = nil
+public struct ModelLoginNewCerqel : Codable {
+    public var data : ModelLoginDataCerqel? = nil
     
     enum CodingKeys: String, CodingKey {
 
@@ -91,7 +91,7 @@ struct ModelLoginNewCerqel : Codable {
     }
 
     
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
         do {
@@ -112,11 +112,11 @@ struct ModelLoginNewCerqel : Codable {
 
 }
 
-struct ModelLoginDataCerqel : Mappable, Codable {
+public struct ModelLoginDataCerqel : Mappable, Codable {
     
-    var isValid : Bool?
-    var token : String?
-    var message : String?
+    public var isValid : Bool?
+    public var token : String?
+    public var message : String?
 
     enum CodingKeys: String, CodingKey {
 
@@ -127,7 +127,7 @@ struct ModelLoginDataCerqel : Mappable, Codable {
 
 
 
-    init(){}
+    public  init(){}
     init?(map: Map) {
     }
     
