@@ -107,7 +107,9 @@ public final class LottieHUD {
         self.configureConstraints()
         self.maskView.alpha = 1
         self._lottie.play(completion: { _ in
-            self.clearHUD()
+            Task { @MainActor in
+                self.clearHUD()
+            }
         })
     }
     
