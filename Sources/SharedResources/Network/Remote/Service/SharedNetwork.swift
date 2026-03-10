@@ -7,9 +7,7 @@
 //
 
 import Foundation
-
 @_exported import Promises
-internal import FBLPromises
 
 public typealias UploadProgrssCallBack = ((Double,FileVersionType)->())
 public typealias ProgressCallback = (Double) -> Void
