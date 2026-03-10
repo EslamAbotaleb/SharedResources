@@ -124,11 +124,16 @@ public class SharedNetworkServiceImpl: SharedNetwork {
             self.endpointExecuter.execute(endpoint)
                 .then({ (response) in
                     self.networkSuccess(data: response.data, statusCode: response.statusCode).then({ (data) in
-                        let header = response.headers as? [String: Any]
-                        let jsonData = try JSONSerialization.data(withJSONObject: header, options: [])
-                        let decoder = JSONDecoder()
-                        let headerResponse = try decoder.decode(HeaderResponse.self, from: jsonData)
-                        fulfill(data)
+                        do {
+                            let header = response.headers as? [String: Any]
+                            let jsonData = try JSONSerialization.data(withJSONObject: header, options: [])
+                            let decoder = JSONDecoder()
+                            let headerResponse = try decoder.decode(HeaderResponse.self, from: jsonData)
+                            fulfill(data)
+                        } catch {
+                            // If header parsing fails, still fulfill with data
+                            fulfill(data)
+                        }
                     }).catch({ (error) in
                          reject(error)
                     })
