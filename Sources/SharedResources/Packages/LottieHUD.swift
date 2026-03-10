@@ -106,9 +106,15 @@ public final class LottieHUD {
         self.configureMask()
         self.configureConstraints()
         self.maskView.alpha = 1
-        self._lottie.play(completion: { _ in
-                self.clearHUD()
-        })
+        
+        // Only auto-dismiss for non-looping animations
+        if _lottie.loopMode == .playOnce {
+            self._lottie.play(completion: { [weak self] _ in
+                self?.clearHUD()
+            })
+        } else {
+            self._lottie.play()
+        }
     }
     
     /// method to setup mask shadow view
@@ -143,11 +149,14 @@ public final class LottieHUD {
     
     /// metod to remove lotti view from super view
     private func clearHUD() {
-        DispatchQueue.main.async {
-            UIApplication.shared.keyWindow!.isUserInteractionEnabled = true
+        self._lottie.stop()
+        UIApplication.shared.keyWindow!.isUserInteractionEnabled = true
+        
+        UIView.animate(withDuration: 0.2, animations: {
+            self.maskView.alpha = 0
+        }, completion: { _ in
             self.maskView.removeFromSuperview()
-            self._lottie.stop()
-        }
+        })
     }
     
 }
