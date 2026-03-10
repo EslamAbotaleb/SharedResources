@@ -107,9 +107,7 @@ public final class LottieHUD {
         self.configureConstraints()
         self.maskView.alpha = 1
         self._lottie.play(completion: { _ in
-            Task { @MainActor in
                 self.clearHUD()
-            }
         })
     }
     
@@ -145,9 +143,11 @@ public final class LottieHUD {
     
     /// metod to remove lotti view from super view
     private func clearHUD() {
-        UIApplication.shared.keyWindow!.isUserInteractionEnabled = true
-        self.maskView.removeFromSuperview()
-        self._lottie.stop()
+        Task { @MainActor in
+            UIApplication.shared.keyWindow!.isUserInteractionEnabled = true
+            self.maskView.removeFromSuperview()
+            self._lottie.stop()
+        }
     }
     
 }
