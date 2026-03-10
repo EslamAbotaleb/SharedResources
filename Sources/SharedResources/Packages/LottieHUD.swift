@@ -7,7 +7,7 @@
 //
 
 import Foundation
-internal import Lottie
+public import Lottie
 import UIKit
 
 
@@ -57,7 +57,7 @@ public final class LottieHUD {
     /// - Parameters:
     ///   - name: lotti animation description
     ///   - loop: loop flag description
-    init(_ name: String, loop: Bool = true) {
+    public init(_ name: String, loop: Bool = true) {
         self._lottie = LottieAnimationView(name: name)
         self._lottie.loopMode = loop ? .loop : .playOnce
         self._lottie.animationSpeed = 1.5//2.5
@@ -66,7 +66,7 @@ public final class LottieHUD {
     /// initializer constructor with lotti animation view
     ///
     /// - Parameter lottie: lottie view description
-    init(_ lottie: LottieAnimationView) {
+    public init(_ lottie: LottieAnimationView) {
         self._lottie = lottie
     }
     
