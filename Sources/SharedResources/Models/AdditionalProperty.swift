@@ -45,6 +45,10 @@ public struct Validations : Codable {
     public var message : String?
     public var isValid: Bool = false
 
+    public init() {
+        
+    }
+    
     enum CodingKeys: String, CodingKey {
 
         case name = "name"
