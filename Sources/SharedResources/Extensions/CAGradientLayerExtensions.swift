@@ -10,7 +10,7 @@ import UIKit
 
 extension CAGradientLayer {
     
-    convenience init(isVertical: Bool, frame: CGRect, colors: [UIColor]) {
+    convenience public init(isVertical: Bool, frame: CGRect, colors: [UIColor]) {
         self.init()
         self.frame = frame
         self.colors = []
