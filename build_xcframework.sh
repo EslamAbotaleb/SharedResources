@@ -24,8 +24,6 @@ xcodebuild archive \
   -destination "generic/platform=iOS" \
   -archivePath "$BUILD_DIR/archives/ios.xcarchive" \
   SKIP_INSTALL=NO \
-  BUILD_LIBRARY_FOR_DISTRIBUTION=YES \
-  OTHER_SWIFT_FLAGS="$(inherited) -no-verify-emitted-module-interface" \
   | xcpretty 2>/dev/null || true
 
 echo "📦 Archiving for iOS Simulator (arm64 + x86_64)..."
@@ -35,8 +33,6 @@ xcodebuild archive \
   -destination "generic/platform=iOS Simulator" \
   -archivePath "$BUILD_DIR/archives/ios-simulator.xcarchive" \
   SKIP_INSTALL=NO \
-  BUILD_LIBRARY_FOR_DISTRIBUTION=YES \
-  OTHER_SWIFT_FLAGS="$(inherited) -no-verify-emitted-module-interface" \
   | xcpretty 2>/dev/null || true
 
 # Locate frameworks
