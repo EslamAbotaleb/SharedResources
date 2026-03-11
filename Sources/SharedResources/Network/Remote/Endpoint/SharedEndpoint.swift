@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol Endpoint {
+public protocol SharedEndpoint {
     var service: SharedEndpointService {get set}
     var urlPrefix: String {get set}
     var method: EndpointMethod {get set}
@@ -75,7 +75,7 @@ public enum SharedEndpointService {
     }
 }
 
-extension Endpoint {
+extension SharedEndpoint {
     public var multipart: [MultiPartModel] {
         return []
     }

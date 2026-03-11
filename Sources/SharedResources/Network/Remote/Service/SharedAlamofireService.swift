@@ -21,7 +21,7 @@ class SharedAlamofireService: EndpointExecuter {
 
     private var activeRequests: [FileVersionType: UploadRequest] = [:]
 
-    public func execute(_ endpoint: Endpoint) -> Promise<NetworkServiceResponse> {
+    public func execute(_ endpoint: SharedEndpoint) -> Promise<NetworkServiceResponse> {
         return Promise<NetworkServiceResponse>(on: .global()) { fulfill, reject in
             do {
                 let request = try self.request(by: endpoint)
@@ -46,7 +46,7 @@ class SharedAlamofireService: EndpointExecuter {
 
 
 
-    private func request(by endpoint: Endpoint) throws -> DataRequest {
+    private func request(by endpoint: SharedEndpoint) throws -> DataRequest {
         var params = [String: Any]()
         for (key, value) in endpoint.parameters {
             if value is String {
@@ -74,7 +74,7 @@ class SharedAlamofireService: EndpointExecuter {
     }
 
     public func uploadMultipart(
-        _ endpoint: Endpoint,
+        _ endpoint: SharedEndpoint,
         progressCallBack: @escaping (Double, FileVersionType) -> ()
     ) -> Promise<NetworkServiceResponse> {
 
@@ -115,7 +115,7 @@ class SharedAlamofireService: EndpointExecuter {
     }
 
     private func upload(
-        by endpoint: Endpoint,
+        by endpoint: SharedEndpoint,
         completionHandler: @escaping (Swift.Result<UploadRequest, AFError>) -> Void
     ) {
         var params = [String: Any]()
@@ -209,7 +209,7 @@ class SharedAlamofireService: EndpointExecuter {
             }
         }
     
-    private func concatenateHeaders(for endpoint: Endpoint) -> [String: String] {
+    private func concatenateHeaders(for endpoint: SharedEndpoint) -> [String: String] {
         var headers = endpoint.headers.filter{$0.value != ""}
         for (key, value) in endpoint.auth.tokenHeader {
             headers.updateValue(value, forKey: key)

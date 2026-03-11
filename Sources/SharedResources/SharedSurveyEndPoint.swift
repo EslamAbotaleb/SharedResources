@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct SurveyEndPoint: Endpoint {
+public struct SurveyEndPoint: SharedEndpoint {
     public var urlPrefix: String = ""
     public var service: SharedEndpointService = .survey
     public var method: EndpointMethod = .post

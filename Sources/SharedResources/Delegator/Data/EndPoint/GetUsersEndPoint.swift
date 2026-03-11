@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct GetUsersEndPoint: Endpoint {
+public struct GetUsersEndPoint: SharedEndpoint {
    public var urlPrefix: String = ""
    public var service: SharedEndpointService = .getUsers
    public var method: EndpointMethod = .post

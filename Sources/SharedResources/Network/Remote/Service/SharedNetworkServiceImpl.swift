@@ -13,9 +13,9 @@ import Foundation
 import CommonCrypto
 
 protocol EndpointExecuter {
-    func execute(_ endpoint: Endpoint) -> Promise<NetworkServiceResponse>
+    func execute(_ endpoint: SharedEndpoint) -> Promise<NetworkServiceResponse>
     func cancelUpload(_ fileVersionType: FileVersionType) -> Void
-    func uploadMultipart(_ endpoint: Endpoint,progressCallBack: @escaping UploadProgrssCallBack) -> Promise<NetworkServiceResponse>
+    func uploadMultipart(_ endpoint: SharedEndpoint,progressCallBack: @escaping UploadProgrssCallBack) -> Promise<NetworkServiceResponse>
     func downloadFile(_ filesUrl: [String]) -> Promise<URL>
     func performRequest(_ request: URLRequest, completion: @escaping (BaseError?) -> Void)
 }
@@ -29,7 +29,7 @@ public class SharedNetworkServiceImpl: SharedNetwork {
      var endpointExecuter: EndpointExecuter = SharedAlamofireService()
      var reachability: ReachabilityProtocol = ReachabilityImpl()
 
-    public func callModel<Model: Codable>(_ model: Model.Type, endpoint: Endpoint) -> Promise<Model> {
+    public func callModel<Model: Codable>(_ model: Model.Type, endpoint: SharedEndpoint) -> Promise<Model> {
         return Promise<Model>(on: .main) { fulfill, reject in
             self.call(endpoint: endpoint)
                 .then({ (data) in
@@ -65,7 +65,7 @@ public class SharedNetworkServiceImpl: SharedNetwork {
         }
     }
 
-    public func uploadModel<Model: Codable>(_ model: Model.Type, endpoint: Endpoint,progressCallBack: @escaping UploadProgrssCallBack) -> Promise<Model> {
+    public func uploadModel<Model: Codable>(_ model: Model.Type, endpoint: SharedEndpoint,progressCallBack: @escaping UploadProgrssCallBack) -> Promise<Model> {
         return Promise<Model>(on: .main) { fulfill, reject in
             self.upload(endpoint: endpoint, progressCallBack: progressCallBack)
                 .then({ (data) in
@@ -119,7 +119,7 @@ public class SharedNetworkServiceImpl: SharedNetwork {
         }
     }
 
-    public func call(endpoint: Endpoint) -> Promise<Data> {
+    public func call(endpoint: SharedEndpoint) -> Promise<Data> {
         return Promise<Data>(on: .main) { fulfill, reject in
             self.endpointExecuter.execute(endpoint)
                 .then({ (response) in
@@ -145,7 +145,7 @@ public class SharedNetworkServiceImpl: SharedNetwork {
         }
     }
 
-    private func upload(endpoint: Endpoint,progressCallBack: @escaping UploadProgrssCallBack) -> Promise<Data> {
+    private func upload(endpoint: SharedEndpoint,progressCallBack: @escaping UploadProgrssCallBack) -> Promise<Data> {
         return Promise<Data>(on: .main) { fulfill, reject in
             self.endpointExecuter.uploadMultipart(endpoint, progressCallBack: progressCallBack)
                 .then({ (response) in
