@@ -7,9 +7,6 @@
 
 import SwiftUI
 
-public var white = Color(hex: "FFFFFF")
-public var bodyGray = Color(hex: "797979")
-public var SupportSkyBlueLight = Color(hex: "F6FAFF")
 
 extension Color {
 

@@ -8,7 +8,6 @@
 import SwiftUI
 
 public struct CerqelColors {
-    
     static public var white = Color(hex: "FFFFFF")
     static public var background = Color(hex: "F2F5FC")
     static public var alertSuccessApproved = Color(hex: "44C0B0")

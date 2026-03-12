@@ -44,7 +44,7 @@ public struct DelegatorItem: View {
                 }
             }
             Divider()
-        }.background(delegator.isSelected ? Color(primaryLight) : white)
+        }.background(delegator.isSelected ? Color(primaryLight) : CerqelColors.white)
         
     }
 }
