@@ -23,6 +23,85 @@ extension String {
         return pred.evaluate(with: self)
     }
     
+    public func cerqel_getDateFromString(isGreenwich: Bool? = false, isCurrentTimeZone: Bool = false) -> Date? {
+        
+        let dateFormatter = DateFormatter()
+//        if isGreenwich ?? false {
+//            dateFormatter.timeZone = TimeZone(identifier: "GMT")
+//        } else {
+//            dateFormatter.timeZone = currentTimeZoneCerqel //TimeZone.current//
+//        }
+        dateFormatter.locale = dateFormatterLocal_en_USCerqel
+        dateFormatter.timeZone = isCurrentTimeZone ? .current : utc_TimeZoneCerqel
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        if let date = dateFormatter.date(from: self) {
+            return date
+        }
+        
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
+        if let date = dateFormatter.date(from: self) {
+            return date
+        }
+        
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SS"
+        if let date = dateFormatter.date(from: self) {
+            return dateFormatter.date(from: dateFormatter.string(from: date))//date
+        }
+        
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
+        if let date = dateFormatter.date(from: self) {
+            return date
+        }
+        
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        if let date = dateFormatter.date(from: self) {
+            return date
+        }
+        
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        if let date = dateFormatter.date(from: self) {
+            return date
+        }
+        
+        dateFormatter.dateFormat = "E, d MMM yyyy HH:mm:ss ZZ"
+        if let date = dateFormatter.date(from: self) {
+            return date
+        }
+        
+        dateFormatter.dateFormat = "E, d MMM yyyy HH:mm:ss ZZ"
+        if let date = dateFormatter.date(from: self) {
+            return date
+        }
+        
+        dateFormatter.dateFormat = "E, dd MMM yyyy HH:mm:ss zzz"
+        if let date = dateFormatter.date(from: self) {
+            return date
+        }
+        
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        if let date = dateFormatter.date(from: self) {
+            return date
+        }
+        
+        dateFormatter.dateFormat = "dd/mm/yyyy"
+        if let date = dateFormatter.date(from: self) {
+            return date
+        }
+        
+        dateFormatter.dateFormat = "hh:mm a"
+        if let date = dateFormatter.date(from: self) {
+            return date
+        }
+        
+        dateFormatter.dateFormat = "HH:mm"
+        if let date = dateFormatter.date(from: self) {
+            return date
+        }
+        
+    
+        return nil
+    }
+    
     public func getDateFromString(timeZone: Bool = true) -> Date? {
         let dateFormatter = DateFormatter()
             dateFormatter.timeZone = timeZone_UTC //TimeZone(abbreviation: "UTC")
