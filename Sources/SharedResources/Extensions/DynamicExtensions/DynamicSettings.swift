@@ -214,3 +214,96 @@ public func compareBetweenTwoDatesCerqel(start: String, end: String) -> Bool {
     }
 
 }
+
+public func showToastCerqel(parentView: UIViewController, msg: String){
+
+    var style = ToastStyle()
+    style.imageSize = CGSize(width: 20, height: 20)
+    style.messageFont = UIFont.bodyLMedium()
+    style.messageColor = .white
+    style.backgroundColor = .black
+    style.fadeDuration = 3
+
+    parentView.view.makeToast(msg, point: CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.maxY - 140), title: nil, image: nil, style: style, completion: nil)
+}
+
+
+public func showNoConnectionPopupCerqel(parentView: UIViewController){
+//    let vc = CERQELShared_Router.goTo(viewName: .NoConnectionPopup)
+//    let popup = PopupDialog(viewController: vc)
+//    if let v = vc as? CerqelConnectionPopup{
+//        v.didTapOk = {
+//            popup.dismiss()
+//        }
+//    }
+//    // Present dialog
+//    parentView.present(popup, animated: true, completion: nil)
+}
+
+public func checkReachabilityCerqel(){
+    DispatchQueue.main.async {
+        let monitor = NWPathMonitor()
+        monitor.pathUpdateHandler = { path in
+            if path.status == .satisfied {
+                print("Connected")
+                DispatchQueue.main.async {
+                    UIApplication.shared.keyWindow?.isUserInteractionEnabled = true
+                }
+
+            } else {
+                print("Disconnected")
+                DispatchQueue.main.async {
+                    if let v = UIApplication.shared.keyWindow?.rootViewController{
+                        showNoConnectionPopupCerqel(parentView: v)
+                        UIApplication.shared.keyWindow!.isUserInteractionEnabled = false
+
+                    }
+                }
+            }
+            print(path.isExpensive)
+        }
+        let queue = DispatchQueue(label: "Monitor")
+        monitor.start(queue: queue)
+
+
+    }
+
+}
+
+public func sendAnEmailCerqel(email: String){
+    if let url = URL(string: "mailto:\(email)") {
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(url)
+        } else {
+            UIApplication.shared.openURL(url)
+        }
+    }
+
+}
+
+
+public func getDatesDifferenceInDaysCerqel(fromDate: Date?, toDate: Date?) -> Int?{
+
+    guard let fromDate = fromDate, let toDate = toDate else{
+        return nil
+    }
+    var cal = Calendar.current
+    cal.timeZone = currentTimeZoneCerqel
+
+    let date1 = cal.startOfDay(for: fromDate)
+    let date2 = cal.startOfDay(for: toDate)
+
+    let components = cal.dateComponents([.day, .month, .year], from: date1, to: date2)
+
+    print("WE GOT DIFF = \(components.day) DAYS, \(components.month) MON, \(components.year) YEAR")
+
+    let days = components.day ?? 0
+    let month = ((components.month ?? 0) * 30)
+    let year = ((components.year ?? 0) * 12 * 30)
+
+    let allDays = days + month + year
+    //    let allDays = (components.day ?? 0) + ((components.month ?? 0) * 30) + ((components.year ?? 0) * 12 * 30)
+    //    let allDays = (components.day ?? 0) + ((components.month ?? 0)) + ((components.year ?? 0))
+
+    return allDays + 1
+}
