@@ -1,9 +1,8 @@
 //
-//  File.swift
-//  it_graduate_new
+//  DocumentDelegate.swift
+//  SharedResources
 //
-//  Created by Mahmoud Ibaraheim on 7/8/20.
-//  Copyright © 2020 MahmoudOrganization. All rights reserved.
+//  Created by Eslam on 12/03/2026.
 //
 
 import Foundation

@@ -12,6 +12,19 @@ import Network
 internal import Toast
 internal import JGProgressHUD
 
+public var appsDicCerqel: [String : String] = [
+    "facebook" : "fb://" ,
+    "kiloloco" : "kilolocossss://",
+    "instagram" : "instagram://",
+    "twitter" : "twitter://",
+    "microsoft-outlook" : "ms-outlook://",
+    "microsoft-teams" : "msteams://",
+    "microsoft-authenticator" : "msauth://",
+    "figma" : "figma://",
+    "gmail" : "googlegmail://",
+    "youtube" : "youtube://",
+]
+
 public func openAttachment(withURLString: String) {
     
     guard let url = URL(string: withURLString) else { return }
@@ -30,9 +43,6 @@ public func delay(seconds: Double, completion: @escaping () -> ()) {
         completion()
     }
 }
-
-
-
 
 public func getTimeDifference(dt: Date, includeDays: Bool, includeDaysIfCurrentIsLess: Bool)-> (String?, String?, String?, String?){
     var cal = Calendar.current
@@ -84,6 +94,123 @@ public func getTimeDifference(dt: Date, includeDays: Bool, includeDaysIfCurrentI
         return (nil, nil, "\(cs - s) \("seconds ago".localized)", nil )
     }else{
         return(nil, nil, nil, nil)
+    }
+
+}
+
+public func changeLanguageCerqel(){
+    if let url = NSURL(string: UIApplication.openSettingsURLString) as URL? {
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }else{
+        MOLH.setLanguageTo(MOLHLanguage.currentAppleLanguage() == "en" ? "ar" : "en")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            exit(0)
+        }
+    }
+
+}
+
+
+public func findDateDiffCerqel(time1Str: String, time2Str: String, timeFormat: String) -> String {
+    let timeformatter = DateFormatter()
+    timeformatter.dateFormat = timeFormat
+
+    guard let time1 = timeformatter.date(from: time1Str),
+          let time2 = timeformatter.date(from: time2Str) else { return "" }
+
+    //You can directly use from here if you have two dates
+
+    let interval = time2.timeIntervalSince(time1)
+    let hour = interval / 3600;
+    let minute = interval.truncatingRemainder(dividingBy: 3600) / 60
+    let intervalInt = Int(interval)
+    return "\(Int(hour)) Hours \(Int(minute)) Minutes"
+}
+
+public func delayCerqel(seconds: Double, completion: @escaping () -> ()) {
+    let popTime = DispatchTime.now() + Double(Int64( Double(NSEC_PER_SEC) * seconds )) / Double(NSEC_PER_SEC)
+
+    DispatchQueue.main.asyncAfter(deadline: popTime) {
+        completion()
+    }
+}
+
+
+public func setNavUserImageBtnCerqel(btn: UIBarButtonItem){
+
+}
+
+
+
+public func openAttachmentCerqel(withURLString: String) {
+    guard let url = URL(string: withURLString) else { return }
+    UIApplication.shared.open(url)
+}
+
+public func openAppFromCerqelAppCerqel(appStoreURL: String) -> Bool {
+    for key in appsDicCerqel.keys {
+        //        if key == appStoreURL {
+        if appStoreURL.contains(key) {
+            return openAppCerqel(scheme: appsDicCerqel[key], appStoreURL: appStoreURL)
+        }
+    }
+    guard verifyUrlCerqel(urlString: appStoreURL) else { return false }
+    return openAppCerqel(scheme: appStoreURL, appStoreURL: appStoreURL)
+}
+
+public func verifyUrlCerqel(urlString: String?) -> Bool {
+    if let urlString = urlString {
+        if let url = NSURL(string: urlString) {
+            return UIApplication.shared.canOpenURL(url as URL)
+        }
+    }
+    return false
+}
+
+public func openAppCerqel(scheme: String?, appStoreURL: String) -> Bool {
+    let url = URL(string: scheme ?? "")!
+    let application = UIApplication.shared
+    // Check if the App is installed
+    if application.canOpenURL(url) {
+        application.open(url)
+    } else {
+        guard verifyUrlCerqel(urlString: appStoreURL) else { return false }
+        application.open(URL(string: appStoreURL)!)
+    }
+    return verifyUrlCerqel(urlString: appStoreURL)
+}
+
+
+public func convertDateStringToAnotherFormatCerqel(oldFormat: String, newFormat: String, dateString: String) -> String {
+    let myDateString = dateString
+
+    let dateFormatter = DateFormatter()
+
+    dateFormatter.dateFormat = oldFormat
+    dateFormatter.timeZone = currentTimeZoneCerqel //TimeZone.current//
+    dateFormatter.locale = dateFormatterLocal_en_USCerqel
+    let myDate = dateFormatter.date(from: myDateString)!
+
+    dateFormatter.dateFormat = newFormat
+    let newDate = dateFormatter.string(from: myDate)
+
+    return newDate
+}
+
+public func compareBetweenTwoDatesCerqel(start: String, end: String) -> Bool {
+
+    let formatter = DateFormatter()
+    formatter.dateFormat = "dd/mm/yyyy"
+    formatter.timeZone = currentTimeZoneCerqel //TimeZone.current//
+    formatter.locale = dateFormatterLocal_en_USCerqel
+    let firstDate = formatter.date(from: start)
+    let secondDate = formatter.date(from: end)
+
+    if firstDate?.compare(secondDate!) == .orderedAscending {
+        print("First Date is smaller then second date")
+        return true
+    } else {
+        return false
     }
 
 }
