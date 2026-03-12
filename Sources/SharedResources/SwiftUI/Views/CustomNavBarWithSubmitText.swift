@@ -42,7 +42,7 @@ public struct CustomNavBarWithSubmitText: View {
                     }
                     }
                     .buttonStyle(.plain)
-                    .foregroundColor(submitIsAvailable ? Color(primaryMain) : FormBuilderColors.bodyGray)
+                    .foregroundColor(submitIsAvailable ? Color(primaryMain) : bodyGray)
                         .frame(alignment: .trailing)
                         .padding(.trailing,16)
                 

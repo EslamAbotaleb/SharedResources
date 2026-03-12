@@ -36,7 +36,7 @@ public struct DelegatorItem: View {
                     .frame(width: 36, height: 36)
                     .clipShape(Circle()).padding(.horizontal , 16)
                     Text(delegator.name ?? "_").font(CerqelFonts.bodyLRegular)
-                        .foregroundColor(FormBuilderColors.typographyTitle).padding(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0)).frame(maxWidth: .infinity, alignment: .leading)
+                        .foregroundColor(CerqelColors.typographyTitle).padding(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0)).frame(maxWidth: .infinity, alignment: .leading)
                     isSingleSelection ? nil :
                     Image(delegator.isSelected ? "clostAlert" : "plusToAdd")
                         .renderingMode(.original).padding(EdgeInsets(top: 8, leading: 10, bottom: 8, trailing: 16))
@@ -44,7 +44,7 @@ public struct DelegatorItem: View {
                 }
             }
             Divider()
-        }.background(delegator.isSelected ? Color(primaryLight) : FormBuilderColors.white)
+        }.background(delegator.isSelected ? Color(primaryLight) : white)
         
     }
 }
