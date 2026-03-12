@@ -9,6 +9,12 @@
 import Foundation
 import UIKit
 
+public class LocalizedButton: UIButton{
+    override public func awakeFromNib() {
+        self.setTitle(self.currentTitle?.localized, for: .normal)
+    }
+}
+
 extension UIButton {
     
    public func setActiveButton(fontsize: CGFloat = 16, background: UIColor? = nil, titleColor: UIColor = .white) {
