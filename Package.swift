@@ -41,6 +41,7 @@ let package = Package(
                 .product(name: "Toast", package: "Toast-Swift"),
                 .product(name: "Promises", package: "Promises"),
                 .product(name: "RxSwift", package: "RxSwift"),
+                .product(name: "RxRelay", package: "RxSwift"),
                 .product(name: "RxAlamofire", package: "RxAlamofire"),
                 .product(name: "KeychainAccess", package: "KeychainAccess"),
                 .product(name: "SwiftyJSON", package: "SwiftyJSON"),
