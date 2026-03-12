@@ -56,10 +56,7 @@ extension UIColor {
 }
 
 extension UIColor {
-    
-    @nonobjc public class var white: UIColor {
-        return UIColor(white: 1.0, alpha: 1.0)
-    }
+   
     @nonobjc public class var borderColor: UIColor {
         return UIColor(white: 189.0 / 255.0, alpha: 1.0)
     }
