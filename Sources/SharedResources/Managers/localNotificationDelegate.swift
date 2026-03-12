@@ -14,7 +14,7 @@ public protocol localNotificationDelegate {
     func didReject(error: Error)
 }
 
-internal protocol LocalNotificationProtocol {
+public protocol LocalNotificationProtocol {
     func scheduleLocalNotification(file: FileModel)
     func checkNotificationPermission()
     var delegate:localNotificationDelegate? { get set }
@@ -62,7 +62,7 @@ public class LocalNotificationManager : LocalNotificationProtocol {
          }
      }
     
-    internal func scheduleLocalNotification(file: FileModel) {
+    public func scheduleLocalNotification(file: FileModel) {
         scheduleNotification(id: file.id, title: file.title, fileExtension: file.fileExtension, fileURL: file.localFileUrl?.absoluteString)
     }
 
