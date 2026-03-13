@@ -14,7 +14,7 @@ public class UploadMediaUIModel {
     public var id: String
     public var uploadedMedia: ModelUploadedMedia?
     public var state: UploadingState
-   var request: UploadRequest?
+    public var request: UploadRequest?
 
     public init(
         id: String, uploadedMedia: ModelUploadedMedia? = nil,
