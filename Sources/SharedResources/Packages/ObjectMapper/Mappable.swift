@@ -29,24 +29,24 @@
 import Foundation
 
 /// BaseMappable should not be implemented directly. Mappable or StaticMappable should be used instead
-internal protocol BaseMappable {
+public protocol BaseMappable {
 	/// This function is where all variable mappings should occur. It is executed by Mapper during the mapping (serialization and deserialization) process.
 	mutating func mapping(map: Map)
 }
 
-internal protocol Mappable: BaseMappable {
+public protocol Mappable: BaseMappable {
     /// This function can be used to validate JSON prior to mapping. Return nil to cancel mapping at this point
      init?(map: Map)
 }
 
-internal protocol StaticMappable: BaseMappable {
+public protocol StaticMappable: BaseMappable {
 	/// This is function that can be used to:
 	///		1) provide an existing cached object to be used for mapping
 	///		2) return an object of another class (which conforms to BaseMappable) to be used for mapping. For instance, you may inspect the JSON to infer the type of object that should be used for any given mapping
 	static func objectForMapping(map: Map) -> BaseMappable?
 }
 
-internal extension Mappable {
+public extension Mappable {
 	
 	/// Initializes object from a JSON String
 	init?(JSONString: String, context: MapContext? = nil) {
@@ -67,7 +67,7 @@ internal extension Mappable {
 	}
 }
 
-internal extension BaseMappable {
+public extension BaseMappable {
 
 	/// Returns the JSON Dictionary for the object
 	func toJSON() -> [String: Any] {
@@ -80,7 +80,7 @@ internal extension BaseMappable {
 	}
 }
 
-internal extension Array where Element: BaseMappable {
+public extension Array where Element: BaseMappable {
 	
 	/// Initialize Array from a JSON String
 	init?(JSONString: String, context: MapContext? = nil) {
@@ -108,7 +108,7 @@ internal extension Array where Element: BaseMappable {
 	}
 }
 
-internal extension Set where Element: BaseMappable {
+public extension Set where Element: BaseMappable {
 	
 	/// Initializes a set from a JSON String
 	init?(JSONString: String, context: MapContext? = nil) {

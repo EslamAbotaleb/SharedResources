@@ -41,7 +41,7 @@ infix operator >>>
 // MARK:- Objects with Basic types
 
 /// Object of Basic type
-internal func <- <T>(left: inout T, right: Map) {
+public func <- <T>(left: inout T, right: Map) {
 	switch right.mappingType {
 	case .fromJSON where right.isKeyPresent:
 		FromJSON.basicType(&left, object: right.value())
@@ -51,7 +51,7 @@ internal func <- <T>(left: inout T, right: Map) {
 	}
 }
 
-internal func >>> <T>(left: T, right: Map) {
+public func >>> <T>(left: T, right: Map) {
 	if right.mappingType == .toJSON {
 		ToJSON.basicType(left, map: right)
 	}
@@ -59,7 +59,7 @@ internal func >>> <T>(left: T, right: Map) {
 
 
 /// Optional object of basic type
-internal func <- <T>(left: inout T?, right: Map) {
+public func <- <T>(left: inout T?, right: Map) {
 	switch right.mappingType {
 	case .fromJSON where right.isKeyPresent:
 		FromJSON.optionalBasicType(&left, object: right.value())
@@ -69,7 +69,7 @@ internal func <- <T>(left: inout T?, right: Map) {
 	}
 }
 
-internal func >>> <T>(left: T?, right: Map) {
+public func >>> <T>(left: T?, right: Map) {
 	if right.mappingType == .toJSON {
 		ToJSON.optionalBasicType(left, map: right)
 	}
@@ -93,7 +93,7 @@ public func <- <T>(left: inout T!, right: Map) {
 // MARK:- Mappable Objects - <T: BaseMappable>
 
 /// Object conforming to Mappable
-internal func <- <T: BaseMappable>(left: inout T, right: Map) {
+public func <- <T: BaseMappable>(left: inout T, right: Map) {
 	switch right.mappingType {
 	case .fromJSON:
 		FromJSON.object(&left, map: right)
@@ -102,7 +102,7 @@ internal func <- <T: BaseMappable>(left: inout T, right: Map) {
 	}
 }
 
-internal func >>> <T: BaseMappable>(left: T, right: Map) {
+public func >>> <T: BaseMappable>(left: T, right: Map) {
 	if right.mappingType == .toJSON {
 		ToJSON.object(left, map: right)
 	}
@@ -110,7 +110,7 @@ internal func >>> <T: BaseMappable>(left: T, right: Map) {
 
 
 /// Optional Mappable objects
-internal func <- <T: BaseMappable>(left: inout T?, right: Map) {
+public func <- <T: BaseMappable>(left: inout T?, right: Map) {
 	switch right.mappingType {
 	case .fromJSON where right.isKeyPresent:
 		FromJSON.optionalObject(&left, map: right)
@@ -120,7 +120,7 @@ internal func <- <T: BaseMappable>(left: inout T?, right: Map) {
 	}
 }
 
-internal func >>> <T: BaseMappable>(left: T?, right: Map) {
+public func >>> <T: BaseMappable>(left: T?, right: Map) {
 	if right.mappingType == .toJSON {
 		ToJSON.optionalObject(left, map: right)
 	}
@@ -144,7 +144,7 @@ public func <- <T: BaseMappable>(left: inout T!, right: Map) {
 // MARK:- Dictionary of Mappable objects - Dictionary<String, T: BaseMappable>
 
 /// Dictionary of Mappable objects <String, T: Mappable>
-internal func <- <T: BaseMappable>(left: inout Dictionary<String, T>, right: Map) {
+public func <- <T: BaseMappable>(left: inout Dictionary<String, T>, right: Map) {
 	switch right.mappingType {
 	case .fromJSON where right.isKeyPresent:
 		FromJSON.objectDictionary(&left, map: right)
@@ -154,7 +154,7 @@ internal func <- <T: BaseMappable>(left: inout Dictionary<String, T>, right: Map
 	}
 }
 
-internal func >>> <T: BaseMappable>(left: Dictionary<String, T>, right: Map) {
+public func >>> <T: BaseMappable>(left: Dictionary<String, T>, right: Map) {
 	if right.mappingType == .toJSON {
 		ToJSON.objectDictionary(left, map: right)
 	}
@@ -162,7 +162,7 @@ internal func >>> <T: BaseMappable>(left: Dictionary<String, T>, right: Map) {
 
 
 /// Optional Dictionary of Mappable object <String, T: Mappable>
-internal func <- <T: BaseMappable>(left: inout Dictionary<String, T>?, right: Map) {
+public func <- <T: BaseMappable>(left: inout Dictionary<String, T>?, right: Map) {
 	switch right.mappingType {
 	case .fromJSON where right.isKeyPresent:
 		FromJSON.optionalObjectDictionary(&left, map: right)
@@ -172,7 +172,7 @@ internal func <- <T: BaseMappable>(left: inout Dictionary<String, T>?, right: Ma
 	}
 }
 
-internal func >>> <T: BaseMappable>(left: Dictionary<String, T>?, right: Map) {
+public func >>> <T: BaseMappable>(left: Dictionary<String, T>?, right: Map) {
 	if right.mappingType == .toJSON {
 		ToJSON.optionalObjectDictionary(left, map: right)
 	}
@@ -194,7 +194,7 @@ public func <- <T: BaseMappable>(left: inout Dictionary<String, T>!, right: Map)
 #endif
 
 /// Dictionary of Mappable objects <String, T: Mappable>
-internal func <- <T: BaseMappable>(left: inout Dictionary<String, [T]>, right: Map) {
+public func <- <T: BaseMappable>(left: inout Dictionary<String, [T]>, right: Map) {
 	switch right.mappingType {
 	case .fromJSON where right.isKeyPresent:
 		FromJSON.objectDictionaryOfArrays(&left, map: right)
@@ -204,14 +204,14 @@ internal func <- <T: BaseMappable>(left: inout Dictionary<String, [T]>, right: M
 	}
 }
 
-internal func >>> <T: BaseMappable>(left: Dictionary<String, [T]>, right: Map) {
+public func >>> <T: BaseMappable>(left: Dictionary<String, [T]>, right: Map) {
 	if right.mappingType == .toJSON {
 		ToJSON.objectDictionaryOfArrays(left, map: right)
 	}
 }
 
 /// Optional Dictionary of Mappable object <String, T: Mappable>
-internal func <- <T: BaseMappable>(left: inout Dictionary<String, [T]>?, right: Map) {
+public func <- <T: BaseMappable>(left: inout Dictionary<String, [T]>?, right: Map) {
 	switch right.mappingType {
 	case .fromJSON where right.isKeyPresent:
 		FromJSON.optionalObjectDictionaryOfArrays(&left, map: right)
@@ -221,7 +221,7 @@ internal func <- <T: BaseMappable>(left: inout Dictionary<String, [T]>?, right: 
 	}
 }
 
-internal func >>> <T: BaseMappable>(left: Dictionary<String, [T]>?, right: Map) {
+public func >>> <T: BaseMappable>(left: Dictionary<String, [T]>?, right: Map) {
 	if right.mappingType == .toJSON {
 		ToJSON.optionalObjectDictionaryOfArrays(left, map: right)
 	}
@@ -245,7 +245,7 @@ public func <- <T: BaseMappable>(left: inout Dictionary<String, [T]>!, right: Ma
 // MARK:- Array of Mappable objects - Array<T: BaseMappable>
 
 /// Array of Mappable objects
-internal func <- <T: BaseMappable>(left: inout Array<T>, right: Map) {
+public func <- <T: BaseMappable>(left: inout Array<T>, right: Map) {
 	switch right.mappingType {
 	case .fromJSON where right.isKeyPresent:
 		FromJSON.objectArray(&left, map: right)
@@ -255,14 +255,14 @@ internal func <- <T: BaseMappable>(left: inout Array<T>, right: Map) {
 	}
 }
 
-internal func >>> <T: BaseMappable>(left: Array<T>, right: Map) {
+public func >>> <T: BaseMappable>(left: Array<T>, right: Map) {
 	if right.mappingType == .toJSON {
 		ToJSON.objectArray(left, map: right)
 	}
 }
 
 /// Optional array of Mappable objects
-internal func <- <T: BaseMappable>(left: inout Array<T>?, right: Map) {
+public func <- <T: BaseMappable>(left: inout Array<T>?, right: Map) {
 	switch right.mappingType {
 	case .fromJSON where right.isKeyPresent:
 		FromJSON.optionalObjectArray(&left, map: right)
@@ -272,7 +272,7 @@ internal func <- <T: BaseMappable>(left: inout Array<T>?, right: Map) {
 	}
 }
 
-internal func >>> <T: BaseMappable>(left: Array<T>?, right: Map) {
+public func >>> <T: BaseMappable>(left: Array<T>?, right: Map) {
 	if right.mappingType == .toJSON {
 		ToJSON.optionalObjectArray(left, map: right)
 	}
@@ -296,7 +296,7 @@ public func <- <T: BaseMappable>(left: inout Array<T>!, right: Map) {
 // MARK:- Array of Array of Mappable objects - Array<Array<T: BaseMappable>>
 
 /// Array of Array Mappable objects
-internal func <- <T: BaseMappable>(left: inout Array<Array<T>>, right: Map) {
+public func <- <T: BaseMappable>(left: inout Array<Array<T>>, right: Map) {
 	switch right.mappingType {
 	case .fromJSON where right.isKeyPresent:
 		FromJSON.twoDimensionalObjectArray(&left, map: right)
@@ -306,7 +306,7 @@ internal func <- <T: BaseMappable>(left: inout Array<Array<T>>, right: Map) {
 	}
 }
 
-internal func >>> <T: BaseMappable>(left: Array<Array<T>>, right: Map) {
+public func >>> <T: BaseMappable>(left: Array<Array<T>>, right: Map) {
 	if right.mappingType == .toJSON {
 		ToJSON.twoDimensionalObjectArray(left, map: right)
 	}
@@ -314,7 +314,7 @@ internal func >>> <T: BaseMappable>(left: Array<Array<T>>, right: Map) {
 
 
 /// Optional array of Mappable objects
-internal func <- <T: BaseMappable>(left:inout Array<Array<T>>?, right: Map) {
+public func <- <T: BaseMappable>(left:inout Array<Array<T>>?, right: Map) {
 	switch right.mappingType {
 	case .fromJSON where right.isKeyPresent:
 		FromJSON.optionalTwoDimensionalObjectArray(&left, map: right)
@@ -324,7 +324,7 @@ internal func <- <T: BaseMappable>(left:inout Array<Array<T>>?, right: Map) {
 	}
 }
 
-internal func >>> <T: BaseMappable>(left: Array<Array<T>>?, right: Map) {
+public func >>> <T: BaseMappable>(left: Array<Array<T>>?, right: Map) {
 	if right.mappingType == .toJSON {
 		ToJSON.optionalTwoDimensionalObjectArray(left, map: right)
 	}
@@ -348,7 +348,7 @@ public func <- <T: BaseMappable>(left: inout Array<Array<T>>!, right: Map) {
 // MARK:- Set of Mappable objects - Set<T: BaseMappable>
 
 /// Set of Mappable objects
-internal func <- <T: BaseMappable>(left: inout Set<T>, right: Map) {
+public func <- <T: BaseMappable>(left: inout Set<T>, right: Map) {
 	switch right.mappingType {
 	case .fromJSON where right.isKeyPresent:
 		FromJSON.objectSet(&left, map: right)
@@ -358,7 +358,7 @@ internal func <- <T: BaseMappable>(left: inout Set<T>, right: Map) {
 	}
 }
 
-internal func >>> <T: BaseMappable>(left: Set<T>, right: Map) {
+public func >>> <T: BaseMappable>(left: Set<T>, right: Map) {
 	if right.mappingType == .toJSON {
 		ToJSON.objectSet(left, map: right)
 	}
@@ -366,7 +366,7 @@ internal func >>> <T: BaseMappable>(left: Set<T>, right: Map) {
 
 
 /// Optional Set of Mappable objects
-internal func <- <T: BaseMappable>(left: inout Set<T>?, right: Map) {
+public func <- <T: BaseMappable>(left: inout Set<T>?, right: Map) {
 	switch right.mappingType {
 	case .fromJSON where right.isKeyPresent:
 		FromJSON.optionalObjectSet(&left, map: right)
@@ -376,7 +376,7 @@ internal func <- <T: BaseMappable>(left: inout Set<T>?, right: Map) {
 	}
 }
 
-internal func >>> <T: BaseMappable>(left: Set<T>?, right: Map) {
+public func >>> <T: BaseMappable>(left: Set<T>?, right: Map) {
 	if right.mappingType == .toJSON {
 		ToJSON.optionalObjectSet(left, map: right)
 	}

@@ -25,18 +25,18 @@ public struct AttachmentForDefault: Mappable, Codable {
         return  fileId != nil ? "\(cerqel_Environment.Api_Base_URL)Storage/api/FileManager/Preview/\(fileId!)" : nil
     }
     
-    init?(map: Map) {}
-    
+    public init?(map: Map) {}
+
     public init?(id: String, name: String, fileExtension: String) {
         self.fileId = id
         self.fileName = name
         self.fileExtension = fileExtension
     }
 
-    mutating func mapping(map: Map) {
+    public mutating func mapping(map: Map) {
         fileId <- map["attachmentId"]
         fileName <- map["attachmentName"]
-        fileExtension <- map["attachmentExtension"]    
+        fileExtension <- map["attachmentExtension"]
     }
     
     enum CodingKeys: String, CodingKey {
@@ -126,12 +126,12 @@ public enum ValueType: Codable, Mappable {
     }
     
     // Mappable initializer
-    init?(map: Map) {
+    public init?(map: Map) {
         self = .empty
     }
-    
+
     // Mappable mapping function
-    mutating func mapping(map: Map) {
+    public mutating func mapping(map: Map) {
         var singleString: String?
         var singleDouble: Double?
         var double: [Double]?
@@ -185,10 +185,10 @@ public struct DDL: Codable, Mappable {
     public var Value: [MCQOption]?
     public var RowIndex: String?
     public var Id: String?
-    
-    init?(map: Map) {}
-    
-    mutating func mapping(map: Map) {
+
+    public init?(map: Map) {}
+
+    public mutating func mapping(map: Map) {
         Name <- map["name"]
         Value <- map["value"]
         RowIndex <- map["rowIndex"]
@@ -208,10 +208,10 @@ public struct BCDDL: Codable, Mappable {
     public var Value: [BCMCQOption]?
     public var RowIndex: String?
     public var Id: String?
-    
-    init?(map: Map) {}
-    
-    mutating func mapping(map: Map) {
+
+    public init?(map: Map) {}
+
+    public mutating func mapping(map: Map) {
         Name <- map["Name"]
         Value <- map["Value"]
         RowIndex <- map["RowIndex"]
@@ -231,10 +231,10 @@ public struct BCMCQOption: Codable, Mappable, Hashable {
     public var name: String?
     public var name_ar: String?
     
-    init?(map: Map) {
+    public init?(map: Map) {
         //empty
     }
-    
+
     public init(id: String?,other: Bool, name: String?, name_ar: String?) {
         self.id = id
         self.name = name
@@ -247,7 +247,7 @@ public struct BCMCQOption: Codable, Mappable, Hashable {
         case name_ar = "nameAR"
     }
     
-    mutating func mapping(map: Map) {
+    public mutating func mapping(map: Map) {
         id <- map["id"]
         name <- map["nameEN"]
         name_ar <- map["nameAR"]

@@ -14,16 +14,16 @@ public struct MCQOption: Codable, Mappable, Hashable {
     public var name: String?
     public var name_ar: String?
     
-    init?(map: Map) {
+    public init?(map: Map) {
     }
-    
+
     public init(id: String?,other: Bool, name: String?, name_ar: String?) {
         self.id = id
         self.name = name
         self.name_ar = name_ar
     }
     
-    mutating func mapping(map: Map) {
+    public mutating func mapping(map: Map) {
         id <- map["id"]
         name <- map["name"]
         name_ar <- map["name_ar"]
@@ -62,12 +62,12 @@ public struct ModelLoginCerqel : Mappable, Codable {
 
 
     public init(){}
-    init?(map: Map) {
+    public init?(map: Map) {
     }
-    
-    mutating func mapping(map: Map) {
-        
-        
+
+    public mutating func mapping(map: Map) {
+
+
         token_type <- map["token_type"]
         access_token <- map["access_token"]
         scope <- map["scope"]
@@ -78,7 +78,7 @@ public struct ModelLoginCerqel : Mappable, Codable {
 
     }
 
-    
+
 }
 
 
@@ -126,12 +126,12 @@ public struct ModelLoginDataCerqel : Mappable, Codable {
     }
 
     public init(){}
-    init?(map: Map) {
+    public init?(map: Map) {
     }
-    
-    mutating func mapping(map: Map) {
-        
-        
+
+    public mutating func mapping(map: Map) {
+
+
         isValid <- map["isValid"]
         token <- map["token"]
         message <- map["message"]

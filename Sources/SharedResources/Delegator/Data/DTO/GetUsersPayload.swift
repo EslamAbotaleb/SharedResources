@@ -21,21 +21,21 @@ public struct GetUsersPayload: Codable, Mappable {
         case pageNumber = "pageNumber"
     }
     
-    init?(map: Map) {
-        
+    public init?(map: Map) {
+
     }
     public init() {
-        
+
     }
-    
+
     public init(filter: UserFilterModel?, searchOptions: String?, pageSize: Int?, pageNumber: Int?) {
         self.filter = filter
         self.searchOptions = searchOptions
         self.pageSize = pageSize
         self.pageNumber = pageNumber
     }
-    
-    mutating func mapping(map: Map) {
+
+    public mutating func mapping(map: Map) {
         filter <- map["filter"]
         searchOptions <- map["searchOptions"]
         pageSize <- map["pageSize"]

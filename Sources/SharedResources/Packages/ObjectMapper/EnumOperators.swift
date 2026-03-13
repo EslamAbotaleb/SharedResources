@@ -32,21 +32,21 @@ import Foundation
 // MARK:- Raw Representable types
 
 /// Object of Raw Representable type
-internal func <- <T: RawRepresentable>(left: inout T, right: Map) {
+public func <- <T: RawRepresentable>(left: inout T, right: Map) {
 	left <- (right, EnumTransform())
 }
 
-internal func >>> <T: RawRepresentable>(left: T, right: Map) {
+public func >>> <T: RawRepresentable>(left: T, right: Map) {
 	left >>> (right, EnumTransform())
 }
 
 
 /// Optional Object of Raw Representable type
-internal func <- <T: RawRepresentable>(left: inout T?, right: Map) {
+public func <- <T: RawRepresentable>(left: inout T?, right: Map) {
 	left <- (right, EnumTransform())
 }
 
-internal func >>> <T: RawRepresentable>(left: T?, right: Map) {
+public func >>> <T: RawRepresentable>(left: T?, right: Map) {
 	left >>> (right, EnumTransform())
 }
 
@@ -62,21 +62,21 @@ public func <- <T: RawRepresentable>(left: inout T!, right: Map) {
 // MARK:- Arrays of Raw Representable type
 
 /// Array of Raw Representable object
-internal func <- <T: RawRepresentable>(left: inout [T], right: Map) {
+public func <- <T: RawRepresentable>(left: inout [T], right: Map) {
 	left <- (right, EnumTransform())
 }
 
-internal func >>> <T: RawRepresentable>(left: [T], right: Map) {
+public func >>> <T: RawRepresentable>(left: [T], right: Map) {
 	left >>> (right, EnumTransform())
 }
 
 
 /// Array of Raw Representable object
-internal func <- <T: RawRepresentable>(left: inout [T]?, right: Map) {
+public func <- <T: RawRepresentable>(left: inout [T]?, right: Map) {
 	left <- (right, EnumTransform())
 }
 
-internal func >>> <T: RawRepresentable>(left: [T]?, right: Map) {
+public func >>> <T: RawRepresentable>(left: [T]?, right: Map) {
 	left >>> (right, EnumTransform())
 }
 
@@ -92,21 +92,21 @@ public func <- <T: RawRepresentable>(left: inout [T]!, right: Map) {
 // MARK:- Dictionaries of Raw Representable type
 
 /// Dictionary of Raw Representable object
-internal func <- <T: RawRepresentable>(left: inout [String: T], right: Map) {
+public func <- <T: RawRepresentable>(left: inout [String: T], right: Map) {
 	left <- (right, EnumTransform())
 }
 
-internal func >>> <T: RawRepresentable>(left: [String: T], right: Map) {
+public func >>> <T: RawRepresentable>(left: [String: T], right: Map) {
 	left >>> (right, EnumTransform())
 }
 
 
 /// Dictionary of Raw Representable object
-internal func <- <T: RawRepresentable>(left: inout [String: T]?, right: Map) {
+public func <- <T: RawRepresentable>(left: inout [String: T]?, right: Map) {
 	left <- (right, EnumTransform())
 }
 
-internal func >>> <T: RawRepresentable>(left: [String: T]?, right: Map) {
+public func >>> <T: RawRepresentable>(left: [String: T]?, right: Map) {
 	left >>> (right, EnumTransform())
 }
 

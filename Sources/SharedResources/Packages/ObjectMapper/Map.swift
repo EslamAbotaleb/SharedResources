@@ -35,7 +35,7 @@ public protocol MapContext {
 }
 
 /// A class used for holding mapping data
-internal final class Map {
+public final class Map {
 	public let mappingType: MappingType
 	
 	public internal(set) var JSON: [String: Any] = [:]
@@ -205,7 +205,7 @@ private func valueFor(_ keyPathComponents: ArraySlice<String>, array: [Any]) -> 
 
 // MARK: - Default Value
 
-internal extension Map {
+public extension Map {
 
 	/// Returns `default` value if there is nothing to parse.
   func value<T>(_ key: String, default: T.Object, using transform: T) throws -> T.Object where T: TransformType {

@@ -34,7 +34,7 @@ public enum MappingType {
 }
 
 /// The Mapper class provides methods for converting Model objects to JSON and methods for converting JSON to Model objects
-internal final class Mapper<N: BaseMappable> {
+public final class Mapper<N: BaseMappable> {
 	
 	public var context: MapContext?
 	public var shouldIncludeNilValues = false /// If this is set to true, toJSON output will include null values for any variables that are not set.
@@ -404,7 +404,7 @@ extension Mapper {
 extension Mapper where N: Hashable {
 	
 	/// Maps a JSON array to an object that conforms to Mappable
-    internal func mapSet(JSONString: String) -> Set<N>? {
+    public func mapSet(JSONString: String) -> Set<N>? {
 		let parsedJSON: Any? = Mapper.parseJSONString(JSONString: JSONString)
 		
 		if let objectArray = mapArray(JSONObject: parsedJSON) {
@@ -421,7 +421,7 @@ extension Mapper where N: Hashable {
 	}
 	
 	/// Maps a JSON object to an Set of Mappable objects if it is an array of JSON dictionary, or returns nil.
-    internal func mapSet(JSONObject: Any?) -> Set<N>? {
+    public func mapSet(JSONObject: Any?) -> Set<N>? {
 		if let JSONArray = JSONObject as? [[String: Any]] {
 			return mapSet(JSONArray: JSONArray)
 		}
@@ -430,7 +430,7 @@ extension Mapper where N: Hashable {
 	}
 	
 	/// Maps an Set of JSON dictionary to an array of Mappable objects
-    internal func mapSet(JSONArray: [[String: Any]]) -> Set<N> {
+    public func mapSet(JSONArray: [[String: Any]]) -> Set<N> {
 		// map every element in JSON array to type N
 		#if swift(>=4.1)
 		return Set(JSONArray.compactMap(map))
@@ -440,7 +440,7 @@ extension Mapper where N: Hashable {
 	}
 
 	///Maps a Set of Objects to a Set of JSON dictionaries [[String : Any]]
-    internal func toJSONSet(_ set: Set<N>) -> [[String: Any]] {
+    public func toJSONSet(_ set: Set<N>) -> [[String: Any]] {
 		return set.map {
 			// convert every element in set to JSON dictionary equivalent
 			self.toJSON($0)
@@ -448,7 +448,7 @@ extension Mapper where N: Hashable {
 	}
 	
 	/// Maps a set of Objects to a JSON string with option of pretty formatting
-    internal func toJSONString(_ set: Set<N>, prettyPrint: Bool = false) -> String? {
+    public func toJSONString(_ set: Set<N>, prettyPrint: Bool = false) -> String? {
 		let JSONDict = toJSONSet(set)
 		
 		return Mapper.toJSONString(JSONDict as Any, prettyPrint: prettyPrint)
@@ -456,7 +456,7 @@ extension Mapper where N: Hashable {
 }
 
 extension Dictionary {
-	internal func map<K, V>(_ f: (Element) throws -> (K, V)) rethrows -> [K: V] {
+	public func map<K, V>(_ f: (Element) throws -> (K, V)) rethrows -> [K: V] {
 		var mapped = [K: V]()
 
 		for element in self {
@@ -467,7 +467,7 @@ extension Dictionary {
 		return mapped
 	}
 
-	internal func map<K, V>(_ f: (Element) throws -> (K, [V])) rethrows -> [K: [V]] {
+	public func map<K, V>(_ f: (Element) throws -> (K, [V])) rethrows -> [K: [V]] {
 		var mapped = [K: [V]]()
 		
 		for element in self {
@@ -479,7 +479,7 @@ extension Dictionary {
 	}
 
 	
-	internal func filterMap<U>(_ f: (Value) throws -> U?) rethrows -> [Key: U] {
+	public func filterMap<U>(_ f: (Value) throws -> U?) rethrows -> [Key: U] {
 		var mapped = [Key: U]()
 
 		for (key, value) in self {
