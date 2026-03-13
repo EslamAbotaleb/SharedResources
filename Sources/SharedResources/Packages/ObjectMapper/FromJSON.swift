@@ -26,7 +26,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-internal final class FromJSON {
+public final class FromJSON {
 	
 	/// Basic type
 	class func basicType<FieldType>(_ field: inout FieldType, object: FieldType?) {
