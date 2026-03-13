@@ -72,7 +72,10 @@ public struct ModelUploadedMedia : Mappable, Codable, FormValue {
     }
     
     // Implementations for Mappable protocol
-    public init?(map: Map) {}
+    public init?(map: Map) {
+        // Initialize default values for non-optional properties
+        isStillUploading = false
+    }
     
     mutating public func mapping(map: Map) {
         contentType <- map["contentType"]
