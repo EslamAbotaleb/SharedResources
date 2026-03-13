@@ -18,8 +18,7 @@ open class BaseVM: BaseViewModel, ObservableObject{
     
     open func hydrate() {}
     
-    private var errorMessage: DynamicObjects<String> = DynamicObjects("")
-    private var alertMessage: DynamicObjects<String> = DynamicObjects("")
+    public var errorMessage: DynamicObjects<String> = DynamicObjects("")
     public var isLoading: DynamicObjects<Bool> = DynamicObjects(false)
     public var hudLoading: DynamicObjects<Bool> = DynamicObjects(false)
     
@@ -31,7 +30,7 @@ open class BaseVM: BaseViewModel, ObservableObject{
         errorMessage.value = message
     }
     
-    public func showSystemAlert(alert: String) {
+    public override func showSystemAlert(alert: String) {
         alertMessage.value = alert
     }
     
@@ -39,7 +38,7 @@ open class BaseVM: BaseViewModel, ObservableObject{
         errorMessage.bind(listener)
     }
     
-    public func implementAlert(_ listener: @escaping (String) -> Void) {
+    public override func implementAlert(_ listener: @escaping (String) -> Void) {
         alertMessage.bind(listener)
     }
     
