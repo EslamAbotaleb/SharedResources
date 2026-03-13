@@ -35,7 +35,7 @@ public protocol MapContext {
 }
 
 /// A class used for holding mapping data
-internal final class Map {
+public final class Map {
 	public let mappingType: MappingType
 	
 	public internal(set) var JSON: [String: Any] = [:]

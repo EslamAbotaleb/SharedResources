@@ -72,9 +72,9 @@ public struct ModelUploadedMedia : Mappable, Codable, FormValue {
     }
     
     // Implementations for Mappable protocol
-    init?(map: Map) {}
+    public init?(map: Map) {}
     
-    mutating func mapping(map: Map) {
+    mutating public func mapping(map: Map) {
         contentType <- map["contentType"]
         documentType <- map["documentType"]
         fileSize <- map["fileSize"]
