@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 public struct ModelUploadedMedia : Mappable, Codable, FormValue {
-
+    
     public var downloadUrl: String?
     public var previewUrl: String?
     public var viewImage: UIImage?
@@ -24,7 +24,7 @@ public struct ModelUploadedMedia : Mappable, Codable, FormValue {
     public var additionalProperty02: AdditionalProperty?
     public var additionalProperty03: AdditionalProperty?
     public var additionalProperty04: AdditionalProperty?
-     
+    
     enum CodingKeys: String, CodingKey {
         case contentType
         case documentType
@@ -72,12 +72,9 @@ public struct ModelUploadedMedia : Mappable, Codable, FormValue {
     }
     
     // Implementations for Mappable protocol
-    public init?(map: Map) {
-        // Initialize default values for non-optional properties
-        isStillUploading = false
-    }
+    public init?(map: Map) {}
     
-    mutating public func mapping(map: Map) {
+    public mutating func mapping(map: Map) {
         contentType <- map["contentType"]
         documentType <- map["documentType"]
         fileSize <- map["fileSize"]
