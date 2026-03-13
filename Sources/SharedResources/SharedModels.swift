@@ -8,14 +8,13 @@
 import Foundation
 internal import Alamofire
 import UIKit
-import ObjectMapper
 
 public struct MCQOption: Codable, Mappable, Hashable {
     public var id: String?
     public var name: String?
     public var name_ar: String?
     
-    public init?(map: Map) {
+    init?(map: Map) {
     }
     
     public init(id: String?,other: Bool, name: String?, name_ar: String?) {
@@ -24,7 +23,7 @@ public struct MCQOption: Codable, Mappable, Hashable {
         self.name_ar = name_ar
     }
     
-    mutating public func mapping(map: Map) {
+    mutating func mapping(map: Map) {
         id <- map["id"]
         name <- map["name"]
         name_ar <- map["name_ar"]
@@ -63,10 +62,10 @@ public struct ModelLoginCerqel : Mappable, Codable {
 
 
     public init(){}
-    public init?(map: Map) {
+    init?(map: Map) {
     }
     
-    mutating public func mapping(map: Map) {
+    mutating func mapping(map: Map) {
         
         
         token_type <- map["token_type"]
@@ -127,10 +126,10 @@ public struct ModelLoginDataCerqel : Mappable, Codable {
     }
 
     public init(){}
-    public init?(map: Map) {
+    init?(map: Map) {
     }
     
-    mutating public func mapping(map: Map) {
+    mutating func mapping(map: Map) {
         
         
         isValid <- map["isValid"]

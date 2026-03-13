@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import ObjectMapper
 
 public struct GetUsersPayload: Codable, Mappable {
     public var filter : UserFilterModel?
@@ -22,7 +21,7 @@ public struct GetUsersPayload: Codable, Mappable {
         case pageNumber = "pageNumber"
     }
     
-    public init?(map: Map) {
+    init?(map: Map) {
         
     }
     public init() {
@@ -36,7 +35,7 @@ public struct GetUsersPayload: Codable, Mappable {
         self.pageNumber = pageNumber
     }
     
-    mutating public func mapping(map: Map) {
+    mutating func mapping(map: Map) {
         filter <- map["filter"]
         searchOptions <- map["searchOptions"]
         pageSize <- map["pageSize"]

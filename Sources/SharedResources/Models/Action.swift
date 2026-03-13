@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import ObjectMapper
 
 public struct Action : Codable, Mappable {
    public var id : String?
@@ -26,7 +25,7 @@ public struct Action : Codable, Mappable {
    public var actionOrder: Int?
    public var buttonStyle : ButtonStyle?
     
-    public init?(map: Map) {}
+    init?(map: Map) {}
 
     public init(id: String?, name: String?, label: String?, actionTakenLabel: String?, styleCode: String?, buttonStyleCode: String?, actionCode: String?, isCommentRequired: Bool?, isFormValidateBeforeExecuteActionRequired: Bool?, isAttachmentRequired: Bool?, actionFormId: String?, actionOrder: Int?, buttonStyle : ButtonStyle?, displayMode: Int?) {
         self.id = id
@@ -78,7 +77,7 @@ public struct Action : Codable, Mappable {
         case buttonStyle
     }
     
-    public mutating func mapping(map: Map) {
+    mutating func mapping(map: Map) {
         id <- map["id"]
         name <- map["name"]
         label <- map["label"]
@@ -129,9 +128,9 @@ public struct ButtonStyle: Codable, Mappable {
     
     }
     
-    public init?(map: Map) {}
+    init?(map: Map) {}
 
-    mutating public func mapping(map: Map) {
+    mutating func mapping(map: Map) {
         backgroundColor <- map["backgroundColor"]
         borderColor <- map["borderColor"]
         textColor <- map["textColor"]

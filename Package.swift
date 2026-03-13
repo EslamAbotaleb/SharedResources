@@ -27,8 +27,7 @@ let package = Package(
         .package(url: "https://github.com/SDWebImage/SDWebImageSVGCoder.git", exact: "1.8.0"),
         .package(url: "https://github.com/airbnb/lottie-ios.git", exact: "3.5.0"),
         .package(url: "https://github.com/EslamAbotaleb/keychain-swift.git", branch: "master"),
-        .package(url: "https://github.com/EslamAbotaleb/Reachability.swift.git", branch: "master"),
-        .package(url: "https://github.com/tristanhimmelman/ObjectMapper.git", exact:  "4.1.0")
+        .package(url: "https://github.com/EslamAbotaleb/Reachability.swift.git", branch: "master")
     ],
     targets: [
         .target(
@@ -50,8 +49,7 @@ let package = Package(
                 .product(name: "SDWebImageSVGCoder", package: "SDWebImageSVGCoder"),
                 .product(name: "Lottie", package: "lottie-ios"),
                 .product(name: "KeychainSwift", package: "keychain-swift"),
-                .product(name: "Reachability", package: "Reachability.swift"),
-                .product(name: "ObjectMapper", package: "ObjectMapper")
+                .product(name: "Reachability", package: "Reachability.swift")
             ],
             resources: [.process("Resources")],
             swiftSettings: [
