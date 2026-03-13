@@ -30,48 +30,63 @@ public enum EndpointMethod: String {
     case delete
     case patch
 }
+public struct SharedEndpointService {
+    public var url: String
 
-public enum SharedEndpointService {
-    case survey
-    case getUsers
-    case pin
-    case approvalCycleAfterSubmission
-    case requests
-    case excuteAction
-    case SendBackRecipients
-    case categories
-    
-    var url: String {
-        switch self {
-        case .survey:
-            return "\(baseUrl)selfservices/Api/BasicSurveys/submit"
-        case .getUsers:
-            return "\(baseUrl)api/Users/GetAll"
-        case .pin:
-            return "\(baseUrl)DocumentLibrary/api/Files/pin/"
-        case .approvalCycleAfterSubmission:
-            return "\(baseUrl)api/Tasks/v2/GetApprovalHistory"
-        case .requests:
-            let getAllPagedRequests =
-            cerqel_Environment.isPreDev
-            ? "api/Request/v2/GetAllPaged"
-            : "selfservices/api/Request/GetAllPaged"
-            return "\(baseUrl)\(getAllPagedRequests)"
-        case .excuteAction:
-            let executeAction =
-            cerqel_Environment.isPreDev
-            ? "selfServicesV2/Api/Tasks/ExecuteAction"
-            : "selfservices/Api/Tasks/ExecuteAction"
-            return "\(baseUrl)\(executeAction)"
-        case .SendBackRecipients:
-            let retrieveSendbackRecipientsEndPoint =
-            cerqel_Environment.isPreDev
-            ? "Api/Request/v2/RetrieveSendbackRecipients"
-            : "selfservicesv2/Api/Request/RetrieveSendbackRecipients"
-            return "\(baseUrl)\(retrieveSendbackRecipientsEndPoint)"
-        case .categories:
-            return "\(baseUrl)DocumentLibrary/api/Lookups/Categories"
-        }
+    public init(url: String) {
+        self.url = url
+    }
+
+    public static var baseUrl: String {
+        return cerqel_Environment.Api_Base_URL + "gw/"
+    }
+}
+
+// MARK: - SharedResources Default Endpoints
+extension SharedEndpointService {
+
+    public static var survey: SharedEndpointService {
+        .init(url: "\(baseUrl)selfservices/Api/BasicSurveys/submit")
+    }
+
+    public static var getUsers: SharedEndpointService {
+        .init(url: "\(baseUrl)api/Users/GetAll")
+    }
+
+    public static var pin: SharedEndpointService {
+        .init(url: "\(baseUrl)DocumentLibrary/api/Files/pin/")
+    }
+
+    public static var approvalCycleAfterSubmission: SharedEndpointService {
+        .init(url: "\(baseUrl)api/Tasks/v2/GetApprovalHistory")
+    }
+
+    public static var requests: SharedEndpointService {
+        let getAllPagedRequests =
+        cerqel_Environment.isPreDev
+        ? "api/Request/v2/GetAllPaged"
+        : "selfservices/api/Request/GetAllPaged"
+        return .init(url: "\(baseUrl)\(getAllPagedRequests)")
+    }
+
+    public static var excuteAction: SharedEndpointService {
+        let executeAction =
+        cerqel_Environment.isPreDev
+        ? "selfServicesV2/Api/Tasks/ExecuteAction"
+        : "selfservices/Api/Tasks/ExecuteAction"
+        return .init(url: "\(baseUrl)\(executeAction)")
+    }
+
+    public static var SendBackRecipients: SharedEndpointService {
+        let retrieveSendbackRecipientsEndPoint =
+        cerqel_Environment.isPreDev
+        ? "Api/Request/v2/RetrieveSendbackRecipients"
+        : "selfservicesv2/Api/Request/RetrieveSendbackRecipients"
+        return .init(url: "\(baseUrl)\(retrieveSendbackRecipientsEndPoint)")
+    }
+
+    public static var categories: SharedEndpointService {
+        .init(url: "\(baseUrl)DocumentLibrary/api/Lookups/Categories")
     }
 }
 
@@ -82,12 +97,6 @@ extension SharedEndpoint {
 
 }
 
-extension SharedEndpointService {
-
-    public var baseUrl: String{
-        return cerqel_Environment.Api_Base_URL + "gw/"
-    }
-}
 
 public func generateURLWithParams(params: [String: Any]?) -> String {
     if (params != nil && !(params!.isEmpty)) {
