@@ -7,12 +7,6 @@
 
 import SwiftUI
 
-struct FormBuilderColors {
-    static public var white = Color(hex: "FFFFFF")
-    static public var typographyTitle = Color(hex: "23292F")
-    static public var bodyGray = Color(hex: "797979")
-    static public var SupportSkyBlueLight = Color(hex: "F6FAFF")
-}
 
 extension Color {
 

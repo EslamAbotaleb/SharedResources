@@ -15,6 +15,11 @@ internal import Kingfisher
 import Photos
 import UIKit
 
+public let dummyEmptyImgNameCerqel = "empty-dummy"
+public let tempServiceImgNameCerqel = "service1"
+public let avatarImgNameCerqel = "User"
+public let peoplesInvitedImgBaseURLCerqel = "https://cerqel-be.azurewebsites.net/content_youxel/api/Calendar/attendsProfilePicture/"
+
 public let globalHeaders = [
     "Authorization": "Bearer " + SharedAuthManager.shared.token,
     "TenantId": SharedAuthManager.shared.tenant?.tenantId ?? "",

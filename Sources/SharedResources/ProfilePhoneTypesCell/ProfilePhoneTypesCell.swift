@@ -5,10 +5,18 @@
 //  Created by Omar Ibrahim on 3/5/26.
 //
 
-
 import UIKit
 
 public class ProfilePhoneTypesCell: UITableViewCell {
+    
+    // MARK: - Properties
+    public static let nibName = "ProfilePhoneTypesCell"
+    public static let reuseIdentifier = "ProfilePhoneTypesCell"
+    
+    // Returns the UINib for this cell with the correct bundle
+    public static var nib: UINib {
+        return UINib(nibName: nibName, bundle: Bundle(for: Self.self))
+    }
 
     @IBOutlet weak var checkIcon: UIImageView!
     @IBOutlet weak var checkSortNameLbl: UILabel!
