@@ -1,20 +1,22 @@
 //
 //  UploadMediaUIModel.swift
-//  SharedResources
+//  CERQEL
 //
-//  Created by Eslam on 09/03/2026.
+//  Created by hassan elshaer on 24/12/2024.
+//  Copyright © 2024 Youxel. All rights reserved.
 //
 
 import Foundation
-internal import Alamofire
+import UIKit
+public import Alamofire
 
-class UploadMediaUIModel {
-    var id: String
-    var uploadedMedia: ModelUploadedMedia?
-    var state: UploadingState
-    var request: UploadRequest?
+public class UploadMediaUIModel {
+    public var id: String
+    public var uploadedMedia: ModelUploadedMedia?
+    public var state: UploadingState
+   var request: UploadRequest?
 
-    init(
+    public init(
         id: String, uploadedMedia: ModelUploadedMedia? = nil,
         state: UploadingState, request: UploadRequest? = nil
     ) {
@@ -24,7 +26,7 @@ class UploadMediaUIModel {
         self.request = request
     }
 
-    enum UploadingState {
+    public enum UploadingState {
         case failed, success
         case inProgress(Double)
     }

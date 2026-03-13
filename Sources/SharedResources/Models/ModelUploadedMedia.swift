@@ -2,30 +2,29 @@
 //  ModelUploadedMedia.swift
 //  SharedResources
 //
-//  Created by Eslam on 09/03/2026.
+//  Created by Eslam on 13/03/2026.
 //
 
-import Foundation
 import UIKit
 
-public struct ModelUploadedMedia: Mappable, Codable, FormValue {
-  
-    public var downloadUrl: String?
-    public var previewUrl: String?
-    public var viewImage: UIImage?
-    public var contentType: String?
-    public var documentType: String?
-    public var fileSize: String?
-    public var id: String?
-    public var isPublic: Bool?
-    public var name: String?
-    public var isStillUploading: Bool = false
-    public var additionalProperty01: AdditionalProperty?
-    public var additionalProperty02: AdditionalProperty?
-    public var additionalProperty03: AdditionalProperty?
-    public var additionalProperty04: AdditionalProperty?
+public struct ModelUploadedMedia : Mappable, Codable, FormValue {
 
-    public enum CodingKeys: String, CodingKey {
+    var downloadUrl: String?
+    var previewUrl: String?
+    var viewImage: UIImage?
+    var contentType: String?
+    var documentType: String?
+    var fileSize: String?
+    var id: String?
+    var isPublic: Bool?
+    var name: String?
+    var isStillUploading: Bool = false
+    var additionalProperty01: AdditionalProperty?
+    var additionalProperty02: AdditionalProperty?
+    var additionalProperty03: AdditionalProperty?
+    var additionalProperty04: AdditionalProperty?
+    
+    enum CodingKeys: String, CodingKey {
         case contentType
         case documentType
         case fileSize
@@ -39,8 +38,8 @@ public struct ModelUploadedMedia: Mappable, Codable, FormValue {
         case downloadUrl
         case previewUrl
     }
-
-    public init(downloadUrl: String? = nil,
+    
+    init(downloadUrl: String? = nil,
          previewUrl: String? = nil,
          viewImage: UIImage? = nil,
          contentType: String? = nil,
@@ -54,7 +53,7 @@ public struct ModelUploadedMedia: Mappable, Codable, FormValue {
          additionalProperty02: AdditionalProperty? = nil,
          additionalProperty03: AdditionalProperty? = nil,
          additionalProperty04: AdditionalProperty? = nil) {
-
+        
         self.downloadUrl = downloadUrl
         self.previewUrl = previewUrl
         self.viewImage = viewImage
@@ -71,6 +70,7 @@ public struct ModelUploadedMedia: Mappable, Codable, FormValue {
         self.additionalProperty04 = additionalProperty04
     }
     
+    // Implementations for Mappable protocol
     public init?(map: Map) {}
     
     public mutating func mapping(map: Map) {
@@ -86,13 +86,5 @@ public struct ModelUploadedMedia: Mappable, Codable, FormValue {
         additionalProperty04 <- map["additionalProperty04"]
         downloadUrl <- map["downloadUrl"]
         previewUrl <- map["previewUrl"]
-    }
-    
-   public init?(JSON: [String: Any], context: MapContext? = nil) {
-        if let obj: Self = Mapper(context: context).map(JSON: JSON) {
-            self = obj
-        } else {
-            return nil
-        }
     }
 }
