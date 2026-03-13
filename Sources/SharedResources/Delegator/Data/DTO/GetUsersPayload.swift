@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ObjectMapper
 
 public struct GetUsersPayload: Codable, Mappable {
     public var filter : UserFilterModel?

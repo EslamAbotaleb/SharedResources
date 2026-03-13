@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ObjectMapper
 
 public struct ModelUploadedMedia : Mappable, Codable, FormValue {
 

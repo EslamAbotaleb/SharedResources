@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import ObjectMapper
 
 public struct Action : Codable, Mappable {
    public var id : String?

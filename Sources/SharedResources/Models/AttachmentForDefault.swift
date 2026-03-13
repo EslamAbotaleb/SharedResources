@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import ObjectMapper
 
 public struct AttachmentForDefault: Mappable, Codable {
     public var fileId: String?

@@ -8,6 +8,7 @@
 import Foundation
 internal import Alamofire
 import UIKit
+import ObjectMapper
 
 public struct MCQOption: Codable, Mappable, Hashable {
     public var id: String?
