@@ -16,7 +16,7 @@ open class BaseVM: BaseViewModel, ObservableObject{
         self.hydrate()
     }
     
-    public func hydrate() {}
+    open func hydrate() {}
     
     private var errorMessage: DynamicObjects<String> = DynamicObjects("")
     private var alertMessage: DynamicObjects<String> = DynamicObjects("")
