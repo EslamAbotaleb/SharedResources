@@ -8,24 +8,24 @@
 import Foundation
 import UIKit
 
-struct ModelUploadedMedia : Mappable, Codable, FormValue {
+public struct ModelUploadedMedia : Mappable, Codable, FormValue {
 
-    var downloadUrl: String?
-    var previewUrl: String?
-    var viewImage: UIImage?
-    var contentType: String?
-    var documentType: String?
-    var fileSize: String?
-    var id: String?
-    var isPublic: Bool?
-    var name: String?
-    var isStillUploading: Bool = false
-    var additionalProperty01: AdditionalProperty?
-    var additionalProperty02: AdditionalProperty?
-    var additionalProperty03: AdditionalProperty?
-    var additionalProperty04: AdditionalProperty?
+    public var downloadUrl: String?
+    public var previewUrl: String?
+    public var viewImage: UIImage?
+    public var contentType: String?
+    public var documentType: String?
+    public var fileSize: String?
+    public var id: String?
+    public var isPublic: Bool?
+    public var name: String?
+    public var isStillUploading: Bool = false
+    public var additionalProperty01: AdditionalProperty?
+    public var additionalProperty02: AdditionalProperty?
+    public var additionalProperty03: AdditionalProperty?
+    public var additionalProperty04: AdditionalProperty?
     
-    enum CodingKeys: String, CodingKey {
+    public enum CodingKeys: String, CodingKey {
         case contentType
         case documentType
         case fileSize
@@ -40,7 +40,7 @@ struct ModelUploadedMedia : Mappable, Codable, FormValue {
         case previewUrl
     }
     
-    init(downloadUrl: String? = nil,
+    public init(downloadUrl: String? = nil,
          previewUrl: String? = nil,
          viewImage: UIImage? = nil,
          contentType: String? = nil,
@@ -71,9 +71,18 @@ struct ModelUploadedMedia : Mappable, Codable, FormValue {
         self.additionalProperty04 = additionalProperty04
     }
     
+    /// Public convenience initializer to create from a JSON dictionary
+    public init?(JSON: [String: Any], context: MapContext? = nil) {
+        if let obj: Self = Mapper(context: context).map(JSON: JSON) {
+            self = obj
+        } else {
+            return nil
+        }
+    }
+
     // Implementations for Mappable protocol
     public init?(map: Map) {}
-    
+
     public mutating func mapping(map: Map) {
         contentType <- map["contentType"]
         documentType <- map["documentType"]
