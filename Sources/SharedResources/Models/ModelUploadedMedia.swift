@@ -70,22 +70,4 @@ public struct ModelUploadedMedia: Codable, FormValue {
         self.additionalProperty03 = additionalProperty03
         self.additionalProperty04 = additionalProperty04
     }
-    
-    // Implementations for Mappable protocol
-    public init?(map: Map) {}
-    
-    public mutating func mapping(map: Map) {
-        contentType <- map["contentType"]
-        documentType <- map["documentType"]
-        fileSize <- map["fileSize"]
-        id <- map["id"]
-        isPublic <- map["isPublic"]
-        name <- map["name"]
-        additionalProperty01 <- map["additionalProperty01"]
-        additionalProperty02 <- map["additionalProperty02"]
-        additionalProperty03 <- map["additionalProperty03"]
-        additionalProperty04 <- map["additionalProperty04"]
-        downloadUrl <- map["downloadUrl"]
-        previewUrl <- map["previewUrl"]
-    }
 }
