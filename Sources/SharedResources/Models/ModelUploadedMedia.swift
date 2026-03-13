@@ -24,8 +24,8 @@ public struct ModelUploadedMedia: Mappable, Codable, FormValue {
     public var additionalProperty02: AdditionalProperty?
     public var additionalProperty03: AdditionalProperty?
     public var additionalProperty04: AdditionalProperty?
-    
-    enum CodingKeys: String, CodingKey {
+
+    public enum CodingKeys: String, CodingKey {
         case contentType
         case documentType
         case fileSize
@@ -39,7 +39,7 @@ public struct ModelUploadedMedia: Mappable, Codable, FormValue {
         case downloadUrl
         case previewUrl
     }
-    
+
     public init(downloadUrl: String? = nil,
          previewUrl: String? = nil,
          viewImage: UIImage? = nil,
@@ -54,7 +54,7 @@ public struct ModelUploadedMedia: Mappable, Codable, FormValue {
          additionalProperty02: AdditionalProperty? = nil,
          additionalProperty03: AdditionalProperty? = nil,
          additionalProperty04: AdditionalProperty? = nil) {
-        
+
         self.downloadUrl = downloadUrl
         self.previewUrl = previewUrl
         self.viewImage = viewImage
@@ -70,29 +70,13 @@ public struct ModelUploadedMedia: Mappable, Codable, FormValue {
         self.additionalProperty03 = additionalProperty03
         self.additionalProperty04 = additionalProperty04
     }
-    
-    public init?(map: Map) {}
-    
-    public mutating func mapping(map: Map) {
-        contentType <- map["contentType"]
-        documentType <- map["documentType"]
-        fileSize <- map["fileSize"]
-        id <- map["id"]
-        isPublic <- map["isPublic"]
-        name <- map["name"]
-        additionalProperty01 <- map["additionalProperty01"]
-        additionalProperty02 <- map["additionalProperty02"]
-        additionalProperty03 <- map["additionalProperty03"]
-        additionalProperty04 <- map["additionalProperty04"]
-        downloadUrl <- map["downloadUrl"]
-        previewUrl <- map["previewUrl"]
-    }
-    
-    public init?(JSON: [String: Any], context: MapContext? = nil) {
-        if let obj: Self = Mapper(context: context).map(JSON: JSON) {
-            self = obj
-        } else {
+
+    /// Initialize from a JSON dictionary
+    public init?(JSON: [String: Any]) {
+        guard let data = try? JSONSerialization.data(withJSONObject: JSON),
+              let decoded = try? JSONDecoder().decode(ModelUploadedMedia.self, from: data) else {
             return nil
         }
+        self = decoded
     }
 }

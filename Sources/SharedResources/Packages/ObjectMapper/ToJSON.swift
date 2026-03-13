@@ -59,7 +59,7 @@ private func setValue(_ value: Any, forKeyPathComponents components: ArraySlice<
 	}
 }
 
-internal final class ToJSON {
+public final class ToJSON {
 	
 	class func basicType<N>(_ field: N, map: Map) {
 		if let x = field as Any? , false
