@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-struct ModelUploadedMedia : Mappable, Codable, FormValue {
+public struct ModelUploadedMedia : Mappable, Codable, FormValue {
 
     var downloadUrl: String?
     var previewUrl: String?
@@ -72,9 +72,9 @@ struct ModelUploadedMedia : Mappable, Codable, FormValue {
     }
     
     // Implementations for Mappable protocol
-    public init?(map: Map) {}
+    init?(map: Map) {}
     
-    public mutating func mapping(map: Map) {
+    mutating func mapping(map: Map) {
         contentType <- map["contentType"]
         documentType <- map["documentType"]
         fileSize <- map["fileSize"]
