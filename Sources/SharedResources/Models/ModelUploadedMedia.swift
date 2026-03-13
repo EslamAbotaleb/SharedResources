@@ -71,7 +71,6 @@ public struct ModelUploadedMedia: Mappable, Codable, FormValue {
         self.additionalProperty04 = additionalProperty04
     }
     
-    // Implementations for Mappable protocol
     public init?(map: Map) {}
     
     public mutating func mapping(map: Map) {
