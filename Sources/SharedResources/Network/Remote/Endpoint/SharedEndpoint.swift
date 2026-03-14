@@ -30,7 +30,7 @@ public enum EndpointMethod: String {
     case delete
     case patch
 }
-public struct SharedEndpointService {
+public struct SharedEndpointService: Equatable {
     public var url: String
 
     public init(url: String) {
