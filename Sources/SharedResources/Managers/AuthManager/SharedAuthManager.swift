@@ -54,7 +54,7 @@ open class SharedAuthManager {
         }).disposed(by: self.disposeBag)
     }
     
-    func convertToUploadMediaUIModel(from attachment: AttachmentForDefault) -> UploadMediaUIModel {
+    public func convertToUploadMediaUIModel(from attachment: AttachmentForDefault) -> UploadMediaUIModel {
         let state: UploadMediaUIModel.UploadingState = attachment.isSuccess ?? false ? .success : .success
         let uploadedMedia = ModelUploadedMedia(downloadUrl: attachment.downloadUrl,
                                                previewUrl: attachment.previewUrl,
