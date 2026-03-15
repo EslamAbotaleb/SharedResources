@@ -103,8 +103,7 @@ public class NewDatePickerPopup: BottomSheetVC {
     /// setting date picker popup instance
     /// - Returns: date picker popup view
     static public func instance() -> NewDatePickerPopup {
-        let bundle = Bundle(for: Self.self)
-        let vc = NewDatePickerPopup(nibName: "NewDatePickerPopup", bundle: bundle)
+        let vc = NewDatePickerPopup(nibName: "NewDatePickerPopup", bundle: Bundle.module)
         vc.cerqel_sheetHeight = 600
         return vc
     }
