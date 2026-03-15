@@ -34,7 +34,6 @@ public class SharedNetworkServiceImpl: SharedNetwork {
             self.call(endpoint: endpoint)
                 .then({ (data) in
                     do {
-                        //  print("Response Data 🤪🤪🤪🤪  \(JSON(data))")
                         let obj = try JSONDecoder().decode(Model.self, from: data)
                         fulfill(obj)
                     } catch let jsonError {

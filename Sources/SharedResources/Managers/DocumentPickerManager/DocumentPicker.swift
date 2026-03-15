@@ -107,8 +107,6 @@ extension DocumentPicker: UIDocumentPickerDelegate{
         
         if fromProfile == true {
             if fileSize > 25 {
-                
-//                appDelegate.showAlert(withText: "Max attachment size is 25 MB".localized)
                 delegate?.didPickDocuments(URLs: nil, fromProfile: fromProfile ?? false)
             }else {
                 delegate?.didPickDocuments(URLs: urls, fromProfile: fromProfile ?? false)

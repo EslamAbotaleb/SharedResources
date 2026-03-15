@@ -26,11 +26,6 @@ extension String {
     public func cerqel_getDateFromString(isGreenwich: Bool? = false, isCurrentTimeZone: Bool = false) -> Date? {
         
         let dateFormatter = DateFormatter()
-//        if isGreenwich ?? false {
-//            dateFormatter.timeZone = TimeZone(identifier: "GMT")
-//        } else {
-//            dateFormatter.timeZone = currentTimeZoneCerqel //TimeZone.current//
-//        }
         dateFormatter.locale = dateFormatterLocal_en_USCerqel
         dateFormatter.timeZone = isCurrentTimeZone ? .current : utc_TimeZoneCerqel
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"

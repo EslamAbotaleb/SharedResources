@@ -44,7 +44,6 @@ public class UIGradientButton: LocalizedButton {
         
         let layer = self.layer as! CAGradientLayer
         layer.colors = [firstColor.cgColor , secondColor.cgColor]
-        //        layer.locations = [0.5]
         layer.startPoint = startPoint
         layer.endPoint = endPoint
     }

@@ -23,7 +23,6 @@ public struct NavigationBarBackButtonTitleHiddenModifier: ViewModifier {
       .navigationBarItems(
         leading: Button(action: { dismiss() }) {
           Image(systemName: "chevron.right")
-//                .foregroundColor(AppColors.primaryColor)
                 .font(.system(size: 20, weight: .bold))
 
         }

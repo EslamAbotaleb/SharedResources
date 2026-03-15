@@ -40,10 +40,6 @@ public class LocalNotificationManager : LocalNotificationProtocol {
                 self.delegate?.didAcceptNotification()
                 print("تمت الموافقة على الإشعارات المحلية🧡")
             } else {
-                DispatchQueue.main.async {
-                  //  self.delegate?.didReject(error: CustomError("تم رفض الوصول إلى الإشعارات المحلية💛"))
-                }
-                
             }
         }
     }
@@ -51,9 +47,6 @@ public class LocalNotificationManager : LocalNotificationProtocol {
     public func checkNotificationPermission() {
          UNUserNotificationCenter.current().getNotificationSettings { settings in
              if settings.authorizationStatus == .denied {
-                 DispatchQueue.main.async {
-                     //self.delegate?.didReject(error: CustomError("تم رفض الوصول إلى الإشعارات المحلية💛"))
-                 }
              }
              else if settings.authorizationStatus == .authorized {
                  self.delegate?.didAcceptNotification()

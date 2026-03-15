@@ -56,12 +56,6 @@ public struct Utilities {
         }
     }
     
-        // ---------------------- MOTIVAY ------------------- //
-    
-        //    static func storyboard(withName name: String, bundle: Bundle? = nil) -> UIStoryboard {
-        //        return UIStoryboard(name: name, bundle: bundle)
-        //    }
-    
     static public func screedHeight() -> CGFloat {
         return UIScreen.main.bounds.size.height
     }
@@ -86,12 +80,6 @@ public struct Utilities {
         
         return randomString
     }
-    
-        //    public func loadJSON() -> JSON {
-        //        let defaults = NSUserDefaults.standardUserDefaults()
-        //        return JSON.parse(defaults.valueForKey("json") as! String))
-        //        // JSON from string must be initialized using .parse()
-        //    }
     
     static public func saveString(_ str: String, toFile: String){
         
@@ -157,7 +145,6 @@ public struct Utilities {
         }else{
             let data = str!.data(using: String.Encoding.utf8, allowLossyConversion: false)!
             
-                //            var json: JSON?
             do {
                 if let json = try JSONSerialization.jsonObject(with: data, options: []) as? JSON2 {
                     return json

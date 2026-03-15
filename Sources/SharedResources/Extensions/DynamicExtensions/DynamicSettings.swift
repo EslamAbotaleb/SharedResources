@@ -149,7 +149,6 @@ public func openAttachmentCerqel(withURLString: String) {
 
 public func openAppFromCerqelAppCerqel(appStoreURL: String) -> Bool {
     for key in appsDicCerqel.keys {
-        //        if key == appStoreURL {
         if appStoreURL.contains(key) {
             return openAppCerqel(scheme: appsDicCerqel[key], appStoreURL: appStoreURL)
         }
@@ -229,15 +228,6 @@ public func showToastCerqel(parentView: UIViewController, msg: String){
 
 
 public func showNoConnectionPopupCerqel(parentView: UIViewController){
-//    let vc = CERQELShared_Router.goTo(viewName: .NoConnectionPopup)
-//    let popup = PopupDialog(viewController: vc)
-//    if let v = vc as? CerqelConnectionPopup{
-//        v.didTapOk = {
-//            popup.dismiss()
-//        }
-//    }
-//    // Present dialog
-//    parentView.present(popup, animated: true, completion: nil)
 }
 
 public func checkReachabilityCerqel(){
@@ -302,8 +292,6 @@ public func getDatesDifferenceInDaysCerqel(fromDate: Date?, toDate: Date?) -> In
     let year = ((components.year ?? 0) * 12 * 30)
 
     let allDays = days + month + year
-    //    let allDays = (components.day ?? 0) + ((components.month ?? 0) * 30) + ((components.year ?? 0) * 12 * 30)
-    //    let allDays = (components.day ?? 0) + ((components.month ?? 0)) + ((components.year ?? 0))
 
     return allDays + 1
 }

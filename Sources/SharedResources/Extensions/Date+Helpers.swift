@@ -87,7 +87,6 @@ extension Date {
         
         if let combinedDate = dateFormatter.date(from: combinedString) {
             // Format the combinedDate to the desired format
-            //  return dateFormatter.string(from: combinedDate)
             return combinedDate
         }
         
@@ -255,7 +254,6 @@ extension Formatter {
     static public let FileISoFormat: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
-        //  formatter.locale = isArabic() ? dateFormatterLocale_arCerqel : Locale(identifier: "en_US_POSIX")
         formatter.locale =  Locale(identifier: "en_US_POSIX")
         formatter.timeZone = TimeZone(secondsFromGMT: 0)
         return formatter
@@ -265,7 +263,6 @@ extension Formatter {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z" // Adjusted format
         formatter.locale =  Locale(identifier: "en_US_POSIX")
-        //  formatter.locale = isArabic() ? dateFormatterLocale_arCerqel : Locale(identifier: "en_US_POSIX")
         formatter.timeZone = TimeZone(secondsFromGMT: 0)
         return formatter
     }()

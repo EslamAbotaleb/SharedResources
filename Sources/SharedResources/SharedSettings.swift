@@ -213,7 +213,6 @@ public func handleImageWithKFCerqel(
 
 
 public func textToImageCerqel(drawText text: String, inImage image: UIImage, atPoint point: CGPoint, textSize: CGSize,textColor:UIColor) -> UIImage {
-    // let textColor = UIColor.white
     let textFont = UIFont.SST_Arabic_Medium(ofSize: 18)
 
     let scale = UIScreen.main.scale
@@ -276,7 +275,6 @@ public func handleImageWithKF(imgUrl:String? ,img:UIImageView ,name:String?, col
 }
 
 public func textToImage(drawText text: String, inImage image: UIImage, atPoint point: CGPoint, textSize: CGSize,textColor:UIColor) -> UIImage {
-    // let textColor = UIColor.white
     let textFont = UIFont.SST_Arabic_Medium(ofSize: 18)
     let scale = UIScreen.main.scale
     UIGraphicsBeginImageContextWithOptions(image.size, false, scale)
