@@ -13,13 +13,6 @@ public enum SharedResourcesBundle {
     public static var bundle: Bundle { Bundle.module }
 }
 
-extension UICollectionView {
-    public func registerSharedCell<T: UICollectionViewCell>(cellType: T.Type) {
-        let identifier = String(describing: T.self)
-        self.register(UINib(nibName: identifier, bundle: Bundle.module), forCellWithReuseIdentifier: identifier)
-    }
-}
-
 extension UITableView {
     public func registerCell<T: UITableViewCell>(cellType: T.Type) {
         let bundle = Bundle(for: T.self)
