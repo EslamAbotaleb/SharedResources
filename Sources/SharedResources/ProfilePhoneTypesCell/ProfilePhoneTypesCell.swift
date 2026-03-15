@@ -15,7 +15,7 @@ public class ProfilePhoneTypesCell: UITableViewCell {
     
     // Returns the UINib for this cell with the correct bundle
     public static var nib: UINib {
-        return UINib(nibName: nibName, bundle: Bundle(for: Self.self))
+        return UINib(nibName: nibName, bundle: Bundle.module)
     }
 
     @IBOutlet weak var checkIcon: UIImageView!

@@ -51,7 +51,13 @@ let package = Package(
                 .product(name: "KeychainSwift", package: "keychain-swift"),
                 .product(name: "Reachability", package: "Reachability.swift")
             ],
-            resources: [.process("Resources")],
+            resources: [
+                .process("Resources"),
+                .process("ProfilePhoneTypesCell/ProfilePhoneTypesCell.xib"),
+                .process("RadioCell/RadioCell.xib"),
+                .process("AddEditInvitedCV/AddEditInvitedCV.xib"),
+                .process("NewDatePickerPopup/NewDatePickerPopup.xib")
+            ],
             swiftSettings: [
                    .unsafeFlags(["-Xfrontend", "-strict-concurrency=minimal"])
             ]

@@ -18,7 +18,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewDatePickerPopup" customModule="CERQEL" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewDatePickerPopup" customModule="SharedResources">
             <connections>
                 <outlet property="closeIcon" destination="UvJ-5M-fUo" id="5L5-uL-Ekw"/>
                 <outlet property="containerView" destination="kEB-TB-wYQ" id="grP-Ia-YHz"/>
