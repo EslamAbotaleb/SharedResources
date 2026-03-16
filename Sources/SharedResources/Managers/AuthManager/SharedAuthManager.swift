@@ -30,7 +30,7 @@ open class SharedAuthManager {
 
     public var isPopUpFromFormBuilder:((String) -> ())?
     public var isInboxRefreshRequired = false
-    var unauthorizedFlag: BehaviorRelay<Bool?> = BehaviorRelay(value: nil)
+    public var unauthorizedFlag: BehaviorRelay<Bool?> = BehaviorRelay(value: nil)
     public var profile: DynamicObjects<ModelUserProfileDataCerqel?> = DynamicObjects(nil)
 
     public var token: String = ""{
