@@ -6,13 +6,22 @@
 //
 
 import Foundation
+internal import KeychainSwift
 @_exported import RxSwift
 @_exported import RxCocoa
 
 open class SharedAuthManager {
-    
+
     private let service: Sharedcerqel_NetworkServiceD = Sharedcerqel_BasicNetworkServiceImpl.shared
     private let disposeBag = DisposeBag()
+    private let keychain: KeychainSwift = {
+        let kc = KeychainSwift()
+        kc.synchronizable = false
+        return kc
+    }()
+    private static let tokenKey = "cerqel_auth_token"
+    private static let refreshTokenKey = "cerqel_auth_refresh_token"
+
     public var documentTypesOfExtensions: [String] = []
     public var isTasks = true
     static public var shared = SharedAuthManager()
@@ -23,10 +32,24 @@ open class SharedAuthManager {
     public var isInboxRefreshRequired = false
     var unauthorizedFlag: BehaviorRelay<Bool?> = BehaviorRelay(value: nil)
     public var profile: DynamicObjects<ModelUserProfileDataCerqel?> = DynamicObjects(nil)
-    
+
     public var token: String = ""{
         didSet{
-            UserDefaults.standard.set(token, forKey: "Token")
+            if token.isEmpty {
+                keychain.delete(Self.tokenKey)
+            } else {
+                keychain.set(token, forKey: Self.tokenKey)
+            }
+        }
+    }
+
+    public var refreshToken: String = ""{
+        didSet{
+            if refreshToken.isEmpty {
+                keychain.delete(Self.refreshTokenKey)
+            } else {
+                keychain.set(refreshToken, forKey: Self.refreshTokenKey)
+            }
         }
     }
     
@@ -42,7 +65,12 @@ open class SharedAuthManager {
         }
     }
     
-   public func fetchProfile(){
+    public init() {
+        self.token = keychain.get(Self.tokenKey) ?? ""
+        self.refreshToken = keychain.get(Self.refreshTokenKey) ?? ""
+    }
+
+    public func fetchProfile(){
         self.service.load(Sharedcerqel_CodableResponseObject<ModelUserProfileDataCerqel>(action: Sharedcerqel_BasicAction.fetchProfile)).subscribe(onNext: {
             [weak self] (response) in
             if let obj = response.item?.data{
